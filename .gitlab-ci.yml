@@ -31,6 +31,6 @@ build:
 push_to_registry:
   stage: push_to_registry
   script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $DOCKER_REGISTRY
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker load -i $DOCKER_NAME.tar
     - docker push $DOCKER_NAME
