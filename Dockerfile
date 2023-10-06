@@ -1,18 +1,16 @@
-FROM node:20-alpine3.18
-
+FROM node:20-alpine3.18 AS builder
 WORKDIR /app
-
-# Rather than copying the entire working directory, we are only copying the package.json file. This allows us to take advantage of cached Docker layers.
-COPY package*.json ./
-
+ENV NODE_ENV production
+COPY package*.json /app/
 RUN npm install
-
-# Building code for production
 RUN npm ci --omit=dev
-
-# Bundle app source
 COPY . .
+RUN npm run build
 
-EXPOSE 8080
+FROM nginx:mainline-alpine3.18-slim
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/build /usr/share/nginx/html
+EXPOSE 3000 80
 
-CMD [ "node", "index.js" ]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
