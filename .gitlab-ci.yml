@@ -4,11 +4,10 @@ default:
     - docker:24.0.6-dind
 
 variables:
-  DOCKER_NAME: $CI_PROJECT_NAME:latest
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
 
 stages:
   - build
-  - push_to_registry
 
 build:
   stage: build
@@ -18,19 +17,7 @@ build:
   variables:
     DOCKER_TLS_CERTDIR: "/certs"
   script:
-    - DOCKER_BUILDKIT=1 docker build --tag $DOCKER_NAME --file Dockerfile .
-    - docker image ls | grep $CI_PROJECT_NAME
-    - rm -f $CI_PROJECT_NAME:latest.tar
-    - docker save -o $DOCKER_NAME.tar $DOCKER_NAME
-  artifacts:
-    when: on_success
-    paths:
-      - $DOCKER_NAME.tar
-    expire_in: 7 days
-
-push_to_registry:
-  stage: push_to_registry
-  script:
+    - DOCKER_BUILDKIT=1 docker build --tag $CONTAINER_RELEASE_IMAGE --file Dockerfile .
+    - docker image ls | grep $CI_REGISTRY_IMAGE
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker load -i $DOCKER_NAME.tar
-    - docker push $DOCKER_NAME
+    - docker push $CONTAINER_RELEASE_IMAGE
