@@ -22,6 +22,21 @@ const theme = createTheme({
         },
     },
     components: {
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#ffffff',
+                }
+            }
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    padding: '5px 10px',
+                    margin: '10px',
+                }
+            }
+        },
         MuiPaper: {
             styleOverrides: {
                 root: {
