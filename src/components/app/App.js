@@ -1,34 +1,27 @@
-import React, {useState} from 'react'
+import React from 'react'
+import {Link, Route, Routes} from 'react-router-dom'
 import {AppBar, Button, Container, Grid, Toolbar, Typography} from "@mui/material"
-import CreateOfferForm from "../create_offer_form/CreateOfferForm"
+import OfferForm from "../offer_form/OfferForm"
 import OffersTable from "../offers_table/OffersTable"
 
 export default App
 
 function App() {
-    const [selectedComponent, setSelectedComponent] = useState('create')
-
-    const renderComponent = () => {
-        switch (selectedComponent) {
-            case 'create':
-                return <CreateOfferForm/>
-            case 'list':
-                return <OffersTable/>
-            default:
-                return null
-        }
-    }
-
     return <Grid container justifyContent="center">
         <AppBar position="static">
             <Toolbar variant="dense">
                 <Typography variant="h6">Licence Manager</Typography>
-                <Button onClick={() => setSelectedComponent('create')} variant="contained">Создать заявку</Button>
-                <Button onClick={() => setSelectedComponent('list')} variant="contained">Заявки</Button>
+                <Button component={Link} to="/create" variant="contained">Создать заявку</Button>
+                <Button component={Link} to="/list" variant="contained">Заявки</Button>
             </Toolbar>
         </AppBar>
         <Container maxWidth="sm">
-            {renderComponent()}
+            <Routes>
+                <Route index element={<OfferForm/>}/>
+                <Route path="create" element={<OfferForm/>}/>
+                <Route path="edit" element={<OfferForm/>}/>
+                <Route path="list" element={<OffersTable/>}/>
+            </Routes>
         </Container>
     </Grid>
 }

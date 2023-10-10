@@ -26,10 +26,10 @@ const sendRequest = async (method, endpoint, data = null, customHeaders = {}) =>
 }
 
 const methods = {
-    get: (endpoint, customHeaders = {}) => sendRequest('GET', endpoint, null, customHeaders).catch(e => console.log(e)),
-    post: (endpoint, data, customHeaders = {}) => sendRequest('POST', endpoint, data, customHeaders).catch(e => console.log(e)),
-    put: (endpoint, data, customHeaders = {}) => sendRequest('PUT', endpoint, data, customHeaders).catch(e => console.log(e)),
-    delete: (endpoint, customHeaders = {}) => sendRequest('DELETE', endpoint, null, customHeaders).catch(e => console.log(e)),
+    get: (endpoint = "/", customHeaders = {}) => sendRequest('GET', endpoint, null, customHeaders).catch(e => console.log(e)),
+    post: (endpoint = "/", data, customHeaders = {}) => sendRequest('POST', endpoint, data, customHeaders).catch(e => console.log(e)),
+    put: (endpoint = "/", data, customHeaders = {}) => sendRequest('PUT', endpoint, data, customHeaders).catch(e => console.log(e)),
+    delete: (endpoint = "/", customHeaders = {}) => sendRequest('DELETE', endpoint, null, customHeaders).catch(e => console.log(e)),
 }
 
 export default methods
