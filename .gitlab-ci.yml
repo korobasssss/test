@@ -2,6 +2,8 @@ default:
   image: docker:24.0.6
   services:
     - docker:24.0.6-dind
+  tags:
+    - docker
 
 variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
