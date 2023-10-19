@@ -72,7 +72,7 @@
     overflow: auto;
 
     &_withTop {
-      padding-top: calc($topMenuFixedHeight + 40px);
+      padding-top: calc($topMenuFixedHeight);
     }
 
     &_withBottomMenu {

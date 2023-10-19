@@ -31,13 +31,15 @@ export const ProductsList: FC = observer(() => {
             className={styles.card_item}
             key={`${item.id}`}
             onClick={() => {
-              console.log(item)
+              console.log(toJS(item))
               // navigate(`pay/${item.StartDate.toString()}`);
             }}
           >
             <div className={styles.top_row}>
-              <p>id: {item.id}</p>
-              <p>{item.name}</p>
+              <div className={styles.name}>
+                <p>id: {item.id}</p>
+                <p>{item.name}</p>
+              </div>
               <p onClick={onChangeStatusHandler}>статус: {EProductStatus[item.status]}</p>
             </div>
             <div className={styles.body}>

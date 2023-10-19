@@ -7,11 +7,11 @@
   align-items: center;
   flex-direction: column;
   padding: 16px 0;
-  height: calc(100% - ($bottomMenuFixedHeight / 2));
+  //height: calc(100% - ($bottomMenuFixedHeight / 2));
   width: 100%;
   background-color: $WHITE;
   border-radius: $ROUNDING_L;
-  overflow: scroll;
+  //overflow: scroll;
 
   .card_item {
     display: flex;
@@ -28,9 +28,11 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+      @include font-medium-light;
 
-      p {
-        @include font-medium-light;
+      .name {
+        display: flex;
+        gap: 10px
       }
     }
 
