@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {ReactElement} from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {MainPage} from "./pages/Main";
+import {InnerFullHeightLayout} from "./base/components/InnerHeightLayout";
 
-function App() {
+
+export default function App(): ReactElement {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <InnerFullHeightLayout>
+      <BrowserRouter /*basename={window._env_.REACT_APP_PUBLIC_URL}*/ >
+        <Routes>
+          <Route path="*" element={<MainPage/>}/>
+        </Routes>
+      </BrowserRouter>
+    </InnerFullHeightLayout>
+
   );
 }
-
-export default App;

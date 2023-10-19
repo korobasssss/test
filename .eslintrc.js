@@ -8,7 +8,7 @@ module.exports = {
     './eslint-settings/eslint-config-common/index.js',
     './eslint-settings/eslint-config-react/index.js',
     './eslint-settings/eslint-config-typescript/index.js',
-    'plugin:storybook/recommended',
+    // 'plugin:storybook/recommended',
     'prettier',
   ],
   overrides: [],

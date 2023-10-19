@@ -1,0 +1,16 @@
+@import 'src/styles/variables/index.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .left {
+    width: 1.5rem;
+  }
+
+  .right {
+    width: 1.5rem;
+  }
+}
