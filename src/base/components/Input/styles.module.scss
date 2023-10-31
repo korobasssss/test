@@ -1,0 +1,108 @@
+@import 'src/styles/variables/index.scss';
+@import 'src/styles/mixins/typography.scss';
+
+@mixin readOnlyText {
+  font-size: $MOSCOW_SANS_X_LIGHT;
+  color: $TITLE_COLOR;
+}
+
+.LICInputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  background: $INPUT_BG;
+  padding: 12px 10px;
+  height: 40px;
+  gap: 12px;
+  @include font-moscow-sans-m;
+
+  &:focus-within {
+    border: 1px solid $INPUT_FOCUS;
+  }
+
+  & > label {
+    color: $INPUT_LABEL;
+    width: 50%;
+  }
+
+  &__readonly {
+    background: $MAIN;
+
+    label {
+      @include readOnlyText;
+    }
+
+    input {
+      @include readOnlyText;
+    }
+  }
+
+  &-input {
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    font-weight: 300;
+    font-size: 16px;
+    width: 50%;
+    font-family: inherit;
+
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+    }
+  }
+}
+
+.LICInput {
+  border-radius: 10px;
+  background: white;
+  box-sizing: border-box;
+  padding: 12px 10px;
+  height: 40px;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-weight: 300;
+  font-size: 16px;
+  @include font-moscow-sans-m;
+
+  &::-webkit-input-placeholder {
+    color: $INPUT_PLACEHOLDER;
+  }
+
+  &:-moz-placeholder {
+    color: $INPUT_PLACEHOLDER;
+  }
+
+  &::-moz-placeholder {
+    color: $INPUT_PLACEHOLDER;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: $INPUT_PLACEHOLDER;
+  }
+
+  &::-ms-input-placeholder {
+    color: $INPUT_PLACEHOLDER;
+  }
+
+  &::placeholder {
+    color: $INPUT_PLACEHOLDER;
+  }
+
+  &:focus {
+    border: 1px solid $INPUT_FOCUS;
+  }
+
+  &:disabled {
+    color: $INPUT_DISABLED;
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  margin-top: 0.3rem;
+  @include font-small-light;
+}

@@ -1,0 +1,1 @@
+export {AllProductsContainer} from './containers';
