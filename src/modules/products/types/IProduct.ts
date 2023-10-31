@@ -11,3 +11,5 @@ export interface IProduct {
   componentIds: string[]
   memoryElementIds: string[]
 }
+
+export type TProductDataKeys = keyof IProduct

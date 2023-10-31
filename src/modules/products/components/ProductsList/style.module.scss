@@ -1,5 +1,5 @@
-@import 'src/styles/variables/index.scss';
-@import 'src/styles/mixins/typography.scss';
+@import '../../../../styles/variables/index';
+@import '../../../../styles/mixins/typography';
 
 .cards {
   display: flex;
@@ -56,7 +56,7 @@
           border: 1px solid $BUTTON_ACTION_BG;
 
           &:active {
-            background-color: $BUTTON_SECONDARY_BG_ON_WHITE;
+            background-color: $BLUE_SECONDARY;;
           }
         }
       }

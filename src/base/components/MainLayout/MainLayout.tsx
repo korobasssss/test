@@ -27,7 +27,7 @@ export const MainLayout = ({
   className,
   contentClassName,
 }: IMainMenuLayoutProps): ReactElement => {
-  // const t = useTranslation();
+
   return (
     <div className={cx('container', className)}>
       {/* Верхняя панель */}

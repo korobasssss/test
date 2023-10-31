@@ -1,0 +1,16 @@
+.DropDownMenu {
+  position: relative;
+  width: 100%;
+
+  &-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+  }
+
+  svg {
+    pointer-events: none;
+  }
+}

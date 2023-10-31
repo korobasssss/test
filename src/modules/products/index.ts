@@ -1,1 +1,1 @@
-export {ProductsContainer} from './containers';
+export {AllProductsContainer} from './containers';

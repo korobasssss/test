@@ -1,0 +1,147 @@
+@import '../../../styles/variables/colors';
+@import '../../../styles/mixins/typography';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  background: $INPUT_BG;
+  //padding: 12px 10px;
+  height: 40px;
+  gap: 12px;
+  @include font-moscow-sans-m;
+
+  .header {
+    border-radius: 10px;
+    background: white;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-weight: 300;
+    font-size: 16px;
+  }
+
+  .head {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+
+    &.disabled {
+      cursor: default
+    }
+  }
+
+  .body {
+    background-color: white;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 20%);
+    border-radius: 0 0 10px 10px;
+
+    .search_input {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+      padding: 0 10px;
+
+      .input {
+        outline: none;
+        border: none;
+        width: 100%;
+        @include font-moscow-sans-m;
+
+        &::placeholder {
+          color: black;
+        }
+      }
+    }
+
+    .hr {
+      background-color: $LIGHT_GREY;
+      width: 100%;
+      height: 1px;
+    }
+
+    .scroll {
+      padding: 10px 6px 10px 10px;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        width: 3px;
+
+        &-button {
+          background-color: transparent;
+        }
+
+        &-track {
+          border: none;
+          background-color: transparent;
+        }
+
+        &-thumb {
+          background-color: $LIGHT_GREY_BLUE;
+          border-radius: 2px;
+          width: 3px;
+        }
+      }
+
+      .item {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &_active {
+          background-color: $STROKE_GREY;
+
+          span {
+            color: white;
+          }
+        }
+
+        &:hover {
+          background-color: $LIGHT_GREY;
+
+          span {
+            color: white;
+          }
+        }
+
+        & + & {
+          margin-top: 0.5em;
+        }
+      }
+    }
+  }
+}
+
+.arrow {
+  transition: transform 0.15s ease-in-out;
+}
+
+.error_text {
+  color: red;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+
+  &:hover {
+    white-space: normal;
+    max-width: none;
+    width: max-content;
+    cursor: context-menu;
+    user-select: none;
+  }
+}
