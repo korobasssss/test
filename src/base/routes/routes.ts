@@ -8,7 +8,7 @@ export const routes = {
     url: (id: string | number) => `products/${id}`,
     path: 'products/:id',
     edit: {
-      url: (id: string | number) => `products/edit/${id}`,
+      url: (id: string | number) => `/products/edit/${id}`,
       path: 'products/edit/:id',
     }
     // }

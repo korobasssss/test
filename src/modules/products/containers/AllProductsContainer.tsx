@@ -14,7 +14,6 @@ export const AllProductsContainer: FC = () => {
   }, []);
 
   const createProductHandler = useCallback(() => {
-    console.log('addNewProduct')
     navigate(routes.product.edit.url('new'));
   }, [navigate])
 

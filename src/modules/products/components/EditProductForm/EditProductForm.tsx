@@ -136,6 +136,7 @@ export const EditProductForm: FC<IProps> = observer(({onSubmit, product}) => {
               className={styles.button}
               theme="secondary"
               type="button"
+              size="s"
               onClick={handleSubmit}
             >
               Создать продукт

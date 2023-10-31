@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import {IProduct} from "../../types";
 import {Button} from "../../../../base/components";
 import cx from "classnames";
+import {EProductStatus} from "../../constants/EProductStatus";
 
 interface IProps {
   product: IProduct | null;
@@ -26,7 +27,7 @@ export const ViewProductCard: FC<IProps> = ({product, onChangeProduct}) => {
             <p>
               {product.name}
             </p>
-            <p>{product.status}</p>
+            <p>{EProductStatus[product.status]}</p>
           </div>
         </div>
         <div className={styles['card-item']}>

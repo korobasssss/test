@@ -5,8 +5,10 @@ import {observer} from "mobx-react";
 import {productStore} from "../store";
 import {useParams} from "react-router-dom";
 import {getProductsAction} from "../actions";
-import {useNavigateBack} from "../../../base";
+import {routes, useNavigateBack} from "../../../base";
 import {ReactComponent as BackLogo} from 'src/assets/icons/back.svg';
+import {useNavigate} from "react-router";
+import {IProduct} from "../types";
 
 
 export const ViewProductContainer: FC = observer(() => {
@@ -15,6 +17,16 @@ export const ViewProductContainer: FC = observer(() => {
 
   const {viewProduct} = productStore;
 
+  const navigate = useNavigate();
+
+  const onChangeProductHandler = useCallback((item: IProduct) => {
+    return (e: SyntheticEvent) => {
+      e.stopPropagation()
+      navigate(routes.product.edit.url(item.id));
+      productStore.setViewProduct(item)
+    }
+  }, [navigate])
+
   useEffect(() => {
     if (!viewProduct) {
       getProductsAction().then(() => {
@@ -22,12 +34,6 @@ export const ViewProductContainer: FC = observer(() => {
       })
     }
   }, [params.id, viewProduct]);
-
-  const onChangeProductHandler = useCallback((e: SyntheticEvent) => {
-    e.stopPropagation()
-    console.log('change product')
-  }, [])
-
 
   if (productStore.isLoading) return <>...Loading</>
 
@@ -39,7 +45,7 @@ export const ViewProductContainer: FC = observer(() => {
         clicked: () => goBack(),
       }}
     >
-      <ViewProductCard product={viewProduct} onChangeProduct={onChangeProductHandler}/>
+      <ViewProductCard product={viewProduct} onChangeProduct={onChangeProductHandler(viewProduct!)}/>
     </MainLayout>
   );
 })
