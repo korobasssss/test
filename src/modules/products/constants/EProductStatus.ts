@@ -1,5 +1,11 @@
 export enum EProductStatus {
-  DRAFT = "Черновик",
+  DRAFT = 'DRAFT',
+  SALE = 'SALE',
+  ARCHIVE = 'ARCHIVE',
+}
+
+export enum EProductStatusTranslate {
+  DRAFT = 'Черновик',
   SALE = 'В продаже',
-  ARCHIVE = 'Архивирован '
+  ARCHIVE = 'Архивирован ',
 }

@@ -1,29 +1,32 @@
-import React, {FC, useCallback, useEffect} from 'react';
-import {getProductsAction} from "../actions";
-import {ProductsList} from "../components/ProductsList";
-import {CreateProductButton} from "../components/NewProductButton";
-import {MainLayout} from "../../../base/components";
-import {routes} from "../../../base";
-import {useNavigate} from "react-router";
+import React, { FC, useCallback, useEffect } from 'react';
+import { getAllProductsAction } from '../actions';
+import { ProductsList } from '../components/ProductsList';
+import { CreateProductButton } from '../components/CreateProductButton';
+import { MainLayout } from '../../../base/components';
+import { useNavigate } from 'react-router';
+import { observer } from 'mobx-react';
+import { authStore } from '../../auth/stores';
+import { routeProductsEdit } from '../../../base/routes/products/edit/routeProductsEdit';
 
-export const AllProductsContainer: FC = () => {
+export const AllProductsContainer: FC = observer(() => {
   const navigate = useNavigate();
 
+  const isAuth = authStore.isAuth;
+
   useEffect(() => {
-    getProductsAction()
-  }, []);
+    if (isAuth) {
+      getAllProductsAction();
+    }
+  }, [isAuth]);
 
   const createProductHandler = useCallback(() => {
-    console.log('addNewProduct')
-    navigate(routes.product.edit.url('new'));
-  }, [navigate])
+    navigate(routeProductsEdit.url({ id: 'new' }));
+  }, [navigate]);
 
   return (
     <MainLayout topTitle="Продукты">
-      <ProductsList/>
-      <CreateProductButton
-        onChange={createProductHandler}
-      />
+      <ProductsList />
+      <CreateProductButton onChange={createProductHandler} />
     </MainLayout>
   );
-}
+});

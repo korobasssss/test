@@ -1,13 +1,16 @@
 module.exports = {
-  extends: ['plugin:import/typescript', 'plugin:@typescript-eslint/recommended'],
+  extends: [
+    'plugin:import/typescript',
+    'plugin:@typescript-eslint/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 2021,
     sourceType: 'module',
-    project: './tsconfig.json'
+    project: './tsconfig.json',
   },
   plugins: ['@typescript-eslint'],
   overrides: [
@@ -23,8 +26,8 @@ module.exports = {
           {
             vars: 'all',
             args: 'after-used',
-            ignoreRestSiblings: false
-          }
+            ignoreRestSiblings: false,
+          },
         ],
         'no-useless-constructor': ['error'],
         'require-await': ['error'],
@@ -33,8 +36,8 @@ module.exports = {
           {
             variables: true,
             functions: false,
-            classes: true
-          }
+            classes: true,
+          },
         ],
         'no-extra-semi': ['error'],
         '@typescript-eslint/adjacent-overload-signatures': ['off'],
@@ -70,9 +73,9 @@ module.exports = {
         '@typescript-eslint/promise-function-async': ['off'],
         '@typescript-eslint/require-await': ['off'],
         '@typescript-eslint/restrict-plus-operands': ['off'],
-        '@typescript-eslint/unified-signatures': ['off']
-      }
-    }
+        '@typescript-eslint/unified-signatures': ['off'],
+      },
+    },
   ],
   rules: {
     'no-invalid-this': ['off'], // see @typescript-eslint/no-invalid-this
@@ -88,81 +91,99 @@ module.exports = {
 
     /* Typescript */
     '@typescript-eslint/adjacent-overload-signatures': ['error'],
-    '@typescript-eslint/array-type': ['error', { default: 'array-simple', readonly: 'array-simple' }],
+    '@typescript-eslint/array-type': [
+      'error',
+      { default: 'array-simple', readonly: 'array-simple' },
+    ],
     '@typescript-eslint/await-thenable': ['error'],
     '@typescript-eslint/naming-convention': [
       'error',
       {
         selector: 'default',
-        format: ['camelCase']
+        format: ['camelCase', 'snake_case'],
+      },
+      {
+        modifiers: ['private'],
+        selector: 'classProperty',
+        format: ['camelCase', 'snake_case'],
+        leadingUnderscore: 'allow',
       },
       {
         selector: 'variable',
-        format: ['camelCase', 'UPPER_CASE', 'PascalCase']
+        format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
       },
       {
         selector: ['function'],
-        format: ['camelCase', 'PascalCase']
+        format: ['camelCase', 'PascalCase'],
       },
       {
         selector: 'parameter',
-        format: ['camelCase', 'PascalCase']
+        format: ['camelCase', 'PascalCase'],
       },
       {
         selector: ['objectLiteralProperty', 'objectLiteralMethod'],
-        format: []
+        format: [],
       },
       {
         selector: 'typeProperty',
-        format: []
+        format: [],
       },
       {
         selector: 'typeLike',
-        format: ['PascalCase']
+        format: ['PascalCase'],
       },
       {
         selector: 'enum',
-        format: ['PascalCase', 'UPPER_CASE']
+        format: ['PascalCase', 'UPPER_CASE'],
       },
       {
         selector: 'enumMember',
-        format: ['camelCase', 'PascalCase', 'UPPER_CASE']
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
       },
       {
         selector: 'interface',
         format: ['PascalCase'],
         custom: {
           regex: '^I[A-Z]',
-          match: true
-        }
-      }
+          match: true,
+        },
+      },
     ],
     '@typescript-eslint/ban-ts-comment': ['off'],
     '@typescript-eslint/consistent-type-assertions': [
       'error',
-      { assertionStyle: 'as', objectLiteralTypeAssertions: 'allow-as-parameter' }
+      {
+        assertionStyle: 'as',
+        objectLiteralTypeAssertions: 'allow-as-parameter',
+      },
     ],
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-    '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
-    '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'explicit' }],
+    '@typescript-eslint/explicit-function-return-type': [
+      'error',
+      { allowExpressions: true },
+    ],
+    '@typescript-eslint/explicit-member-accessibility': [
+      'error',
+      { accessibility: 'explicit' },
+    ],
     '@typescript-eslint/explicit-module-boundary-types': [
       'error',
       {
-        allowArgumentsExplicitlyTypedAsAny: true
-      }
+        allowArgumentsExplicitlyTypedAsAny: true,
+      },
     ],
     '@typescript-eslint/member-delimiter-style': [
       'error',
       {
         multiline: {
           delimiter: 'semi',
-          requireLast: true
+          requireLast: true,
         },
         singleline: {
           delimiter: 'semi',
-          requireLast: false
-        }
-      }
+          requireLast: false,
+        },
+      },
     ],
     '@typescript-eslint/no-extra-parens': ['off'],
     '@typescript-eslint/no-extra-semi': ['error'],
@@ -174,18 +195,21 @@ module.exports = {
       'error',
       {
         ignoreParameters: true,
-        ignoreProperties: true
-      }
+        ignoreProperties: true,
+      },
     ],
     '@typescript-eslint/no-invalid-this': ['error'],
-    '@typescript-eslint/no-redeclare': ['error', { ignoreDeclarationMerge: true }],
+    '@typescript-eslint/no-redeclare': [
+      'error',
+      { ignoreDeclarationMerge: true },
+    ],
     '@typescript-eslint/no-non-null-assertion': ['off'],
     '@typescript-eslint/no-misused-new': ['error'],
     '@typescript-eslint/no-misused-promises': [
       'error',
       {
-        checksVoidReturn: false
-      }
+        checksVoidReturn: false,
+      },
     ],
     '@typescript-eslint/no-parameter-properties': ['off'],
     '@typescript-eslint/no-unnecessary-type-assertion': ['error'],
@@ -196,8 +220,8 @@ module.exports = {
       {
         vars: 'all',
         args: 'after-used',
-        ignoreRestSiblings: false
-      }
+        ignoreRestSiblings: false,
+      },
     ],
     '@typescript-eslint/no-use-before-define': [
       'error',
@@ -206,8 +230,8 @@ module.exports = {
         functions: false,
         classes: true,
         enums: true,
-        typedefs: true
-      }
+        typedefs: true,
+      },
     ],
     '@typescript-eslint/no-useless-constructor': ['error'],
     '@typescript-eslint/promise-function-async': [
@@ -216,8 +240,8 @@ module.exports = {
         checkArrowFunctions: true,
         checkFunctionDeclarations: true,
         checkFunctionExpressions: true,
-        checkMethodDeclarations: true
-      }
+        checkMethodDeclarations: true,
+      },
     ],
     '@typescript-eslint/require-await': ['error'],
     '@typescript-eslint/restrict-plus-operands': ['error'],
@@ -231,9 +255,9 @@ module.exports = {
         parameter: true,
         propertyDeclaration: true,
         variableDeclaration: false,
-        variableDeclarationIgnoreFunction: false
-      }
+        variableDeclarationIgnoreFunction: false,
+      },
     ],
-    '@typescript-eslint/unified-signatures': ['error']
-  }
+    '@typescript-eslint/unified-signatures': ['error'],
+  },
 };
