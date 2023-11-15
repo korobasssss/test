@@ -1,35 +1,40 @@
 import React, { FC, SyntheticEvent, useCallback } from 'react';
 import { observer } from 'mobx-react';
-import { productStore } from '../../store';
 import { getShortDescription, isArray } from '../../../../base';
 import styles from './style.module.scss';
-import { EProductStatus } from '../../constants/EProductStatus';
+import { EComponentStatus } from '../../constants';
 import { useNavigate } from 'react-router';
-import { IProductView } from '../../types';
+import { IComponentView } from '../../types';
 import { Button, Spinner } from '../../../../base/components';
-import { routeProductsEdit, routeProductsView } from '../../../../base/routes';
+import {
+  routeComponentsEdit,
+  routeComponentsView,
+} from '../../../../base/routes';
+import { componentsStore } from '../../store';
+import { toJS } from 'mobx';
 
-export const ProductsList: FC = observer(() => {
-  const { data } = productStore;
+export const ComponentsList: FC = observer(() => {
+  const { data } = componentsStore;
+  console.log(toJS(data));
 
   const navigate = useNavigate();
 
-  const onChangeProductHandler = useCallback(
-    (item: IProductView) => {
+  const onChangeComponentHandler = useCallback(
+    (item: IComponentView) => {
       return (e: SyntheticEvent) => {
         e.stopPropagation();
-        navigate(routeProductsEdit.url({ id: item.id! }));
-        productStore.setViewProduct(item);
+        navigate(routeComponentsEdit.url({ id: item.id }));
+        componentsStore.setViewComponent(item);
       };
     },
     [navigate],
   );
 
-  const openProductDetailsHandler = useCallback(
-    (item: IProductView) => {
+  const openComponentDetailsHandler = useCallback(
+    (item: IComponentView) => {
       return () => {
-        productStore.setViewProduct(item);
-        navigate(routeProductsView.url({ id: item.id! }));
+        componentsStore.setViewComponent(item);
+        navigate(routeComponentsView.url({ id: item.id }));
       };
     },
     [navigate],
@@ -40,7 +45,7 @@ export const ProductsList: FC = observer(() => {
     console.log('change status');
   }, []);
 
-  if (productStore.isLoading) {
+  if (componentsStore.isLoading) {
     return <Spinner />;
   }
 
@@ -52,7 +57,7 @@ export const ProductsList: FC = observer(() => {
             <div
               className={styles.card_item}
               key={`${item.id}`}
-              onClick={openProductDetailsHandler(item)}
+              onClick={openComponentDetailsHandler(item)}
             >
               <div className={styles.top_row}>
                 <div className={styles.name}>
@@ -60,7 +65,7 @@ export const ProductsList: FC = observer(() => {
                   <p>{item.name}</p>
                 </div>
                 <p onClick={onChangeStatusHandler}>
-                  статус: {EProductStatus[item.status]}
+                  статус: {EComponentStatus[item.status]}
                 </p>
               </div>
               <div className={styles.body}>
@@ -68,7 +73,7 @@ export const ProductsList: FC = observer(() => {
                 <div className={styles.buttons}>
                   <Button
                     className={styles.button}
-                    onClick={onChangeProductHandler(item)}
+                    onClick={onChangeComponentHandler(item)}
                     size="s"
                     theme="secondary"
                   >

@@ -10,8 +10,7 @@ import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
 import { useNavigate } from 'react-router';
 import { IProductView } from '../types';
 import { getProductAction } from '../actions/getProductAction';
-import { routeProductsEdit } from '../../../base/routes/products/edit/routeProductsEdit';
-import { routeHome } from '../../../base/routes/home/routeHome';
+import { routeHome, routeProductsEdit } from '../../../base/routes';
 
 export const ViewProductContainer: FC = observer(() => {
   const params = useParams();

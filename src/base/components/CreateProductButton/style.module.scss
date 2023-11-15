@@ -1,0 +1,22 @@
+@import '../../../styles/variables/index';
+//@import '../../../../styles/mixins/typography';
+
+.container {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+
+  .button {
+    display: flex;
+    width: 100%;
+    max-width: 350px;
+    justify-content: center;
+    align-items: center;
+    border-radius: $ROUNDING_L;
+    border: 1px solid $BUTTON_ACTION_BG;
+
+    &:active {
+      background-color: $BLUE_SECONDARY;
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { getAllProductsAction } from '../actions';
 import { ProductsList } from '../components/ProductsList';
-import { CreateProductButton } from '../components/CreateProductButton';
-import { MainLayout } from '../../../base/components';
+import { CreateButton } from '../../../base/components/CreateProductButton';
+// import { MainLayout } from '../../../base/components';
 import { useNavigate } from 'react-router';
 import { observer } from 'mobx-react';
 import { authStore } from '../../auth/stores';
@@ -24,9 +24,12 @@ export const AllProductsContainer: FC = observer(() => {
   }, [navigate]);
 
   return (
-    <MainLayout topTitle="Продукты">
+    <>
       <ProductsList />
-      <CreateProductButton onChange={createProductHandler} />
-    </MainLayout>
+      <CreateButton
+        onChange={createProductHandler}
+        title="Создать новый продукт"
+      />
+    </>
   );
 });

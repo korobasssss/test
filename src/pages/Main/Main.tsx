@@ -1,31 +1,54 @@
 import React, { ReactElement, useLayoutEffect } from 'react';
 import { AllProductsContainer } from '../../modules/products';
 import { Route, Routes } from 'react-router-dom';
-import { ViewProductContainer } from '../../modules/products/containers';
-import { EditProductContainer } from '../../modules/products/containers/EditProductContainer';
+import {
+  EditProductContainer,
+  ViewProductContainer,
+} from '../../modules/products/containers';
 import { authAction } from '../../modules/auth';
-import { routeHome } from '../../base/routes/home/routeHome';
-import { routeProductsEdit } from '../../base/routes/products/edit/routeProductsEdit';
-import { routeProductsView } from '../../base/routes/products/view/routeProductsView';
+import {
+  routeComponents,
+  routeComponentsView,
+  routeHome,
+  routeProducts,
+  routeProductsEdit,
+  routeProductsView,
+} from '../../base/routes';
+import { AlLComponentsContainer } from '../../modules/components/containers';
+import { MainContainer } from '../../modules/main/containers';
+import { ViewComponentContainer } from '../../modules/components/containers/ViewComponentContainer';
 
 export const MainPage = (): ReactElement => {
   useLayoutEffect(() => {
     authAction();
   }, []);
+
+  console.log(routeProductsEdit.path);
+  console.log(routeProductsView.fullPath);
+  console.log(routeProductsView.url({ id: 1 }));
   return (
     <>
       <Routes>
-        <Route path={routeHome.path}>
+        <Route path={routeHome.path} element={<MainContainer />}>
+          <Route path={routeProducts.path} element={<AllProductsContainer />} />
+          <Route
+            path={routeComponents.path}
+            element={<AlLComponentsContainer />}
+          />
           <Route index element={<AllProductsContainer />} />
-          <Route
-            path={routeProductsView.path}
-            element={<ViewProductContainer />}
-          />
-          <Route
-            path={routeProductsEdit.path}
-            element={<EditProductContainer />}
-          />
         </Route>
+        <Route
+          path={routeProductsView.fullPath}
+          element={<ViewProductContainer />}
+        />
+        <Route
+          path={routeProductsEdit.fullPath}
+          element={<EditProductContainer />}
+        />
+        <Route
+          path={routeComponentsView.fullPath}
+          element={<ViewComponentContainer />}
+        />
       </Routes>
     </>
   );
