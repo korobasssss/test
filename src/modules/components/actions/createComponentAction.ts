@@ -1,17 +1,17 @@
-import { productStore } from '../store';
+import { componentsStore } from '../store';
 import { axiosInstance } from '../../../base/api';
-import { IProductEdit, IProductView } from '../types';
+import { IComponentEdit, IComponentView } from '../types';
 
 export const createComponentAction = async (
-  data: IProductEdit,
+  data: IComponentEdit,
 ): Promise<void> => {
-  console.log('createProductsAction');
+  console.log('createComponentsAction');
   const token = localStorage.getItem('ACCESS_TOKEN');
 
   // productStore.setLoading();
   try {
     console.log(data);
-    const res = await axiosInstance<IProductView>({
+    const res = await axiosInstance<IComponentView>({
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -23,6 +23,6 @@ export const createComponentAction = async (
     console.log(res.data);
   } catch (e) {
     console.log(e);
-    productStore.setError(e);
+    componentsStore.setError(e);
   }
 };

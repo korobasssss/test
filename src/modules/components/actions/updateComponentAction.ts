@@ -1,19 +1,18 @@
-import { productStore } from '../store';
+import { componentsStore } from '../store';
 import { axiosInstance } from '../../../base/api';
-import { IProductEdit, IProductView } from '../types';
-import { getAllComponentsAction } from './getAllComponentsAction';
+import { IComponentEdit, IComponentView } from '../types';
 
 export const updateComponentAction = async ({
   productId,
   data,
 }: {
   productId: number | string;
-  data: IProductEdit;
+  data: IComponentEdit;
 }): Promise<void> => {
   const token = localStorage.getItem('ACCESS_TOKEN');
 
   try {
-    const res = await axiosInstance<IProductView>({
+    const res = await axiosInstance<IComponentView>({
       url: `/api/owners/components/${productId}`,
       method: 'PATCH',
       headers: {
@@ -21,9 +20,9 @@ export const updateComponentAction = async ({
       },
       data,
     });
-    productStore.setViewProduct(res.data);
+    componentsStore.setViewComponent(res.data);
   } catch (e) {
     console.log(e);
-    productStore.setError(e);
+    componentsStore.setError(e);
   }
 };
