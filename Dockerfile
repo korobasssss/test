@@ -1,10 +1,8 @@
-FROM node:20-alpine3.18 AS build
+FROM node:21-alpine3.18 AS build
 WORKDIR /app
-ENV NODE_ENV production
-COPY package*.json /app/
-RUN npm install
-RUN npm ci --omit=dev
 COPY . .
+RUN rm -rf node_modules/
+RUN npm i --legacy-peer-deps
 RUN npm run build
 
 FROM nginx:mainline-alpine3.18-slim
