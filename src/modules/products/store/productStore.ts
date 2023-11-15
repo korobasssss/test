@@ -30,7 +30,8 @@ class ProductStore extends BaseApiStoreClass<IProductView[]> {
     if (!id) {
       this.viewProduct = null;
     }
-    this.viewProduct = this.data?.find((el) => el.id === id) ?? null;
+    this.viewProduct =
+      this.data?.find((el) => el.id!.toString() === id) ?? null;
   };
 }
 

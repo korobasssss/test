@@ -7,6 +7,6 @@ interface IParams {
 
 export const routeProductsEdit = new Route<IParams>({
   path: `edit/:id`,
-  url: (args) => `/edit/${args.id}`,
+  url: (args) => `${routeProducts.url}/edit/${args.id}`,
   parent: routeProducts,
 });
