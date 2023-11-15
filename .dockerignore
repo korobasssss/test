@@ -1,0 +1,12 @@
+.git
+.gitignore
+
+node_modules
+build
+npm-debug.log
+
+Dockerfile
+.dockerignore
+
+README.md
+.gitlab-ci.yml
