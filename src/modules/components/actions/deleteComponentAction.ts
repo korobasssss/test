@@ -1,6 +1,6 @@
-import { productStore } from '../store';
 import { axiosInstance } from '../../../base/api';
-import { IProductView } from '../types';
+import { IComponentView } from '../types';
+import { componentsStore } from '../store';
 
 export const deleteComponentAction = async ({
   productId,
@@ -10,7 +10,7 @@ export const deleteComponentAction = async ({
   const token = localStorage.getItem('ACCESS_TOKEN');
   // productStore.setLoading();
   try {
-    await axiosInstance<IProductView>({
+    await axiosInstance<IComponentView>({
       url: `/api/owners/components/${productId}`,
       method: 'DELETE',
       headers: {
@@ -21,6 +21,6 @@ export const deleteComponentAction = async ({
     // productStore.setFinished(res.data);
   } catch (e) {
     console.log(e);
-    productStore.setError(e);
+    componentsStore.setError(e);
   }
 };

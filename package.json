@@ -4,6 +4,7 @@
   "author": "Evgenii Kosykh <ekosykh@sitronics.com>",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://192.168.100.72",
   "dependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",

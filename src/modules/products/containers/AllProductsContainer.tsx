@@ -14,9 +14,9 @@ export const AllProductsContainer: FC = observer(() => {
   const isAuth = authStore.isAuth;
 
   useEffect(() => {
-    if (isAuth) {
-      getAllProductsAction();
-    }
+    // if (isAuth) {
+    getAllProductsAction();
+    // }
   }, [isAuth]);
 
   const createProductHandler = useCallback(() => {
