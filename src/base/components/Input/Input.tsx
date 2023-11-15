@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import React, {forwardRef, InputHTMLAttributes, Ref} from 'react';
-import {FieldValues, UseFormRegister} from 'react-hook-form';
+// import {FieldValues, UseFormRegister} from 'react-hook-form';
 
 import styles from './styles.module.scss';
 
@@ -11,7 +11,7 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   ref?: Ref<HTMLInputElement | null>;
   label?: string;
   errorMessage?: string;
-  register?: UseFormRegister<FieldValues>;
+  // register?: UseFormRegister<FieldValues>;
   staticPlaceholder?: boolean;
 }
 

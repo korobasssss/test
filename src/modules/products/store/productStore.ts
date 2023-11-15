@@ -1,11 +1,11 @@
-import {action, makeObservable, override} from 'mobx';
+import { action, makeObservable, override } from 'mobx';
 
-import {BaseApiStoreClass} from 'src/base/classes';
-import {IProduct} from "../types";
+import { BaseApiStoreClass } from 'src/base/classes';
+import { IProductEdit, IProductView } from '../types';
 
-class ProductStore extends BaseApiStoreClass<IProduct[]> {
-  public viewProduct: IProduct | null = null;
-  public editProduct: IProduct | null = null;
+class ProductStore extends BaseApiStoreClass<IProductView[]> {
+  public viewProduct: IProductView | null = null;
+  public editProduct: IProductEdit | null = null;
 
   public constructor() {
     super();
@@ -18,25 +18,19 @@ class ProductStore extends BaseApiStoreClass<IProduct[]> {
     // this.data = [];
   }
 
-  public setViewProduct = (
-    item: IProduct | null,
-  ): void => {
+  public setViewProduct = (item: IProductView | null): void => {
     this.viewProduct = item;
   };
 
-  public setEditProduct = (
-    item: IProduct | null,
-  ): void => {
+  public setEditProduct = (item: IProductEdit | null): void => {
     this.editProduct = item;
   };
 
-  public setViewProductById = (
-    id?: string,
-  ): void => {
+  public setViewProductById = (id?: string): void => {
     if (!id) {
-      this.viewProduct = null
+      this.viewProduct = null;
     }
-    this.viewProduct = this.data?.find((el) => el.id === id) ?? null
+    this.viewProduct = this.data?.find((el) => el.id === id) ?? null;
   };
 }
 

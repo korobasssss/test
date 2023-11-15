@@ -1,15 +1,23 @@
-import {EProductStatus} from "../constants/EProductStatus";
+import { EProductStatus } from '../constants/EProductStatus';
 
-export interface IProduct {
-  id: string
-  number: number
-  name: string
-  description: string
-  status: keyof typeof EProductStatus
-  ableToLicenceTransfer: boolean
-  ableToCreateTrialLicence: boolean
-  componentIds: string[]
-  memoryElementIds: string[]
+export interface IProductBase {
+  id?: string;
+  number: number;
+  name: string;
+  description: string;
+  status: keyof typeof EProductStatus;
+  ableToLicenceTransfer: boolean;
+  ableToCreateTrialLicence: boolean;
 }
 
-export type TProductDataKeys = keyof IProduct
+export interface IProductView extends IProductBase {
+  components: any[];
+  memoryElements: any[];
+}
+
+export interface IProductEdit extends IProductBase {
+  componentIds: string[];
+  memoryElementIds: string[];
+}
+
+export type TProductDataKeys = keyof IProductBase;

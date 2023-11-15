@@ -1,30 +1,32 @@
-import React, {ReactElement} from 'react';
-import {AllProductsContainer} from "../../modules/products";
-import {Route, Routes} from "react-router-dom";
-import {ViewProductContainer} from "../../modules/products/containers";
-import {routes} from "../../base";
-import {EditProductContainer} from "../../modules/products/containers/EditProductContainer";
-
-// import styles from './styles.module.scss';
-
+import React, { ReactElement, useLayoutEffect } from 'react';
+import { AllProductsContainer } from '../../modules/products';
+import { Route, Routes } from 'react-router-dom';
+import { ViewProductContainer } from '../../modules/products/containers';
+import { EditProductContainer } from '../../modules/products/containers/EditProductContainer';
+import { authAction } from '../../modules/auth';
+import { routeHome } from '../../base/routes/home/routeHome';
+import { routeProductsEdit } from '../../base/routes/products/edit/routeProductsEdit';
+import { routeProductsView } from '../../base/routes/products/view/routeProductsView';
 
 export const MainPage = (): ReactElement => {
+  useLayoutEffect(() => {
+    authAction();
+  }, []);
   return (
     <>
       <Routes>
-        <Route path={routes.main.path}>
-          <Route index element={<AllProductsContainer/>}/>
+        <Route path={routeHome.path}>
+          <Route index element={<AllProductsContainer />} />
           <Route
-            path={routes.product.path}
-            element={<ViewProductContainer/>}
+            path={routeProductsView.path}
+            element={<ViewProductContainer />}
           />
           <Route
-            path={routes.product.edit.path}
-            element={<EditProductContainer/>}
+            path={routeProductsEdit.path}
+            element={<EditProductContainer />}
           />
-          {/*<Route path="ride/:id" element={<RidingHistoryCardContainer/>}/>*/}
         </Route>
       </Routes>
     </>
-  )
+  );
 };

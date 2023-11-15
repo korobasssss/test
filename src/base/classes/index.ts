@@ -1,1 +1,1 @@
-export * from './base-api-store-class';
+export * from './BaseApiStoreClass';
