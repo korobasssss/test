@@ -19,6 +19,7 @@ export const deleteComponentAction = async ({
     });
     // console.log(res.data)
     // productStore.setFinished(res.data);
+    componentsStore.setViewComponent(null);
   } catch (e) {
     console.log(e);
     componentsStore.setError(e);

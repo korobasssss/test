@@ -19,16 +19,26 @@ import { IProductEdit, TProductDataKeys } from '../../types';
 import Select, {
   ISelectDefaultData,
 } from '../../../../base/components/Select/Select';
-import { EProductStatus } from '../../constants/EProductStatus';
+import { EProductStatus } from '../../constants';
+import Multiselect from '../../../../base/components/MultiSelect/Multiselect';
+import { SelectProps } from 'react-multi-select-component';
 
 interface IProps {
   onSubmit: (values: any) => void;
   product: Partial<IProductEdit>;
+  selectComponentsOptions: SelectProps['options'];
+  selectComponentsDefaultData: SelectProps['options'];
   isCreateNewProduct?: boolean;
 }
 
 export const EditProductForm: FC<IProps> = observer(
-  ({ onSubmit, product, isCreateNewProduct }) => {
+  ({
+    onSubmit,
+    product,
+    isCreateNewProduct,
+    selectComponentsOptions,
+    selectComponentsDefaultData,
+  }) => {
     const [productState, setProductState] =
       useState<Partial<IProductEdit> | null>(product);
 
@@ -37,7 +47,6 @@ export const EditProductForm: FC<IProps> = observer(
           key: TProductDataKeys,
         ): ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> =>
         (event) => {
-          console.log(event);
           if (event.target.type === 'checkbox') {
             // @ts-ignore
             setProductState({ ...productState, [key]: event.target.checked });
@@ -50,9 +59,16 @@ export const EditProductForm: FC<IProps> = observer(
 
     const onSelect = useCallback(
       (data: { data: ISelectDefaultData[]; active: ISelectDefaultData }) => {
-        console.log(data);
-        // const activeEl = data.find(el => el.isActive)
         setProductState({ ...productState, status: data.active.name });
+      },
+      [productState],
+    );
+
+    const onSelectComponents = useCallback(
+      (selectedValues: SelectProps['options']) => {
+        console.log(selectedValues);
+        const selectedIds = selectedValues.map((el) => el.value);
+        setProductState({ ...productState, componentIds: selectedIds });
       },
       [productState],
     );
@@ -85,7 +101,7 @@ export const EditProductForm: FC<IProps> = observer(
           id: 3,
           label: EProductStatus.ARCHIVE,
           name: 'ARCHIVE',
-          value: EProductStatus.DRAFT,
+          value: EProductStatus.ARCHIVE,
           isActive: false,
         },
       ];
@@ -137,6 +153,14 @@ export const EditProductForm: FC<IProps> = observer(
                 onChange={onSelect}
               />
             </div>
+            <Multiselect
+              wrapperClassName={styles['form-fields__inputs']}
+              options={selectComponentsOptions}
+              placeholder="Компоненты"
+              title="Компоненты"
+              defaultValue={selectComponentsDefaultData}
+              onChange={onSelectComponents}
+            />
             <div className={styles.checkbox}>
               <Checkbox
                 initialValue={product.ableToLicenceTransfer}

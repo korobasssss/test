@@ -3,84 +3,111 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useState,
 } from 'react';
 import { MainLayout, Spinner } from '../../../base/components';
 import { observer } from 'mobx-react';
 import { productStore } from '../store';
-import { useParams } from 'react-router-dom';
-import { createProductAction, updateProductAction } from '../actions';
-import { useNavigateBack } from '../../../base';
+import {
+  createProductAction,
+  getAllComponentsAction,
+  updateProductAction,
+} from '../actions';
+import { isArray, useNavigateBack } from '../../../base';
 import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
 import { IProductEdit } from '../types';
 import { EditProductForm } from '../components/EditProductForm/EditProductForm';
-import { toJS } from 'mobx';
 import { getProductAction } from '../actions/getProductAction';
 import { useNavigate } from 'react-router';
 import { convertViewProductData } from '../helpers';
-import { routeProductsView } from '../../../base/routes/products/view/routeProductsView';
-import { routeHome } from '../../../base/routes/home/routeHome';
+import {
+  routeProducts,
+  routeProductsEdit,
+  routeProductsView,
+} from '../../../base/routes';
 
 export const EditProductContainer: FC = observer(() => {
   const [productData, setProductData] = useState<Partial<IProductEdit> | null>(
     null,
   );
 
-  const params = useParams();
-  const isCreateNewProduct = params.id === 'new';
-  console.log(params);
+  const { id } = routeProductsEdit.useParams();
+  const isCreateNewProduct = id === 'new';
+
   const { goBack } = useNavigateBack();
   const navigate = useNavigate();
 
-  const { viewProduct } = productStore;
+  const { viewProduct, componentsData } = productStore;
+
+  const selectComponentsOptions = useMemo(() => {
+    if (componentsData && isArray(componentsData)) {
+      return componentsData.map((el) => {
+        return {
+          id: el.id,
+          label: el.name,
+          value: el.id,
+        };
+      });
+    }
+    return [];
+  }, [componentsData]);
+
+  const selectComponentsDefaultData = useMemo(() => {
+    if (viewProduct?.components && isArray(viewProduct.components)) {
+      return viewProduct.components.map((el) => {
+        return {
+          // id: el.id,
+          label: el.name,
+          value: el.id,
+        };
+      });
+    }
+    return [];
+  }, [viewProduct?.components]);
 
   useLayoutEffect(() => {
     productStore.setViewProduct(null);
   }, []);
 
   useEffect(() => {
+    getAllComponentsAction();
+
     if (!isCreateNewProduct) {
-      getProductAction({ productId: params.id! }).then(() => {
-        console.log(toJS(productStore.viewProduct));
+      getProductAction({ productId: id }).then(() => {
         setProductData(convertViewProductData(productStore.viewProduct));
       });
     } else {
       setProductData(convertViewProductData(null));
     }
-  }, [isCreateNewProduct, params.id]);
+  }, [isCreateNewProduct, id]);
 
   const handleSubmit = useCallback(
     (data: IProductEdit) => {
-      try {
-        if (isCreateNewProduct) {
-          createProductAction(data);
-        } else {
-          if (viewProduct?.id) {
-            updateProductAction({
-              productId: viewProduct?.id,
-              data: {
-                ...data,
-                id: undefined,
-              },
-            });
-          }
-        }
-      } finally {
+      if (isCreateNewProduct) {
+        createProductAction(data).then(() => navigate(routeProducts.url));
+      } else {
         if (viewProduct?.id) {
-          navigate(routeProductsView.url({ id: viewProduct.id }));
-        } else {
-          navigate(routeHome.url);
+          updateProductAction({
+            productId: viewProduct?.id,
+            data: {
+              ...data,
+              id: undefined,
+            },
+          }).then(() => navigate(routeProductsView.url({ id })));
         }
       }
     },
-    [isCreateNewProduct, navigate, viewProduct?.id],
+    [id, isCreateNewProduct, navigate, viewProduct?.id],
   );
 
   if (productData === null) return <Spinner />;
 
   return (
     <MainLayout
-      topTitle="EditProductContainer"
+      topTitle={
+        isCreateNewProduct ? 'Создание продукта' : 'Редактирование продукта'
+      }
       leftTopIcon={{
         svg: <BackLogo />,
         clicked: () => goBack(),
@@ -88,8 +115,10 @@ export const EditProductContainer: FC = observer(() => {
     >
       <EditProductForm
         product={productData}
+        selectComponentsDefaultData={selectComponentsDefaultData}
         onSubmit={handleSubmit}
         isCreateNewProduct={isCreateNewProduct}
+        selectComponentsOptions={selectComponentsOptions}
       />
     </MainLayout>
   );

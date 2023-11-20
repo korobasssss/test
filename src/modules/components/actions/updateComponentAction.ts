@@ -21,6 +21,7 @@ export const updateComponentAction = async ({
       data,
     });
     componentsStore.setViewComponent(res.data);
+    // componentsStore.setViewComponent(null);
   } catch (e) {
     console.log(e);
     componentsStore.setError(e);

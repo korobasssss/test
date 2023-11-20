@@ -7,15 +7,13 @@ import { useNavigate } from 'react-router';
 import { IComponentView } from '../../types';
 import { Button, Spinner } from '../../../../base/components';
 import {
-  routeComponentsEdit,
+  routeComponentEdit,
   routeComponentsView,
 } from '../../../../base/routes';
 import { componentsStore } from '../../store';
-import { toJS } from 'mobx';
 
 export const ComponentsList: FC = observer(() => {
   const { data } = componentsStore;
-  console.log(toJS(data));
 
   const navigate = useNavigate();
 
@@ -23,7 +21,7 @@ export const ComponentsList: FC = observer(() => {
     (item: IComponentView) => {
       return (e: SyntheticEvent) => {
         e.stopPropagation();
-        navigate(routeComponentsEdit.url({ id: item.id }));
+        navigate(routeComponentEdit.url({ id: item.id }));
         componentsStore.setViewComponent(item);
       };
     },

@@ -1,1 +1,1 @@
-export * from './routeComponentsEdit';
+export * from './routeComponentEdit';

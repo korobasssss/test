@@ -1,9 +1,9 @@
-import React, {ReactElement, useCallback, useEffect, useState} from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import cx from 'classnames';
 
 import styles from './style.module.scss';
-import {ArrowIcon} from './icons';
-import {DropDownMenuDependent} from './DropDownMenuDependent';
+import { ArrowIcon } from './icons';
+import { DropDownMenuDependent } from './DropDownMenuDependent';
 import ScrollWrapper from './ScrollWrapper/ScrollWrapper';
 
 export interface ISelectDefaultData {
@@ -11,7 +11,7 @@ export interface ISelectDefaultData {
   label?: any;
   name?: any;
   value: string;
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 interface IProps {
@@ -26,6 +26,7 @@ interface IProps {
   headHeight?: number;
   closeAfterChange?: boolean;
   withClearBtn?: boolean;
+  isMultiple?: boolean;
 }
 
 function Select(props: IProps): ReactElement | null {
@@ -83,10 +84,9 @@ function Select(props: IProps): ReactElement | null {
         className={cx(
           styles.item,
           (activeItem?.id === element.id || element.isActive) &&
-          styles.item_active,
+            styles.item_active,
         )}
-        onClick={(event) => {
-          console.log(event)
+        onClick={() => {
           changeIsActive(element.id);
         }}
         key={element.id}
@@ -115,12 +115,12 @@ function Select(props: IProps): ReactElement | null {
             })}
           >
             {activeEl?.label ? activeEl.label : activeEl?.value}
-            {!isDisabled && <ArrowIcon isDown={!isDown}/>}
+            {!isDisabled && <ArrowIcon isDown={!isDown} />}
           </div>
         }
       >
         <div className={styles.body}>
-          <div className={styles.hr}/>
+          <div className={styles.hr} />
           <ScrollWrapper maxHeight={maxSelectHeight} className={styles.scroll}>
             {getBodyData()}
           </ScrollWrapper>

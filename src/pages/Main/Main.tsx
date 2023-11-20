@@ -1,22 +1,24 @@
 import React, { ReactElement, useLayoutEffect } from 'react';
-import { AllProductsContainer } from '../../modules/products';
 import { Route, Routes } from 'react-router-dom';
 import {
+  AllProductsContainer,
   EditProductContainer,
   ViewProductContainer,
-} from '../../modules/products/containers';
+} from '../../modules/products';
 import { authAction } from '../../modules/auth';
 import {
   routeComponents,
+  routeComponentEdit,
   routeComponentsView,
   routeHome,
   routeProducts,
   routeProductsEdit,
   routeProductsView,
 } from '../../base/routes';
-import { AlLComponentsContainer } from '../../modules/components/containers';
+import { AlLComponentsContainer } from '../../modules/components';
 import { MainContainer } from '../../modules/main/containers';
 import { ViewComponentContainer } from '../../modules/components/containers/ViewComponentContainer';
+import { EditComponentContainer } from '../../modules/components/containers/EditComponentContainer';
 
 export const MainPage = (): ReactElement => {
   useLayoutEffect(() => {
@@ -48,6 +50,10 @@ export const MainPage = (): ReactElement => {
         <Route
           path={routeComponentsView.fullPath}
           element={<ViewComponentContainer />}
+        />
+        <Route
+          path={routeComponentEdit.fullPath}
+          element={<EditComponentContainer />}
         />
       </Routes>
     </>

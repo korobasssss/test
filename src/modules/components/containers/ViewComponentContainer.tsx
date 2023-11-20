@@ -9,15 +9,13 @@ import { useNavigate } from 'react-router';
 import { IComponentView } from '../types';
 import { getComponentAction } from '../actions/getComponentAction';
 import {
-  routeHome,
-  routeComponentsEdit,
+  routeComponentEdit,
   routeComponentsView,
+  routeComponents,
 } from '../../../base/routes';
 import { componentsStore } from '../store';
 
 export const ViewComponentContainer: FC = observer(() => {
-  // const params = useParams();
-
   const { id } = routeComponentsView.useParams();
   const { goBack } = useNavigateBack();
 
@@ -29,7 +27,7 @@ export const ViewComponentContainer: FC = observer(() => {
     (item: IComponentView) => {
       return (e: SyntheticEvent) => {
         e.stopPropagation();
-        navigate(routeComponentsEdit.url({ id: item.id }));
+        navigate(routeComponentEdit.url({ id: item.id }));
         componentsStore.setViewComponent(item);
       };
     },
@@ -39,7 +37,7 @@ export const ViewComponentContainer: FC = observer(() => {
   const onDeleteComponentHandler = useCallback(() => {
     if (viewComponent?.id) {
       deleteComponentAction({ productId: viewComponent?.id }).then(() => {
-        navigate(routeHome.url);
+        navigate(routeComponents.url);
       });
     }
   }, [navigate, viewComponent?.id]);
@@ -47,9 +45,6 @@ export const ViewComponentContainer: FC = observer(() => {
   useEffect(() => {
     if (!viewComponent) {
       getComponentAction({ componentId: id });
-      // .then(() => {
-      // productStore.setViewComponentById(params.id);
-      // });
     }
   }, [id, viewComponent]);
 

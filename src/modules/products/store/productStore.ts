@@ -2,10 +2,12 @@ import { action, makeObservable, override } from 'mobx';
 
 import { BaseApiStoreClass } from 'src/base/classes';
 import { IProductEdit, IProductView } from '../types';
+import { IComponentView } from '../../components';
 
 class ProductStore extends BaseApiStoreClass<IProductView[]> {
   public viewProduct: IProductView | null = null;
   public editProduct: IProductEdit | null = null;
+  public componentsData: IComponentView[] | null = null;
 
   public constructor() {
     super();
@@ -14,6 +16,7 @@ class ProductStore extends BaseApiStoreClass<IProductView[]> {
       setViewProduct: action,
       setEditProduct: action,
       setViewProductById: action,
+      setComponentsData: action,
     });
     // this.data = [];
   }
@@ -24,6 +27,10 @@ class ProductStore extends BaseApiStoreClass<IProductView[]> {
 
   public setEditProduct = (item: IProductEdit | null): void => {
     this.editProduct = item;
+  };
+
+  public setComponentsData = (item: IComponentView[] | null): void => {
+    this.componentsData = item;
   };
 
   public setViewProductById = (id?: string): void => {
