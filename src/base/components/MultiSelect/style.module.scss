@@ -1,0 +1,19 @@
+@import '../../../styles/variables/colors';
+@import '../../../styles/mixins/typography';
+
+
+.container {
+  > h1 {
+    margin-bottom: 10px;
+  }
+
+}
+
+.wrapper {
+  border-radius: 10px !important;
+  --rmsc-radius: 10px; /* Radius */
+  --rmsc-border: none;
+  //--rmsc-bg: $INPUT_BG;
+  height: 40px;
+  @include font-moscow-sans-m;
+}

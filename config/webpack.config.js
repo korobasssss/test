@@ -53,6 +53,7 @@ const disableESLintPlugin = process.env.DISABLE_ESLINT_PLUGIN === 'true';
 
 const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || '10000',
+  10,
 );
 
 // Check if TypeScript is setup

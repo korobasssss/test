@@ -76,6 +76,7 @@ checkBrowsers(paths.appPath, isInteractive)
     return choosePort(HOST, DEFAULT_PORT);
   })
   .then((port) => {
+    // eslint-disable-next-line eqeqeq
     if (port == null) {
       // We have not found a port.
       return;

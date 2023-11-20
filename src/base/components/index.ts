@@ -6,3 +6,4 @@ export * from './HeaderPanel';
 export * from './TextArea';
 export * from './Button';
 export * from './Spinner';
+export * from './MultiSelect';

@@ -11,6 +11,8 @@ export interface IComponentView extends IComponentBase {
   status: EComponentStatus;
 }
 
-export interface IComponentEdit extends IComponentBase {}
+export interface IComponentEdit extends IComponentBase {
+  status?: EComponentStatus;
+}
 
 export type TComponentDataKeys = keyof IComponentBase;

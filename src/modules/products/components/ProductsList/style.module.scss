@@ -71,6 +71,8 @@
       p {
         color: $MENU_ICON_COLOR;
         @include font-small-light;
+        max-width: 60%;
+        word-wrap: break-word;
       }
     }
 

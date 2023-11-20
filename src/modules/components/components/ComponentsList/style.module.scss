@@ -44,6 +44,8 @@
       p {
         color: $MENU_ICON_COLOR;
         @include font-small-light;
+        word-wrap: break-word;
+        max-width: 60%;
       }
 
       .buttons {
