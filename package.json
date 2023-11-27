@@ -7,6 +7,7 @@
   "proxy": "http://192.168.100.72",
   "dependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
+    "@react-keycloak/web": "^3.4.0",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -35,6 +36,7 @@
     "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
+    "keycloak-js": "^23.0.0",
     "mobx": "~6.6.2",
     "mobx-react": "~7.5.3",
     "prompts": "^2.4.2",
@@ -47,6 +49,7 @@
     "react-multi-select-component": "^4.3.4",
     "react-refresh": "^0.11.0",
     "react-router-dom": "^6.17.0",
+    "react-swipeable": "^7.0.1",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",

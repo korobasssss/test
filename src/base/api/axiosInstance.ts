@@ -1,8 +1,6 @@
 import axios from 'axios';
+// import { authStore } from '../../modules/auth/stores';
 
-// const token = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJYMWdBbk1WcVBIcm40ZVc3UGdyaGEyM2VCZTR4aHA2amszUkNha3ByR1JJIn0.eyJleHAiOjE2OTk2MTg4NjMsImlhdCI6MTY5OTYxODU2MywianRpIjoiZTFiNjI3ZDQtM2VlOC00Yzk5LTkzMmEtZTU5MmQyODNhYTFkIiwiaXNzIjoiaHR0cDovLzE5Mi4xNjguMTAwLjcyL2F1dGgtc2VydmVyL3JlYWxtcy9saWNlbnNlLW1hbmFnZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMjNjYjExOTYtODk1OC00NTdlLThkY2MtNGZiZjc5ZTc2NWYxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoicHJvZHVjdC1vd25lci1mcm9udGVuZCIsInNlc3Npb25fc3RhdGUiOiIyMDA3ODkwNy02MzVmLTRiNzktOTYyNC02ZDI0ZDkwNTY5YzEiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIioiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlNBTEVTTUFOIiwib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLWxpY2Vuc2UtbWFuYWdlciIsInVtYV9hdXRob3JpemF0aW9uIiwiUFJPRFVDVF9PV05FUiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjIwMDc4OTA3LTYzNWYtNGI3OS05NjI0LTZkMjRkOTA1NjljMSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4iLCJnaXZlbl9uYW1lIjoiIiwiZmFtaWx5X25hbWUiOiIifQ.kBY5ZKYYpmcv2EcUgM7Nre1qGBl20_J2Eqo6G71jPJFsQPGN5USnoEG_zUKBeHNonGC5a859I76YTbWnawt23oSq4Rg11mAB37sMu3z_AOWYQLctMVH2d6mY0dZLoipgLE1bhspd28I4wjRWvC2ScYqxRQjOsFqaBi1ofmC_7ztwM2R_M9Gl_9TSXEm1MjFbmbRSxDGfwtP0ODw-K-a80L5JKl1ScO5MsmMK1OIjl2aSEZEb2bqftcRNFbyzZvN9omZN1cXgyhb1wgO04COqvJQb1_BXM3gUQNJ8ZMgrvgaOwzM4OLUP9T8z27FEsEDDtuOqWnqL39rcNnS_CIOGwQ"
-
-console.log(process.env);
 const servUrl =
   process.env.NODE_ENV === 'development' ? '' : 'http://192.168.100.72';
 
@@ -18,3 +16,35 @@ export const authAxiosInstance = axios.create({
       'Basic cHJvZHVjdC1vd25lci1mcm9udGVuZDo5OVlGM05kTHl5MHJpVTFZWmx1dXVITGNjM1BuRmxKSg==',
   },
 });
+
+// axiosInstance.defaults.maxRedirects = 0; // Установите значение 0, чтобы предотвратить автоматическое перенаправление
+// axiosInstance.interceptors.response.use(
+//   (res) => {
+//     // if (
+//     //   res.request.responseURL.includes(
+//     //     '/auth-server/realms/license-manager/protocol/openid-connect/auth',
+//     //   )
+//     // ) {
+//     //   authStore.setFinished(res.data);
+//     //   // return {};
+//     // }
+//     return res;
+//   },
+//   (error) => {
+//     console.log(error.response);
+//     if (error.response && [301, 302].includes(error.response.status)) {
+//       console.log(error.response);
+//       // const redirectUrl = error.response.headers.location;
+//       // return axiosInstance.get(redirectUrl);
+//     }
+//     return Promise.reject(error);
+//   },
+// );
+// axiosInstance
+//   .get('http://example.com')
+//   .then((response) => {
+//     console.log(response);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });

@@ -25,7 +25,7 @@ import {
   routeProducts,
   routeProductsEdit,
   routeProductsView,
-} from '../../../base/routes';
+} from '../../../base/navigation/routes';
 
 export const EditProductContainer: FC = observer(() => {
   const [productData, setProductData] = useState<Partial<IProductEdit> | null>(

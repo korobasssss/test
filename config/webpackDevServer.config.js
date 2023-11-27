@@ -35,7 +35,8 @@ module.exports = function (proxy, allowedHost) {
     // really know what you're doing with a special environment variable.
     // Note: ["localhost", ".localhost"] will support subdomains - but we might
     // want to allow setting the allowedHosts manually for more complex setups
-    allowedHosts: disableFirewall ? 'all' : [allowedHost],
+    // allowedHosts: disableFirewall ? 'all' : [allowedHost],
+    allowedHosts: 'all',
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': '*',
@@ -91,7 +92,8 @@ module.exports = function (proxy, allowedHost) {
       publicPath: paths.publicUrlOrPath.slice(0, -1),
     },
 
-    https: getHttpsConfig(),
+    // https: getHttpsConfig(),
+    // https: true,
     host,
     historyApiFallback: {
       // Paths with dots should still use the history fallback.
@@ -100,28 +102,76 @@ module.exports = function (proxy, allowedHost) {
       index: paths.publicUrlOrPath,
     },
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
-    proxy,
-    onBeforeSetupMiddleware(devServer) {
-      // Keep `evalSourceMapMiddleware`
-      // middlewares before `redirectServedPath` otherwise will not have any effect
-      // This lets us fetch source contents from webpack for the error overlay
-      devServer.app.use(evalSourceMapMiddleware(devServer));
-
-      if (fs.existsSync(paths.proxySetup)) {
-        // This registers user provided middleware for proxy reasons
-        require(paths.proxySetup)(devServer.app);
-      }
+    // proxy,
+    proxy: {
+      'http://localhost:3000': {
+        context: (path, req) => {
+          console.log(path, req);
+        },
+        target: 'http://192.168.100.72',
+        secure: false,
+        changeOrigin: true,
+        autoRewrite: true,
+        // bypass: function (req, res, options) {
+        //   console.log(req.url, res.statusCode, options);
+        //   if (req.url === '' || req.url === '/') {
+        //     res.statusCode = 302;
+        //     res.setHeader('Location', '/a/');
+        //     return '/a/';
+        //   }
+        //
+        //   const frontend = new RegExp(
+        //     '^/$^|/a/index.html|^/a/|^/a$|^/styleguide',
+        //   );
+        //   if (frontend.test(req.url)) return req.url;
+        // },
+      },
+      // 'http://192.168.100.72': {
+      //   target: 'http://192.168.100.72',
+      //   // pathRewrite: { 'http://192.168.100.72': '' }
+      //   context: (path, req) => {
+      //     console.log(path, req);
+      //   },
+      //   secure: true,
+      //   changeOrigin: true,
+      //   autoRewrite: true,
+      // bypass: function (req, res, options) {
+      //   console.log(req, res, options);
+      //   if (req.url === '' || req.url === '/') {
+      //     res.statusCode = 302;
+      //     res.setHeader('Location', '/a/');
+      //     return '/a/';
+      //   }
+      //
+      //   const frontend = new RegExp(
+      //     '^/$^|/a/index.html|^/a/|^/a$|^/styleguide',
+      //   );
+      //   if (frontend.test(req.url)) return req.url;
+      // },
+      // },
     },
-    onAfterSetupMiddleware(devServer) {
-      // Redirect to `PUBLIC_URL` or `homepage` from `package.json` if url not match
-      devServer.app.use(redirectServedPath(paths.publicUrlOrPath));
-
-      // This service worker file is effectively a 'no-op' that will reset any
-      // previous service worker registered for the same host:port combination.
-      // We do this in development to avoid hitting the production cache if
-      // it used the same host and port.
-      // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
-      devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
-    },
+    // onBeforeSetupMiddleware(devServer) {
+    //   // Keep `evalSourceMapMiddleware`
+    //   // middlewares before `redirectServedPath` otherwise will not have any effect
+    //   // This lets us fetch source contents from webpack for the error overlay
+    //   devServer.app.use(evalSourceMapMiddleware(devServer));
+    //
+    //   console.log(fs.existsSync(paths.proxySetup));
+    //   if (fs.existsSync(paths.proxySetup)) {
+    //     // This registers user provided middleware for proxy reasons
+    //     require(paths.proxySetup)(devServer.app);
+    //   }
+    // },
+    // onAfterSetupMiddleware(devServer) {
+    //   // Redirect to `PUBLIC_URL` or `homepage` from `package.json` if url not match
+    //   devServer.app.use(redirectServedPath(paths.publicUrlOrPath));
+    //
+    //   // This service worker file is effectively a 'no-op' that will reset any
+    //   // previous service worker registered for the same host:port combination.
+    //   // We do this in development to avoid hitting the production cache if
+    //   // it used the same host and port.
+    //   // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
+    //   devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
+    // },
   };
 };

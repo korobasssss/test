@@ -3,3 +3,4 @@ build/
 storybook-static/
 vite.config.ts
 registerServiceWorker.js
+config

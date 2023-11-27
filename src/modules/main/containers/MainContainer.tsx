@@ -6,11 +6,14 @@ import { MainLayout } from '../../../base/components';
 import { useNavigate } from 'react-router';
 import { observer } from 'mobx-react';
 // import { authStore } from '../../auth/stores';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import cx from 'classnames';
 import styles from './styles.module.scss';
-import { routeComponents } from '../../../base/routes/components';
-import { routeProducts } from '../../../base/routes';
+import {
+  routeComponents,
+  routeProducts,
+} from '../../../base/navigation/routes';
+// import { useKeycloak } from 'keycloak-react-web';
 
 export const MainContainer: FC = observer(() => {
   const navigate = useNavigate();
@@ -27,9 +30,18 @@ export const MainContainer: FC = observer(() => {
   //   navigate(routeProductsEdit.url({ id: 'new' }));
   // }, [navigate]);
 
-  console.log(useParams());
-
   const isComponentsPage = Boolean(routeComponents.useMatch());
+
+  // const { keycloak, initialized } = useKeycloak();
+  // console.log(keycloak, initialized);
+  //
+  // useEffect(() => {
+  //   if (initialized) {
+  //     if (!keycloak.authenticated) {
+  //       keycloak.login();
+  //     }
+  //   }
+  // }, [initialized, keycloak]);
 
   return (
     <MainLayout topTitle={!isComponentsPage ? 'Продукты' : 'Компоненты'}>

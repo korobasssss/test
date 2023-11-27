@@ -7,7 +7,10 @@ import { EProductStatus } from '../../constants/EProductStatus';
 import { useNavigate } from 'react-router';
 import { IProductView } from '../../types';
 import { Button, Spinner } from '../../../../base/components';
-import { routeProductsEdit, routeProductsView } from '../../../../base/routes';
+import {
+  routeProductsEdit,
+  routeProductsView,
+} from '../../../../base/navigation/routes';
 
 export const ProductsList: FC = observer(() => {
   const { data } = productStore;

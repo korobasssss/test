@@ -19,7 +19,7 @@ import {
   routeComponents,
   routeComponentsView,
   routeProductsEdit,
-} from '../../../base/routes';
+} from '../../../base/navigation/routes';
 import { convertViewComponentData } from '../helpers';
 import { EditComponentForm } from '../components/EditComponentForm';
 
