@@ -10,6 +10,7 @@ export const axiosInstance = axios.create({
 
 export const authAxiosInstance = axios.create({
   baseURL: `${servUrl}/auth-server`,
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
     Authorization:
