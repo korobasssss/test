@@ -28,6 +28,7 @@ axiosInstance.interceptors.response.use(
     ) {
       console.log(res);
       authStore.setFinished(res.data);
+      // window.location.reload();
       // return {};
     }
     return res;
