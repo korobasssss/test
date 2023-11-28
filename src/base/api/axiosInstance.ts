@@ -26,6 +26,7 @@ axiosInstance.interceptors.response.use(
         '/auth-server/realms/license-manager/protocol/openid-connect/auth',
       )
     ) {
+      console.log(res);
       authStore.setFinished(res.data);
       // return {};
     }
