@@ -126,29 +126,29 @@ module.exports = function (proxy, allowedHost) {
         //   if (frontend.test(req.url)) return req.url;
         // },
       },
-      // 'http://192.168.100.72': {
-      //   target: 'http://192.168.100.72',
-      //   // pathRewrite: { 'http://192.168.100.72': '' }
-      //   context: (path, req) => {
-      //     console.log(path, req);
-      //   },
-      //   secure: true,
-      //   changeOrigin: true,
-      //   autoRewrite: true,
-      // bypass: function (req, res, options) {
-      //   console.log(req, res, options);
-      //   if (req.url === '' || req.url === '/') {
-      //     res.statusCode = 302;
-      //     res.setHeader('Location', '/a/');
-      //     return '/a/';
-      //   }
-      //
-      //   const frontend = new RegExp(
-      //     '^/$^|/a/index.html|^/a/|^/a$|^/styleguide',
-      //   );
-      //   if (frontend.test(req.url)) return req.url;
-      // },
-      // },
+      'http://192.168.100.72': {
+        target: 'http://192.168.100.72',
+        // pathRewrite: { 'http://192.168.100.72': '' }
+        context: (path, req) => {
+          console.log(path, req);
+        },
+        secure: true,
+        changeOrigin: true,
+        autoRewrite: true,
+        // bypass: function (req, res, options) {
+        //   console.log(req, res, options);
+        //   if (req.url === '' || req.url === '/') {
+        //     res.statusCode = 302;
+        //     res.setHeader('Location', '/a/');
+        //     return '/a/';
+        //   }
+        //
+        //   const frontend = new RegExp(
+        //     '^/$^|/a/index.html|^/a/|^/a$|^/styleguide',
+        //   );
+        //   if (frontend.test(req.url)) return req.url;
+        // },
+      },
     },
     // onBeforeSetupMiddleware(devServer) {
     //   // Keep `evalSourceMapMiddleware`

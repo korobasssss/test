@@ -3,7 +3,7 @@ import React, {
   FC,
   SyntheticEvent,
   useCallback,
-  useMemo,
+  // useMemo,
   useState,
 } from 'react';
 import { observer } from 'mobx-react-lite';
@@ -16,10 +16,10 @@ import {
   Spinner,
 } from '../../../../base/components';
 import { IProductEdit, TProductDataKeys } from '../../types';
-import Select, {
-  ISelectDefaultData,
-} from '../../../../base/components/Select/Select';
-import { EProductStatus } from '../../constants';
+// import Select, {
+//   ISelectDefaultData,
+// } from '../../../../base/components/Select/Select';
+// import { EProductStatus } from '../../constants';
 import Multiselect from '../../../../base/components/MultiSelect/Multiselect';
 import { SelectProps } from 'react-multi-select-component';
 
@@ -56,17 +56,17 @@ export const EditProductForm: FC<IProps> = observer(
         },
       [productState],
     );
-
-    const onSelect = useCallback(
-      (data: { data: ISelectDefaultData[]; active: ISelectDefaultData }) => {
-        setProductState({ ...productState, status: data.active.name });
-      },
-      [productState],
-    );
+    //
+    // const onSelect = useCallback(
+    //   (data: { data: ISelectDefaultData[]; active: ISelectDefaultData }) => {
+    //     setProductState({ ...productState, status: data.active.name });
+    //   },
+    //   [productState],
+    // );
 
     const onSelectComponents = useCallback(
       (selectedValues: SelectProps['options']) => {
-        console.log(selectedValues);
+        // console.log(selectedValues);
         const selectedIds = selectedValues.map((el) => el.value);
         setProductState({ ...productState, componentIds: selectedIds });
       },
@@ -81,39 +81,39 @@ export const EditProductForm: FC<IProps> = observer(
       [onSubmit, productState],
     );
 
-    const statusSelectDefaultData = useMemo(() => {
-      const selectData = [
-        {
-          id: 1,
-          label: EProductStatus.SALE,
-          name: 'SALE',
-          value: EProductStatus.SALE,
-          isActive: false,
-        },
-        {
-          id: 2,
-          label: EProductStatus.DRAFT,
-          name: 'DRAFT',
-          value: EProductStatus.DRAFT,
-          isActive: true,
-        },
-        {
-          id: 3,
-          label: EProductStatus.ARCHIVE,
-          name: 'ARCHIVE',
-          value: EProductStatus.ARCHIVE,
-          isActive: false,
-        },
-      ];
-
-      if (productState?.status) {
-        return selectData.map((el) => {
-          return { ...el, isActive: el.name === productState.status };
-        });
-      }
-
-      return selectData;
-    }, [productState?.status]);
+    // const statusSelectDefaultData = useMemo(() => {
+    //   const selectData = [
+    //     {
+    //       id: 1,
+    //       label: EProductStatus.SALE,
+    //       name: 'SALE',
+    //       value: EProductStatus.SALE,
+    //       isActive: false,
+    //     },
+    //     {
+    //       id: 2,
+    //       label: EProductStatus.DRAFT,
+    //       name: 'DRAFT',
+    //       value: EProductStatus.DRAFT,
+    //       isActive: true,
+    //     },
+    //     {
+    //       id: 3,
+    //       label: EProductStatus.ARCHIVE,
+    //       name: 'ARCHIVE',
+    //       value: EProductStatus.ARCHIVE,
+    //       isActive: false,
+    //     },
+    //   ];
+    //
+    //   if (productState?.status) {
+    //     return selectData.map((el) => {
+    //       return { ...el, isActive: el.name === productState.status };
+    //     });
+    //   }
+    //
+    //   return selectData;
+    // }, [productState?.status]);
 
     if (!productState) return <Spinner />;
 
@@ -147,12 +147,12 @@ export const EditProductForm: FC<IProps> = observer(
                 name="description"
               />
             </div>
-            <div className={styles['form-fields__inputs']}>
-              <Select
-                defaultData={statusSelectDefaultData}
-                onChange={onSelect}
-              />
-            </div>
+            {/*<div className={styles['form-fields__inputs']}>*/}
+            {/*  <Select*/}
+            {/*    defaultData={statusSelectDefaultData}*/}
+            {/*    onChange={onSelect}*/}
+            {/*  />*/}
+            {/*</div>*/}
             <Multiselect
               wrapperClassName={styles['form-fields__inputs']}
               options={selectComponentsOptions}
@@ -171,9 +171,9 @@ export const EditProductForm: FC<IProps> = observer(
             </div>
             <div className={styles.checkbox}>
               <Checkbox
-                initialValue={product.ableToCreateTrialLicence}
+                initialValue={product.ableToCreateTrialLicense}
                 name="ableToCreateTrialLicence"
-                onChange={onChangeFormInput('ableToCreateTrialLicence')}
+                onChange={onChangeFormInput('ableToCreateTrialLicense')}
               />
               Возможность генерации пробных
             </div>

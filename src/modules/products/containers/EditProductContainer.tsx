@@ -57,7 +57,6 @@ export const EditProductContainer: FC = observer(() => {
     if (viewProduct?.components && isArray(viewProduct.components)) {
       return viewProduct.components.map((el) => {
         return {
-          // id: el.id,
           label: el.name,
           value: el.id,
         };

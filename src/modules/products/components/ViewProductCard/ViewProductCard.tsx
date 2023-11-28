@@ -49,7 +49,7 @@ export const ViewProductCard: FC<IProps> = ({
             <p
               className={cx(styles.features, {
                 [styles.features_not_accepted]:
-                  product.ableToCreateTrialLicence,
+                  product.ableToCreateTrialLicense,
               })}
             >
               Возможность генерации пробных лицензий

@@ -6,8 +6,8 @@ export const convertViewProductData = (
   if (!data) {
     return {
       ableToLicenceTransfer: false,
-      ableToCreateTrialLicence: false,
-      status: 'DRAFT',
+      ableToCreateTrialLicense: false,
+      // status: 'DRAFT',
       memoryElementIds: [],
       description: '',
     };
@@ -20,8 +20,8 @@ export const convertViewProductData = (
     number: data.number,
     name: data.name,
     description: data.description,
-    status: data.status,
+    // status: data.status,
     ableToLicenceTransfer: data.ableToLicenceTransfer,
-    ableToCreateTrialLicence: data.ableToCreateTrialLicence,
+    ableToCreateTrialLicense: data.ableToCreateTrialLicense,
   };
 };

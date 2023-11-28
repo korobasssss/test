@@ -7,7 +7,7 @@ export interface IProductBase {
   description: string;
   status: keyof typeof EProductStatus;
   ableToLicenceTransfer: boolean;
-  ableToCreateTrialLicence: boolean;
+  ableToCreateTrialLicense: boolean;
 }
 
 export interface IProductView extends IProductBase {
