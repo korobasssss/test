@@ -22,7 +22,12 @@ export const AuthPopup: FC = observer(() => {
       // submitButtonLabel={submitButtonLabel ?? EPopupButtonLabel.Ok}
       isOpen={Boolean(data)}
     >
-      <Button onClick={() => keycloak.login()}>Login</Button>
+      <Button
+        // eslint-disable-next-line react/jsx-no-bind
+        onClick={() => keycloak.login()}
+      >
+        Login
+      </Button>
       {/*<div dangerouslySetInnerHTML={{ __html: data }} />*/}
       {/*{isTranslatedErrorFound ? (*/}
       {/*  <Translation path={getPopupErrorTranslation(data)} values={values} />*/}
