@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Route, Routes } from 'react-router';
 
 import {
@@ -19,27 +19,27 @@ import {
 import { AlLComponentsContainer } from '../../../modules/components';
 import { ViewComponentContainer } from '../../../modules/components/containers/ViewComponentContainer';
 import { EditComponentContainer } from '../../../modules/components/containers/EditComponentContainer';
-import { useKeycloak } from '@react-keycloak/web';
+// import { useKeycloak } from '@react-keycloak/web';
 
 export const PrivateRoutes: FC = () => {
-  const { keycloak, initialized } = useKeycloak();
-  console.log(keycloak, initialized);
-
-  useEffect(() => {
-    if (initialized) {
-      if (!keycloak.authenticated) {
-        keycloak.login();
-      }
-    }
-  }, [initialized, keycloak]);
-
-  if (!initialized) {
-    return <p>Loading...</p>;
-  }
-
-  if (!keycloak.authenticated) {
-    return <p>Authenticating...</p>;
-  }
+  // const { keycloak, initialized } = useKeycloak();
+  // console.log(keycloak, initialized);
+  //
+  // useEffect(() => {
+  //   if (initialized) {
+  //     if (!keycloak.authenticated) {
+  //       keycloak.login();
+  //     }
+  //   }
+  // }, [initialized, keycloak]);
+  //
+  // if (!initialized) {
+  //   return <p>Loading...</p>;
+  // }
+  //
+  // if (!keycloak.authenticated) {
+  //   return <p>Authenticating...</p>;
+  // }
   return (
     // <>main page</>
     <Routes>

@@ -24,6 +24,8 @@ export const usePopup = (
     setIsOpen(true);
   };
 
+  console.log(isOpen);
+
   return {
     isOpen,
     setIsOpen,

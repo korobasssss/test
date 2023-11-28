@@ -9,6 +9,7 @@ export const convertViewProductData = (
       ableToCreateTrialLicense: false,
       // status: 'DRAFT',
       memoryElementIds: [],
+      componentIds: [],
       description: '',
     };
   }

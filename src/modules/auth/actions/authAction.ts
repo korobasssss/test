@@ -1,28 +1,28 @@
 import { errorPopupStore } from 'src/base/store';
 
-import { authStore } from '../stores';
+import { authStore, IAuthParams } from '../stores';
 import { AxiosError } from 'axios';
 import { authAxiosInstance } from '../../../base/api';
 
-export const authAction = async (): Promise<void> => {
+export interface IAuthData {
+  login: string;
+  password: string;
+}
+
+export const authAction = async (
+  params: Partial<IAuthParams>,
+  data: IAuthData | null,
+): Promise<void> => {
   try {
     authStore.setLoginLoading();
 
+    if (!data) return;
+
     const response = await authAxiosInstance({
       method: 'POST',
-      url: `/realms/license-manager/protocol/openid-connect/auth`,
-      data: {
-        response_type: 'code',
-        client_id: 'license-process-service',
-        scope: 'openid',
-        state: '4xdhv2p5jGYuWnb_lzONz0cUhoq4xCD7QbaF4m377tY=',
-        redirect_uri:
-          'http://192.168.100.72/license-process-service/login/oauth2/code/keycloak',
-        nonce: 'tv49-wSghRhpEJdouxZV86KZFcaTVlKNezMUD-DCwS0',
-        // grant_type: 'password',
-        // username: 'admin',
-        // password: 'admin',
-      },
+      url: '/realms/license-manager/login-actions/authenticate',
+      data,
+      params,
     });
 
     const ACCESS_TOKEN = response.data?.access_token;
