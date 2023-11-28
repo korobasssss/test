@@ -47,6 +47,7 @@ axiosInstance.interceptors.response.use(
       // @ts-ignore
       authStore.setAuthParams(query);
       authStore.setIsAuth(false);
+      authStore.setFinished(res.data);
       // window.location.reload();
       // return {};
     }
