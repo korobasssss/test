@@ -12,7 +12,7 @@ export const getAllComponentsAction = async (): Promise<void> => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(res.data);
+    console.log(res.data);
     productStore.setComponentsData(res.data);
     // componentsStore.setFinished(mockData);
   } catch (e) {

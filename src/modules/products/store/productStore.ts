@@ -1,4 +1,4 @@
-import { action, makeObservable, override } from 'mobx';
+import { action, makeObservable, observable, override } from 'mobx';
 
 import { BaseApiStoreClass } from 'src/base/classes';
 import { IProductEdit, IProductView } from '../types';
@@ -13,6 +13,9 @@ class ProductStore extends BaseApiStoreClass<IProductView[]> {
     super();
     makeObservable(this, {
       data: override,
+      componentsData: observable,
+      editProduct: observable,
+      viewProduct: observable,
       setViewProduct: action,
       setEditProduct: action,
       setViewProductById: action,
@@ -30,6 +33,7 @@ class ProductStore extends BaseApiStoreClass<IProductView[]> {
   };
 
   public setComponentsData = (item: IComponentView[] | null): void => {
+    console.log(item);
     this.componentsData = item;
   };
 
