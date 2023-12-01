@@ -29,7 +29,7 @@ interface IProps {
   isMultiple?: boolean;
 }
 
-function Select(props: IProps): ReactElement | null {
+export function Select(props: IProps): ReactElement | null {
   const {
     className,
     maxSelectHeight = 220,
@@ -132,5 +132,3 @@ function Select(props: IProps): ReactElement | null {
     </div>
   );
 }
-
-export default Select;

@@ -8,12 +8,16 @@ import React, {
 } from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
-import { Input, TextArea, Button, Spinner } from '../../../../base/components';
+import {
+  Input,
+  TextArea,
+  Button,
+  Spinner,
+  ISelectDefaultData,
+  Select,
+} from '../../../../base/components';
 import { IComponentEdit, TComponentDataKeys } from '../../types';
 import { EComponentStatus } from '../../constants';
-import Select, {
-  ISelectDefaultData,
-} from '../../../../base/components/Select/Select';
 
 interface IProps {
   onSubmit: (values: any) => void;

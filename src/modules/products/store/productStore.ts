@@ -33,7 +33,6 @@ class ProductStore extends BaseApiStoreClass<IProductView[]> {
   };
 
   public setComponentsData = (item: IComponentView[] | null): void => {
-    console.log(item);
     this.componentsData = item;
   };
 

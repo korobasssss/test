@@ -21,7 +21,7 @@ export const convertViewProductData = (
     number: data.number,
     name: data.name,
     description: data.description,
-    // status: data.status,
+    status: data.status,
     ableToLicenceTransfer: data.ableToLicenceTransfer,
     ableToCreateTrialLicense: data.ableToCreateTrialLicense,
   };
