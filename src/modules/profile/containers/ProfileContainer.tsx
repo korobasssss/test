@@ -13,7 +13,7 @@ export const ProfileContainer: FC = observer(() => {
 
   useEffect(() => {
     getProfileAction();
-  });
+  }, []);
 
   return (
     <MainLayout

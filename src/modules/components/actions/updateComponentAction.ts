@@ -1,6 +1,6 @@
 import { componentsStore } from '../store';
-import { axiosInstance } from '../../../base/api';
 import { IComponentEdit, IComponentView } from '../types';
+import { createRequest } from '../../../base/api/createRequest';
 
 export const updateComponentAction = async ({
   productId,
@@ -9,15 +9,10 @@ export const updateComponentAction = async ({
   productId: number | string;
   data: IComponentEdit;
 }): Promise<void> => {
-  const token = localStorage.getItem('ACCESS_TOKEN');
-
   try {
-    const res = await axiosInstance<IComponentView>({
+    const res = await createRequest<IComponentView>({
       url: `/api/products-data/components/${productId}`,
       method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
       data,
     });
     componentsStore.setViewComponent(res.data);

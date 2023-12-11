@@ -8,6 +8,7 @@ const servUrl =
 
 export const axiosInstance = axios.create({
   baseURL: `${servUrl}/license-process-service`,
+  withCredentials: true,
 });
 
 export const authAxiosInstance = axios.create({

@@ -8,7 +8,7 @@ export const deleteProductAction = async ({
   productId: number | string;
 }): Promise<void> => {
   const token = localStorage.getItem('ACCESS_TOKEN');
-  // productStore.setLoading();
+
   try {
     await axiosInstance<IProductView>({
       url: `/api/products-data/products/${productId}`,
@@ -17,8 +17,6 @@ export const deleteProductAction = async ({
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(res.data)
-    // productStore.setFinished(res.data);
   } catch (e) {
     console.log(e);
     productStore.setError(e);

@@ -1,18 +1,13 @@
-import { axiosInstance } from '../../../base/api';
 import { productStore } from '../store';
 import { IComponentView } from '../../components';
+import { createRequest } from '../../../base/api/createRequest';
 
 export const getAllComponentsAction = async (): Promise<void> => {
-  const token = localStorage.getItem('ACCESS_TOKEN');
-  // productStore.setLoading();
   try {
-    const res = await axiosInstance<IComponentView[]>({
+    const res = await createRequest<IComponentView[]>({
       url: `/api/products-data/components/`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
     });
-    // console.log(res.data);
+
     productStore.setComponentsData(res.data);
   } catch (e) {
     console.log(e);

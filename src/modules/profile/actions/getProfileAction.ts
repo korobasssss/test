@@ -1,15 +1,14 @@
-import { axiosInstance } from '../../../base/api';
 import { IProfile } from '../types';
 import { profileStore } from '../store';
+import { createRequest } from '../../../base/api/createRequest';
 
 export const getProfileAction = async (): Promise<void> => {
   profileStore.setLoading();
   try {
-    const res = await axiosInstance<IProfile>({
+    const res = await createRequest<IProfile>({
       url: '/api/user/current',
       method: 'GET',
     });
-    console.log(res.data);
     profileStore.setFinished(res.data);
   } catch (e) {
     console.log(e);

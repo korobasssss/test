@@ -1,7 +1,7 @@
 import { productStore } from '../store';
-import { axiosInstance } from '../../../base/api';
 import { IProductView } from '../types';
 import { EProductStatus } from '../constants';
+import { createRequest } from '../../../base/api/createRequest';
 
 export const changeProductStatusAction = async ({
   productId,
@@ -15,7 +15,7 @@ export const changeProductStatusAction = async ({
       status === EProductStatus.AVAILABLE ? 'toAvailable' : 'toArchived';
 
     try {
-      const res = await axiosInstance<IProductView>({
+      const res = await createRequest<IProductView>({
         headers: {
           // Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',

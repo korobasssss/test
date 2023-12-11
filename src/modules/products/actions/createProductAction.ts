@@ -1,17 +1,14 @@
 import { productStore } from '../store';
-import { axiosInstance } from '../../../base/api';
 import { IProductEdit, IProductView } from '../types';
+import { createRequest } from '../../../base/api/createRequest';
 
 export const createProductAction = async (
   data: IProductEdit,
 ): Promise<void> => {
-  console.log('createProductsAction');
   const token = localStorage.getItem('ACCESS_TOKEN');
 
-  // productStore.setLoading();
   try {
-    console.log(data);
-    const res = await axiosInstance<IProductView>({
+    const res = await createRequest<IProductView>({
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
