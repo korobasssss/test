@@ -1,14 +1,21 @@
-import {ERequestStatus} from 'src/base/constants';
-import {action, makeObservable, observable, override} from 'mobx';
-import {BaseApiStoreClass} from '../../../base/classes';
+import { ERequestStatus } from 'src/base/constants';
+import { action, makeObservable, observable, override } from 'mobx';
+import { BaseApiStoreClass } from '../../../base/classes';
 
+export interface IAuthParams {
+  client_id: string;
+  execution: string;
+  session_code: string;
+  tab_id: string;
+}
 
 class AuthStore extends BaseApiStoreClass<any> {
   public loginStatus: ERequestStatus = ERequestStatus.Pending;
   public headerTitle: string = '';
   public firstLogin: boolean = false;
-  public isAuth: boolean = false; //TODO false?
+  public isAuth: boolean = true;
   public isAuthStatus: ERequestStatus = ERequestStatus.Loading;
+  public authParams: Partial<IAuthParams> = {};
 
   public constructor() {
     super();
@@ -19,6 +26,7 @@ class AuthStore extends BaseApiStoreClass<any> {
       firstLogin: observable,
       isAuth: observable,
       isAuthStatus: observable,
+      authParams: observable,
       setUserData: action,
       setHeaderTitle: action,
       setLoginLoading: action,
@@ -27,6 +35,7 @@ class AuthStore extends BaseApiStoreClass<any> {
       setFirstLogin: action,
       setIsAuth: action,
       setIsAuthStatus: action,
+      setAuthParams: action,
     });
   }
 
@@ -61,6 +70,10 @@ class AuthStore extends BaseApiStoreClass<any> {
 
   public setIsAuthStatus = (status: ERequestStatus): void => {
     this.isAuthStatus = status;
+  };
+
+  public setAuthParams = (params: IAuthParams): void => {
+    this.authParams = params;
   };
 }
 

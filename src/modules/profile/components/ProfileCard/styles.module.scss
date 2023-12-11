@@ -1,0 +1,90 @@
+@import 'src/styles/variables/index.scss';
+@import 'src/styles/mixins/typography.scss';
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 16px 16px;
+    width: 100%;
+    background-color: $WHITE;
+    border-radius: $ROUNDING_L;
+
+    .card-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+      padding: 16px 0;
+      background-color: $WHITE;
+      border-bottom: $STROKE_GREY solid 1px;
+
+      .top-row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        p {
+          //color: $MENU_ICON_COLOR;
+          @include font-moscow-sans-xl;
+        }
+      }
+
+      .item-body {
+        padding: 10px;
+        width: 100%;
+
+        p {
+          text-align: start;
+          @include font-moscow-sans-m;
+        }
+      }
+
+      .bottom-row {
+        width: 100%;
+
+        .features {
+          color: $LIGHT_GREEN;
+
+          &_not_accepted {
+            color: $DEEP_RED
+          }
+        }
+
+        p {
+          @include font-moscow-sans-l;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        width: 100%;
+
+        .button {
+          max-width: calc(50% - 15px);
+          padding: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: $ROUNDING_L;
+          border: 1px solid $BUTTON_ACTION_BG;
+
+          &:active {
+            background-color: $BLUE_SECONDARY;;
+          }
+        }
+      }
+
+
+    }
+  }
+}

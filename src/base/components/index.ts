@@ -7,3 +7,5 @@ export * from './TextArea';
 export * from './Button';
 export * from './Spinner';
 export * from './MultiSelect';
+export * from './Popup';
+export * from './Select';

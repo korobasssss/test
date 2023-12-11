@@ -1,4 +1,4 @@
-import { Route } from '../../classes/Route';
+import { Route } from '../../../classes/Route';
 import { routeHome } from '../home/routeHome';
 
 export const routeProducts = new Route({

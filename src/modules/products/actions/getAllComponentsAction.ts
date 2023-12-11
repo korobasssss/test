@@ -7,18 +7,15 @@ export const getAllComponentsAction = async (): Promise<void> => {
   // productStore.setLoading();
   try {
     const res = await axiosInstance<IComponentView[]>({
-      url: `/api/owners/components/`,
+      url: `/api/products-data/components/`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     // console.log(res.data);
     productStore.setComponentsData(res.data);
-    // componentsStore.setFinished(mockData);
   } catch (e) {
     console.log(e);
     productStore.setError(e);
   }
-  //@ts-ignore
-  // productStore.setFinished(mockData);
 };

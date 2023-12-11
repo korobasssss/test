@@ -1,0 +1,78 @@
+@import 'src/styles/variables/index.scss';
+@import 'src/styles/mixins/typography.scss';
+
+.form {
+  width: 100%;
+  padding: 10px;
+  @include font-moscow-sans-m;
+
+  .checkbox {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  &-fields {
+    display: flex;
+    flex-direction: column;
+    @include font-moscow-sans-m;
+
+    &__multiselect {
+      @include font-moscow-sans-m;
+
+
+    }
+
+    &__inputs {
+      @include font-moscow-sans-m;
+
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+
+      &-description {
+        height: 120px;
+        margin-bottom: 12px;
+
+        input {
+          height: 100%;
+          text-align: start;
+        }
+      }
+
+      &-error {
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 120%;
+        margin-top: 9px;
+        color: $DANGER;
+      }
+    }
+
+    &__policy {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+    }
+  }
+
+  .button {
+    display: flex;
+    width: 100%;
+    max-width: 350px;
+    justify-content: center;
+    align-items: center;
+    border-radius: $ROUNDING_L;
+    border: 1px solid $BUTTON_ACTION_BG;
+
+    &:active {
+      background-color: $BLUE_SECONDARY;;
+    }
+  }
+}
+
+.iconLeft {
+  padding-top: 8px;
+  color: $EASE_GREY;
+}

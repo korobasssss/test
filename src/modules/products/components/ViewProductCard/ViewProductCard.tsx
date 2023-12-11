@@ -41,7 +41,7 @@ export const ViewProductCard: FC<IProps> = ({
           <div className={styles.bottomRow}>
             <p
               className={cx(styles.features, {
-                [styles.features_not_accepted]: product.ableToLicenceTransfer,
+                [styles.features_not_accepted]: product.ableToLicenseTransfer,
               })}
             >
               Возможность переноса лицензий
@@ -49,7 +49,7 @@ export const ViewProductCard: FC<IProps> = ({
             <p
               className={cx(styles.features, {
                 [styles.features_not_accepted]:
-                  product.ableToCreateTrialLicence,
+                  product.ableToCreateTrialLicense,
               })}
             >
               Возможность генерации пробных лицензий

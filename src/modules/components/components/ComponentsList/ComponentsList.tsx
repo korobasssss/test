@@ -9,7 +9,7 @@ import { Button, Spinner } from '../../../../base/components';
 import {
   routeComponentEdit,
   routeComponentsView,
-} from '../../../../base/routes';
+} from '../../../../base/navigation/routes';
 import { componentsStore } from '../../store';
 
 export const ComponentsList: FC = observer(() => {

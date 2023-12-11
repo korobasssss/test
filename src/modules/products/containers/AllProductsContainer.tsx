@@ -6,7 +6,7 @@ import { CreateButton } from '../../../base/components/CreateProductButton';
 import { useNavigate } from 'react-router';
 import { observer } from 'mobx-react';
 import { authStore } from '../../auth/stores';
-import { routeProductsEdit } from '../../../base/routes/products/edit/routeProductsEdit';
+import { routeProductsEdit } from '../../../base/navigation/routes';
 
 export const AllProductsContainer: FC = observer(() => {
   const navigate = useNavigate();

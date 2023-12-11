@@ -5,10 +5,11 @@ export const convertViewProductData = (
 ): Partial<IProductEdit> => {
   if (!data) {
     return {
-      ableToLicenceTransfer: false,
-      ableToCreateTrialLicence: false,
-      status: 'DRAFT',
+      ableToLicenseTransfer: false,
+      ableToCreateTrialLicense: false,
+      // status: 'DRAFT',
       memoryElementIds: [],
+      componentIds: [],
       description: '',
     };
   }
@@ -17,11 +18,11 @@ export const convertViewProductData = (
     componentIds: data.components.map((el) => el.id),
     memoryElementIds: data.memoryElements.map((el) => el.id),
     id: data.id,
-    number: data.number,
+    // number: data.number,
     name: data.name,
     description: data.description,
     status: data.status,
-    ableToLicenceTransfer: data.ableToLicenceTransfer,
-    ableToCreateTrialLicence: data.ableToCreateTrialLicence,
+    ableToLicenseTransfer: data.ableToLicenseTransfer,
+    ableToCreateTrialLicense: data.ableToCreateTrialLicense,
   };
 };

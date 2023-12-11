@@ -11,7 +11,7 @@ export const deleteProductAction = async ({
   // productStore.setLoading();
   try {
     await axiosInstance<IProductView>({
-      url: `/api/owners/products/${productId}`,
+      url: `/api/products-data/products/${productId}`,
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,

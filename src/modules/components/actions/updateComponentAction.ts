@@ -13,7 +13,7 @@ export const updateComponentAction = async ({
 
   try {
     const res = await axiosInstance<IComponentView>({
-      url: `/api/owners/components/${productId}`,
+      url: `/api/products-data/components/${productId}`,
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -21,7 +21,6 @@ export const updateComponentAction = async ({
       data,
     });
     componentsStore.setViewComponent(res.data);
-    // componentsStore.setViewComponent(null);
   } catch (e) {
     console.log(e);
     componentsStore.setError(e);

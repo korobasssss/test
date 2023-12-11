@@ -1,4 +1,4 @@
-import { action, makeObservable, override } from 'mobx';
+import { action, makeObservable, observable, override } from 'mobx';
 
 import { BaseApiStoreClass } from 'src/base/classes';
 import { IComponentEdit, IComponentView } from '../types';
@@ -11,6 +11,8 @@ class ComponentsStore extends BaseApiStoreClass<IComponentView[]> {
     super();
     makeObservable(this, {
       data: override,
+      viewComponent: observable,
+      editComponent: observable,
       setViewComponent: action,
       setEditComponent: action,
       setViewComponentById: action,

@@ -17,7 +17,7 @@ export const createComponentAction = async (
         'Content-Type': 'application/json',
       },
       method: 'POST',
-      url: `/api/owners/components/`,
+      url: `/api/products-data/components/`,
       data,
     });
     console.log(res.data);

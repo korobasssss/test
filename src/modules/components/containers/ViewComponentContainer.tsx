@@ -12,7 +12,7 @@ import {
   routeComponentEdit,
   routeComponentsView,
   routeComponents,
-} from '../../../base/routes';
+} from '../../../base/navigation/routes';
 import { componentsStore } from '../store';
 
 export const ViewComponentContainer: FC = observer(() => {

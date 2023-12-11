@@ -10,6 +10,7 @@ import { MainLayout, Spinner } from '../../../base/components';
 import { observer } from 'mobx-react';
 import { productStore } from '../store';
 import {
+  changeProductStatusAction,
   createProductAction,
   getAllComponentsAction,
   updateProductAction,
@@ -25,7 +26,7 @@ import {
   routeProducts,
   routeProductsEdit,
   routeProductsView,
-} from '../../../base/routes';
+} from '../../../base/navigation/routes';
 
 export const EditProductContainer: FC = observer(() => {
   const [productData, setProductData] = useState<Partial<IProductEdit> | null>(
@@ -57,7 +58,6 @@ export const EditProductContainer: FC = observer(() => {
     if (viewProduct?.components && isArray(viewProduct.components)) {
       return viewProduct.components.map((el) => {
         return {
-          // id: el.id,
           label: el.name,
           value: el.id,
         };
@@ -97,8 +97,12 @@ export const EditProductContainer: FC = observer(() => {
           }).then(() => navigate(routeProductsView.url({ id })));
         }
       }
+      changeProductStatusAction({
+        productId: viewProduct?.id,
+        status: data.status,
+      });
     },
-    [id, isCreateNewProduct, navigate, viewProduct?.id],
+    [id, isCreateNewProduct, navigate, viewProduct],
   );
 
   if (productData === null) return <Spinner />;

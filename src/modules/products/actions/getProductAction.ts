@@ -11,7 +11,7 @@ export const getProductAction = async ({
   productStore.setLoading();
   try {
     const res = await axiosInstance<IProductView>({
-      url: `/api/owners/products/${productId}`,
+      url: `/api/products-data/${productId}`,
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
