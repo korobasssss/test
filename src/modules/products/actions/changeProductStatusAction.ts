@@ -21,7 +21,7 @@ export const changeProductStatusAction = async ({
           'Content-Type': 'application/json',
         },
         method: 'POST',
-        url: `/api/owners/products/${productId}/${requestUrlStatus}`,
+        url: `/api/products-data/products/${productId}/${requestUrlStatus}`,
         // data,
       });
       console.log(res.data);

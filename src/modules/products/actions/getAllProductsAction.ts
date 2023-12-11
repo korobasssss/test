@@ -7,7 +7,7 @@ export const getAllProductsAction = async (): Promise<void> => {
   productStore.setLoading();
   try {
     const res = await axiosInstance<IProductView[]>({
-      url: `/api/owners/products/`,
+      url: `/api/products-data/products/`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

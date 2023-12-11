@@ -13,7 +13,7 @@ export const updateProductAction = async ({
 
   try {
     const res = await axiosInstance<IProductView>({
-      url: `/api/owners/products/${productId}`,
+      url: `/api/products-data/products/${productId}`,
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,

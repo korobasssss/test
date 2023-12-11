@@ -11,7 +11,7 @@ export const deleteComponentAction = async ({
   // productStore.setLoading();
   try {
     await axiosInstance<IComponentView>({
-      url: `/api/owners/components/${productId}`,
+      url: `/api/products-data/components/${productId}`,
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,

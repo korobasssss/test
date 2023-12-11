@@ -11,7 +11,7 @@ export const getComponentAction = async ({
   componentsStore.setLoading();
   try {
     const res = await axiosInstance<IComponentView>({
-      url: `/api/owners/components/${componentId}`,
+      url: `/api/products-data/components/${componentId}`,
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

@@ -107,15 +107,15 @@ export const EditProductForm: FC<IProps> = observer(
                 type="text"
               />
             </div>
-            <div className={styles['form-fields__inputs']}>
-              <Input
-                defaultValue={product.number}
-                onChange={onChangeFormInput('number')}
-                placeholder="Номер продукта"
-                name="number"
-                type="text"
-              />
-            </div>
+            {/*<div className={styles['form-fields__inputs']}>*/}
+            {/*  <Input*/}
+            {/*    defaultValue={product.number}*/}
+            {/*    onChange={onChangeFormInput('number')}*/}
+            {/*    placeholder="Номер продукта"*/}
+            {/*    name="number"*/}
+            {/*    type="text"*/}
+            {/*  />*/}
+            {/*</div>*/}
             <div className={styles['form-fields__inputs-description']}>
               <TextArea
                 defaultValue={product.description}
@@ -142,9 +142,9 @@ export const EditProductForm: FC<IProps> = observer(
             />
             <div className={styles.checkbox}>
               <Checkbox
-                initialValue={product.ableToLicenceTransfer}
+                initialValue={product.ableToLicenseTransfer}
                 name="ableToLicenceTransfer"
-                onChange={onChangeFormInput('ableToLicenceTransfer')}
+                onChange={onChangeFormInput('ableToLicenseTransfer')}
               />
               Возможность переноса лицензии
             </div>

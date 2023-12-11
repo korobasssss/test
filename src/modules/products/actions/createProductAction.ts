@@ -17,7 +17,7 @@ export const createProductAction = async (
         'Content-Type': 'application/json',
       },
       method: 'POST',
-      url: `/api/owners/products/`,
+      url: `/api/products-data/products/`,
       data,
     });
     console.log(res.data);

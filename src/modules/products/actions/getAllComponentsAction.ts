@@ -7,7 +7,7 @@ export const getAllComponentsAction = async (): Promise<void> => {
   // productStore.setLoading();
   try {
     const res = await axiosInstance<IComponentView[]>({
-      url: `/api/owners/components/`,
+      url: `/api/products-data/components/`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

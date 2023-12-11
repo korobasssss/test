@@ -9,6 +9,7 @@ import {
   routeProducts,
   routeProductsEdit,
   routeProductsView,
+  routeProfile,
 } from '../routes';
 import { MainContainer } from '../../../modules/main/containers';
 import {
@@ -19,6 +20,7 @@ import {
 import { AlLComponentsContainer } from '../../../modules/components';
 import { ViewComponentContainer } from '../../../modules/components/containers/ViewComponentContainer';
 import { EditComponentContainer } from '../../../modules/components/containers/EditComponentContainer';
+import { ProfilePage } from '../../../pages/Profile/Profile';
 // import { useKeycloak } from '@react-keycloak/web';
 
 export const PrivateRoutes: FC = () => {
@@ -67,6 +69,7 @@ export const PrivateRoutes: FC = () => {
         path={routeComponentEdit.fullPath}
         element={<EditComponentContainer />}
       />
+      <Route path={routeProfile.fullPath} element={<ProfilePage />} />
     </Routes>
   );
 };
