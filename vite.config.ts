@@ -1,14 +1,14 @@
 import { defineConfig } from 'vite';
 import { serverOptions } from './config/vite/server';
 import react from '@vitejs/plugin-react-swc';
-import svgr from 'vite-plugin-svgr';
+import svgr from '@svgr/rollup';
 import path from 'path';
 import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   server: serverOptions,
-  plugins: [svgr({ include: '**/*.svg?react' }), react(), eslint()],
+  plugins: [svgr(), react(), eslint()],
   resolve: {
     alias: [{ find: 'src', replacement: path.resolve(__dirname, './src') }],
   },
