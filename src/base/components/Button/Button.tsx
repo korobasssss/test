@@ -1,7 +1,7 @@
-import React, {ButtonHTMLAttributes, FC} from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 import cx from 'classnames';
 
-import {IWithClassName} from '../../types';
+import { IWithClassName } from '../../types';
 import styles from './styles.module.scss';
 
 export interface IButtonProps

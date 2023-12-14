@@ -8,7 +8,6 @@ module.exports = {
     './eslint-settings/eslint-config-common/index.js',
     './eslint-settings/eslint-config-react/index.js',
     './eslint-settings/eslint-config-typescript/index.js',
-    // 'plugin:storybook/recommended',
     'prettier',
   ],
   overrides: [],
@@ -25,8 +24,5 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': ['off'],
     'react/button-has-type': ['off'],
     'no-console': ['off'],
-  },
-  globals: {
-    ChatClient: 'readonly',
   },
 };

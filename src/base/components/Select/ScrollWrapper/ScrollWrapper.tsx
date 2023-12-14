@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './style.module.scss';
-import {IWithChildren} from '../../../types';
-import cx from "classnames";
+import { IWithChildren } from '../../../types';
+import cx from 'classnames';
 
 interface IProps extends IWithChildren {
   maxHeight?: number;
@@ -10,7 +10,7 @@ interface IProps extends IWithChildren {
 
 // добавляет вертикальный скролл
 export default function ScrollWrapper(props: IProps): JSX.Element {
-  const {children, maxHeight, className} = props;
+  const { children, maxHeight, className } = props;
 
   const styleParams = {
     maxHeight:
@@ -20,10 +20,7 @@ export default function ScrollWrapper(props: IProps): JSX.Element {
   };
 
   return (
-    <div
-      className={cx(className, classes.scroll_wrapper)}
-      style={styleParams}
-    >
+    <div className={cx(className, classes.scroll_wrapper)} style={styleParams}>
       {children}
     </div>
   );

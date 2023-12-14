@@ -1,9 +1,7 @@
-import {action, computed, makeObservable, observable} from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
-import {getApiErrorMessage} from 'src/base/api/getApiError';
-import {ERequestStatus} from 'src/base/constants';
-// import {errorPopupStore} from 'src/base/store';
-// import {TranslationValues} from '../../types';
+import { getApiErrorMessage } from 'src/base/api/getApiError';
+import { ERequestStatus } from '../../constants';
 
 export class BaseApiStoreClass<T> {
   public data: T | null = null;

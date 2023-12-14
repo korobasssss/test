@@ -5,9 +5,7 @@ import styles from './style.module.scss';
 export interface ISpinner {
   inline?: boolean;
 }
-export const Spinner: FC<ISpinner> = ({
-  inline = false
-}: ISpinner) => {
+export const Spinner: FC<ISpinner> = ({ inline = false }: ISpinner) => {
   const [destinationExists, setDestinationExists] = useState(false);
   const destinationElement = useRef<HTMLDivElement>();
   useEffect(() => {
@@ -24,14 +22,18 @@ export const Spinner: FC<ISpinner> = ({
 
   return (
     <>
-      {inline ? <div className={styles['VBSpinner-spinner-inline']}/> : destinationExists &&
+      {inline ? (
+        <div className={styles['VBSpinner-spinner-inline']} />
+      ) : (
+        destinationExists &&
         destinationElement.current &&
         createPortal(
           <div className={styles['VBSpinner-container']}>
-            <div className={styles['VBSpinner-spinner']}/>
+            <div className={styles['VBSpinner-spinner']} />
           </div>,
           destinationElement.current,
-        )}
+        )
+      )}
     </>
   );
 };

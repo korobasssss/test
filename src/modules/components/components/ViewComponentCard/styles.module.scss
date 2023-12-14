@@ -54,7 +54,7 @@
           color: $LIGHT_GREEN;
 
           &_not_accepted {
-            color: $DEEP_RED
+            color: $DEEP_RED;
           }
         }
 
@@ -79,12 +79,10 @@
           border: 1px solid $BUTTON_ACTION_BG;
 
           &:active {
-            background-color: $BLUE_SECONDARY;;
+            background-color: $BLUE_SECONDARY;
           }
         }
       }
-
-
     }
   }
 }

@@ -100,7 +100,7 @@ module.exports = {
       'error',
       {
         selector: 'default',
-        format: ['camelCase', 'snake_case'],
+        format: ['camelCase', 'snake_case', 'PascalCase'],
       },
       {
         modifiers: ['private'],

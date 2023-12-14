@@ -1,11 +1,11 @@
-import React, {FC} from 'react';
-import {IWithClassName} from '../../types';
+import React, { FC } from 'react';
+import { IWithClassName } from '../../types';
 
 interface IAroowIconProps extends IWithClassName {
   isDown?: boolean;
 }
 
-export const ArrowIcon: FC<IAroowIconProps> = ({isDown, className}) => {
+export const ArrowIcon: FC<IAroowIconProps> = ({ isDown, className }) => {
   return (
     <svg
       width="11"
@@ -14,7 +14,7 @@ export const ArrowIcon: FC<IAroowIconProps> = ({isDown, className}) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      style={{transform: `rotate(${isDown ? 0 : 180}deg)`}}
+      style={{ transform: `rotate(${isDown ? 0 : 180}deg)` }}
     >
       <path
         d="M10 1.75L5.5 6.25L1 1.75"

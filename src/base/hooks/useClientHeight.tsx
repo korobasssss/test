@@ -21,7 +21,9 @@ export function useClientHeight(): number | null {
 
 export function measureHeight(): number | null {
   if (!isClient()) return null;
-  return document.documentElement.offsetHeight ? document.documentElement.offsetHeight : window.innerHeight;
+  return document.documentElement.offsetHeight
+    ? document.documentElement.offsetHeight
+    : window.innerHeight;
 }
 
 function useWasRenderedOnClientAtLeastOnce(): boolean {

@@ -1,7 +1,7 @@
-import React, {FC, useCallback, useRef} from 'react';
+import React, { FC, useCallback, useRef } from 'react';
 import classes from './style.module.scss';
-import {IWithClassName} from '../../../types';
-import cx from "classnames";
+import { IWithClassName } from '../../../types';
+import cx from 'classnames';
 
 export interface IDropDownMenuDependent extends IWithClassName {
   head?: any;

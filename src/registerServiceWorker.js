@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {Workbox} from 'workbox-window';
+import { Workbox } from 'workbox-window';
 
 export function registerServiceWorker() {
   if ('serviceWorker' in navigator) {

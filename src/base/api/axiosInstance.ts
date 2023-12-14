@@ -4,7 +4,7 @@ import queryString, { ParsedQuery } from 'query-string';
 // import { Parser } from 'html-to-react';
 
 const servUrl =
-  process.env.NODE_ENV === 'development' ? '' : 'http://192.168.100.72';
+  process.env.NODE_ENV === 'development' ? '/devApi' : 'http://192.168.100.72';
 
 export const axiosInstance = axios.create({
   baseURL: `${servUrl}/license-process-service`,
@@ -35,10 +35,24 @@ axiosInstance.interceptors.response.use(
       // console.log(htmlToReactParser.parse(res.data));
       // console.log(new DOMParser().parseFromString(res.data, 'text/html'));
       const parse = new DOMParser().parseFromString(res.data, 'text/html');
-      console.log(parse);
-      console.log(parse.getElementById('kc-form-login'));
+      // console.log(parse);
+      // console.log(parse.getElementById('kc-form-login'));
+      const form = parse.getElementById('kc-form-login');
+      // console.log(form);
+      // console.log(form.action);
+      // form.action = form.action.replace(
+      //   'http://localhost:3000',
+      //   'http://192.168.100.72',
+      // );
+      // console.log(form.action);
+      const htmlForm = res.data.replace(
+        'http://localhost:3000',
+        'http://192.168.100.72',
+      );
+      // console.log(parse);
+
       // @ts-ignore
-      const actionString = parse.getElementById('kc-form-login')?.action;
+      const actionString = form?.action;
       const urlString = actionString.substring(
         ((actionString.indexOf('?') ?? 1) as number) + 1,
       );
@@ -48,7 +62,7 @@ axiosInstance.interceptors.response.use(
       // @ts-ignore
       authStore.setAuthParams(query);
       authStore.setIsAuth(false);
-      authStore.setFinished(res.data);
+      authStore.setFinished(htmlForm);
       // window.location.reload();
       // return {};
     }

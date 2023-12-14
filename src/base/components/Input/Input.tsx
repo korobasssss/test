@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import React, {forwardRef, InputHTMLAttributes, Ref} from 'react';
+import React, { forwardRef, InputHTMLAttributes, Ref } from 'react';
 // import {FieldValues, UseFormRegister} from 'react-hook-form';
 
 import styles from './styles.module.scss';
@@ -56,11 +56,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
             readOnly={readOnly}
           />
         </div>
-        {errorMessage && (
-          <p className={styles.error}>
-            {errorMessage}
-          </p>
-        )}
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
       </>
     ) : (
       <>
@@ -75,11 +71,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
           type={type}
           readOnly={readOnly}
         />
-        {errorMessage && (
-          <p className={styles.error}>
-            {errorMessage}
-          </p>
-        )}
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
       </>
     );
   },

@@ -1,11 +1,12 @@
 import classNames from 'classnames/bind';
-import React, {forwardRef, TextareaHTMLAttributes, Ref} from 'react';
+import React, { forwardRef, TextareaHTMLAttributes, Ref } from 'react';
 
 import styles from './styles.module.scss';
 
 const cx = classNames.bind(styles);
 
-export interface ITextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface ITextAreaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   autoComplete?: 'on' | 'off';
   ref?: Ref<HTMLTextAreaElement | null>;
   label?: string;
@@ -52,11 +53,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
             readOnly={readOnly}
           />
         </div>
-        {errorMessage && (
-          <p className={styles.error}>
-            {errorMessage}
-          </p>
-        )}
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
       </>
     ) : (
       <>
@@ -71,11 +68,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
           // type={type}
           readOnly={readOnly}
         />
-        {errorMessage && (
-          <p className={styles.error}>
-            {errorMessage}
-          </p>
-        )}
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
       </>
     );
   },

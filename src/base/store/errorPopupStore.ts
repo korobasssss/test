@@ -1,7 +1,7 @@
-import {action, makeObservable, override, observable} from 'mobx';
+import { action, makeObservable, override, observable } from 'mobx';
 
-import {BaseApiStoreClass} from '../classes';
-import {ErrorPopupErrors, TranslationValues} from '../types';
+import { BaseApiStoreClass } from '../classes';
+import { ErrorPopupErrors, TranslationValues } from '../types';
 
 // import { apiStore } from './apiStore';
 

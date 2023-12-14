@@ -84,7 +84,7 @@
       color: $NEUTRAL_GREY;
       position: fixed;
       left: calc(50% - 48px);
-      bottom: calc($bottomMenuFixedHeight + 20px);;
+      bottom: calc($bottomMenuFixedHeight + 20px);
     }
   }
 
@@ -137,7 +137,6 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-
 
             &_active {
               svg {

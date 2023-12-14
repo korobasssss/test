@@ -1,11 +1,11 @@
-import React, {useCallback} from 'react';
-import {useNavigate} from 'react-router';
+import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router';
 
 import cx from 'classnames';
 
 import styles from './styles.module.scss';
-import {ISvgIconWithClick, IWithClassName} from "../../types";
-import {ButtonIcon} from "../ButtonIcon";
+import { ISvgIconWithClick, IWithClassName } from '../../types';
+import { ButtonIcon } from '../ButtonIcon';
 
 export interface IHeaderPanel extends IWithClassName {
   leftIcon?: ISvgIconWithClick;
@@ -36,9 +36,7 @@ export const HeaderPanel = ({
           </ButtonIcon>
         )}
       </div>
-      <h1>
-        {title}
-      </h1>
+      <h1>{title}</h1>
       <div className={styles.right} data-uitest="button-header-right">
         {rightIcon && (
           <ButtonIcon onClick={rightIcon?.clicked}>{rightIcon.svg}</ButtonIcon>
