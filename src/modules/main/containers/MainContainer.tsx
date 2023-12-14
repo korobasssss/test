@@ -1,19 +1,25 @@
 import React, { FC } from 'react';
-import { MainLayout } from '../../../base/components';
 import { useNavigate } from 'react-router';
 import { observer } from 'mobx-react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import cx from 'classnames';
-import styles from './styles.module.scss';
+import { MainLayout } from 'src/base/components';
 import {
   routeComponents,
+  routeHome,
   routeProducts,
-} from '../../../base/navigation/routes';
+  routeWelcome,
+} from 'src/base/navigation';
+import styles from './styles.module.scss';
 
 export const MainContainer: FC = observer(() => {
   const navigate = useNavigate();
 
   const isComponentsPage = Boolean(routeComponents.useMatch());
+
+  if (routeHome.useMatch()) {
+    return <Navigate to={routeWelcome.url} />;
+  }
 
   return (
     <MainLayout topTitle={!isComponentsPage ? 'Продукты' : 'Компоненты'}>
@@ -24,7 +30,6 @@ export const MainContainer: FC = observer(() => {
             [styles.btnActive]: !isComponentsPage,
           })}
           onClick={() => {
-            console.log('Продукты');
             navigate(routeProducts.url);
           }}
         >
@@ -36,7 +41,6 @@ export const MainContainer: FC = observer(() => {
             [styles.btnActive]: isComponentsPage,
           })}
           onClick={() => {
-            console.log('Компоненты');
             navigate(routeComponents.url);
           }}
         >

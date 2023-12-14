@@ -52,7 +52,7 @@ export const ViewComponentContainer: FC = observer(() => {
 
   return (
     <MainLayout
-      topTitle="SelectedComponentContainer"
+      topTitle="Компонент"
       leftTopIcon={{
         svg: <BackLogo />,
         clicked: () => goBack(),

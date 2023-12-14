@@ -30,12 +30,12 @@ export const Button: FC<IButtonProps> = ({
   return (
     <button
       className={cx(
-        styles.vbButton,
+        styles.LPButton,
         className,
         styles[`LPButton_${theme}`],
         isFullWidth && styles['LPButton_full-width'],
         `${styles[`LPButton_size-${size}`]}`,
-        withHorizontalPadding && styles.VBButton_withPadding,
+        withHorizontalPadding && styles.LPButton_withPadding,
       )}
       disabled={disabled}
       type={type}

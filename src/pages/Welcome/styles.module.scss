@@ -1,0 +1,23 @@
+@import 'src/styles/variables/index.scss';
+@import 'src/styles/mixins/typography.scss';
+
+.body {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 100%;
+
+  .description {
+    //max-height: 50%;
+    flex-grow: 1;
+    overflow: auto;
+    white-space: pre-line
+  }
+
+  .button {
+    min-width: 200px;
+  }
+}

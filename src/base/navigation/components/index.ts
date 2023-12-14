@@ -1,1 +1,1 @@
-export * from './PrivateRoutes';
+export * from './AppRoutes';

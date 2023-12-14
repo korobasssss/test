@@ -11,6 +11,8 @@ export const serverOptions: ServerOptions = {
       changeOrigin: true,
       autoRewrite: true,
       secure: true,
+      // cookieDomainRewrite: 'http://192.168.100.72/',
+      // cookiePathRewrite: '/',
       rewrite: (path) => {
         console.log(path);
         return path.replace(/^\/devApi\/license-process-service/, '');
@@ -37,6 +39,9 @@ export const serverOptions: ServerOptions = {
       // changeOrigin: true,
       autoRewrite: true,
       secure: true,
+      // cookieDomainRewrite: 'http://192.168.100.72/',
+      // cookiePathRewrite: '/',
+      // hostRewrite: 'http://192.168.100.72/',
       rewrite: (path) => {
         console.log(path);
         return path.replace(/^\/license-process-service/, '');
@@ -53,6 +58,7 @@ export const serverOptions: ServerOptions = {
           console.log(
             'Received Response from the Target:',
             proxyRes.statusCode,
+            // proxyRes.headers,
             req.url,
           );
         });

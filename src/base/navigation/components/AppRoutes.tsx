@@ -10,40 +10,23 @@ import {
   routeProductsEdit,
   routeProductsView,
   routeProfile,
+  routeWelcome,
 } from '../routes';
-import { MainContainer } from '../../../modules/main/containers';
+import { MainContainer } from 'src/modules/main/containers';
 import {
   AllProductsContainer,
   EditProductContainer,
   ViewProductContainer,
-} from '../../../modules/products';
-import { AlLComponentsContainer } from '../../../modules/components';
-import { ViewComponentContainer } from '../../../modules/components/containers/ViewComponentContainer';
-import { EditComponentContainer } from '../../../modules/components/containers/EditComponentContainer';
+} from 'src/modules/products';
+import { AlLComponentsContainer } from 'src/modules/components';
+import { ViewComponentContainer } from 'src/modules/components/containers/ViewComponentContainer';
+import { EditComponentContainer } from 'src/modules/components/containers/EditComponentContainer';
 import { ProfilePage } from '../../../pages/Profile/Profile';
-// import { useKeycloak } from '@react-keycloak/web';
+import { WelcomePage } from 'src/pages/Welcome';
+import { Navigate } from 'react-router-dom';
 
-export const PrivateRoutes: FC = () => {
-  // const { keycloak, initialized } = useKeycloak();
-  // console.log(keycloak, initialized);
-  //
-  // useEffect(() => {
-  //   if (initialized) {
-  //     if (!keycloak.authenticated) {
-  //       keycloak.login();
-  //     }
-  //   }
-  // }, [initialized, keycloak]);
-  //
-  // if (!initialized) {
-  //   return <p>Loading...</p>;
-  // }
-  //
-  // if (!keycloak.authenticated) {
-  //   return <p>Authenticating...</p>;
-  // }
+export const AppRoutes: FC = () => {
   return (
-    // <>main page</>
     <Routes>
       <Route path={routeHome.path} element={<MainContainer />}>
         <Route path={routeProducts.path} element={<AllProductsContainer />} />
@@ -69,7 +52,9 @@ export const PrivateRoutes: FC = () => {
         path={routeComponentEdit.fullPath}
         element={<EditComponentContainer />}
       />
+      <Route path={routeWelcome.fullPath} element={<WelcomePage />} />
       <Route path={routeProfile.fullPath} element={<ProfilePage />} />
+      <Route path="*" element={<Navigate to={routeWelcome.url} />} />
     </Routes>
   );
 };

@@ -10,7 +10,7 @@ export const getProductAction = async ({
   productStore.setLoading();
   try {
     const res = await createRequest<IProductView>({
-      url: `/api/products-data/${productId}`,
+      url: `/api/products-data/products/${productId}`,
       method: 'GET',
     });
     productStore.setViewProduct(res.data);
