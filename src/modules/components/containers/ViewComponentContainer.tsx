@@ -1,18 +1,13 @@
 import React, { FC, SyntheticEvent, useCallback, useEffect } from 'react';
-import { MainLayout } from '../../../base/components';
+import { MainLayout } from 'src/base/components';
 import { ViewComponentCard } from '../components/ViewComponentCard';
 import { observer } from 'mobx-react';
-import { deleteComponentAction } from '../actions';
-import { useNavigateBack } from '../../../base';
+import { getGhostByIdAction } from '../actions';
+import { useNavigateBack } from 'src/base';
 import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
 import { useNavigate } from 'react-router';
 import { IComponentView } from '../types';
-import { getComponentAction } from '../actions/getComponentAction';
-import {
-  routeComponentEdit,
-  routeComponentsView,
-  routeComponents,
-} from '../../../base/navigation/routes';
+import { routeComponentEdit, routeComponentsView } from 'src/base/navigation';
 import { componentsStore } from '../store';
 
 export const ViewComponentContainer: FC = observer(() => {
@@ -36,15 +31,16 @@ export const ViewComponentContainer: FC = observer(() => {
 
   const onDeleteComponentHandler = useCallback(() => {
     if (viewComponent?.id) {
-      deleteComponentAction({ productId: viewComponent?.id }).then(() => {
-        navigate(routeComponents.url);
-      });
+      console.log(viewComponent.id);
+      // deleteComponentAction({ productId: viewComponent?.id }).then(() => {
+      //   navigate(routeComponents.url);
+      // });
     }
-  }, [navigate, viewComponent?.id]);
+  }, [viewComponent?.id]);
 
   useEffect(() => {
     if (!viewComponent) {
-      getComponentAction({ componentId: id });
+      getGhostByIdAction({ ghostId: id });
     }
   }, [id, viewComponent]);
 

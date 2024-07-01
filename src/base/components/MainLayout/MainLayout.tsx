@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 import { ISvgIconWithClick, IWithClassName } from '../../types';
 import { HeaderPanel } from '../HeaderPanel';
 import { NavLink } from 'react-router-dom';
-import { routeHome, routeProfile } from '../../navigation/routes';
+import { routeHome } from 'src/base/navigation';
 
 const cx = classNames.bind(styles);
 
@@ -68,20 +68,13 @@ export const MainLayout = ({
                       linkBtn_active: isActive,
                     })}
                   >
-                    {/*<MapIcon width={24} height={24} />*/}
-                    <p
-                      // size={12}
-                      // color={isActive ? 'primary' : 'lightGrey'}
-                      className={styles.text}
-                    >
-                      Главная
-                    </p>
+                    <p className={styles.text}>Главная</p>
                   </div>
                 )}
               </NavLink>
             </li>
             <li>
-              <NavLink to={routeProfile.url}>
+              <NavLink to={routeHome.url}>
                 {({ isActive }) => (
                   <div
                     data-uitest="link-account"

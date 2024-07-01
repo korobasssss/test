@@ -8,17 +8,19 @@ import React, {
 import { MainLayout, Spinner } from '../../../base/components';
 import { observer } from 'mobx-react';
 import { componentsStore } from '../store';
-import { createComponentAction, updateComponentAction } from '../actions';
+import {
+  // createComponentAction,
+  getGhostByIdAction,
+  // updateComponentAction,
+} from '../actions';
 import { useNavigateBack } from '../../../base';
 import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
 import { IComponentEdit } from '../types';
-import { getComponentAction } from '../actions/getComponentAction';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 
 import {
-  routeComponents,
+  // routeComponents,
   routeComponentsView,
-  routeProductsEdit,
 } from '../../../base/navigation/routes';
 import { convertViewComponentData } from '../helpers';
 import { EditComponentForm } from '../components/EditComponentForm';
@@ -27,13 +29,13 @@ export const EditComponentContainer: FC = observer(() => {
   const [componentData, setComponentData] =
     useState<Partial<IComponentEdit> | null>(null);
 
-  const { id } = routeProductsEdit.useParams();
+  const { id } = routeComponentsView.useParams();
 
   const isCreateNewComponent = id === 'new';
   const { goBack } = useNavigateBack();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { viewComponent } = componentsStore;
+  // const { viewComponent } = componentsStore;
 
   useLayoutEffect(() => {
     componentsStore.setViewComponent(null);
@@ -41,7 +43,7 @@ export const EditComponentContainer: FC = observer(() => {
 
   useEffect(() => {
     if (!isCreateNewComponent) {
-      getComponentAction({ componentId: id }).then(() => {
+      getGhostByIdAction({ ghostId: id }).then(() => {
         setComponentData(
           convertViewComponentData(componentsStore.viewComponent),
         );
@@ -54,22 +56,24 @@ export const EditComponentContainer: FC = observer(() => {
   const handleSubmit = useCallback(
     (data: IComponentEdit) => {
       if (isCreateNewComponent) {
-        createComponentAction(data).then(() => navigate(routeComponents.url));
+        console.log(data);
+        // createComponentAction(data).then(() => navigate(routeComponents.url));
       } else {
-        if (viewComponent?.id) {
-          updateComponentAction({
-            productId: viewComponent?.id,
-            data: {
-              ...data,
-            },
-          }).then(() => {
-            navigate(routeComponentsView.url({ id }));
-          });
-        }
+        console.log('else');
+        // if (viewComponent?.id) {
+        //   updateComponentAction({
+        //     productId: viewComponent?.id,
+        //     data: {
+        //       ...data,
+        //     },
+        //   }).then(() => {
+        //     navigate(routeComponentsView.url({ id }));
+        //   });
+        // }
       }
     },
 
-    [id, isCreateNewComponent, navigate, viewComponent?.id],
+    [isCreateNewComponent],
   );
 
   if (componentData === null) return <Spinner />;
