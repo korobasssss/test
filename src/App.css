@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.scroll_wrapper {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-right: 5px;
+}
+.scroll_wrapper::-webkit-scrollbar {
+
+  width: 3px;
+}
+.scroll_wrapper::-webkit-scrollbar-track {
+  border: none;
+  background-color: transparent;
+  width: 3px;
+}
+.scroll_wrapper::-webkit-scrollbar-thumb {
+  background-color: #777985;
+  border-radius: 2px;
+  width: 3px;
+}
