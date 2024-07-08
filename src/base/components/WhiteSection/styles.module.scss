@@ -1,0 +1,10 @@
+@import "src/styles/variables/colors";
+@import "src/styles/variables/index";
+@import "src/styles/mixins/typography";
+
+.white_section {
+  height: min-content;
+  padding: 16px;
+  background-color: $MAIN;
+  border-radius: $ROUNDING_L;
+}
