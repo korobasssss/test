@@ -1,0 +1,115 @@
+@import 'src/styles/mixins/animation.scss'; // todo
+
+
+@import 'src/styles/variables/index.scss';
+@import 'src/styles/mixins/typography.scss';
+
+.body {
+
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+
+  top: 0;
+  left: 0;
+
+  display: grid;
+  align-items: end;
+  justify-items: center;
+
+  @media screen and (min-width: $large) {
+    padding: 0 20%;
+  }
+}
+
+@keyframes CustomFadeIn {
+  0%   {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes CustomFadeOut {
+  0%   {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slideOutFromBottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.dark_bg {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: $BACKGROUND_COLOR;
+  z-index: 10;
+}
+
+.dark_bg.hidden {
+  opacity: 0;
+}
+
+.open_overflow {
+  display: block;
+  animation-name: CustomFadeIn;
+  animation-duration: $TRANSITION_DURATION;
+}
+
+.close_overflow {
+  display: block;
+  animation-name: CustomFadeOut;
+  animation-duration: $TRANSITION_DURATION;
+  opacity: 0;
+}
+
+.open_modal_section {
+  display: block;
+  animation: slideInFromBottom $TRANSITION_DURATION ease forwards;
+}
+
+.close_modal_section {
+  display: block;
+  animation: slideOutFromBottom $TRANSITION_DURATION ease forwards;
+}
+
+.modal_section {
+  z-index: 10;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  border-radius: $ROUNDING_L $ROUNDING_L 0 0;
+  background-color: $MAIN;
+}
+
+.header {
+  padding: 0 16px 12px 16px;
+  border-bottom: 1px solid $BORDER_COLOR;
+}
+
+.main {
+  padding: 0 16px 16px 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.footer {
+  display: grid;
+  justify-items: center;
+}

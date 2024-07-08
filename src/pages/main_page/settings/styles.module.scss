@@ -1,0 +1,160 @@
+@import 'src/styles/variables/index.scss';
+@import 'src/styles/mixins/typography.scss';
+
+.body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  align-items: end;
+  justify-items: center;
+}
+
+@keyframes CustomFadeIn {
+  0%   {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes CustomFadeOut {
+  0%   {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slideOutFromBottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.dark_bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $BACKGROUND_COLOR;
+}
+
+.dark_bg.hidden {
+  opacity: 0;
+}
+
+.open_overflow {
+  display: block;
+  animation-name: CustomFadeIn;
+  animation-duration: $TRANSITION_DURATION;
+}
+
+.close_overflow {
+  display: block;
+  animation-name: CustomFadeOut;
+  animation-duration: $TRANSITION_DURATION;
+  opacity: 0;
+}
+
+.open_modal_section {
+  display: block;
+  animation: slideInFromBottom $TRANSITION_DURATION ease forwards;
+}
+
+.close_modal_section {
+  display: block;
+  animation: slideOutFromBottom $TRANSITION_DURATION ease forwards;
+}
+
+.modal_section {
+  z-index: 1;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  border-radius: $ROUNDING_L $ROUNDING_L 0 0;
+  background-color: $MAIN;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+
+  .header_section {
+    padding: 0 0 15px 12px;
+    border-bottom: 1px solid $BORDER_COLOR;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .line_section {
+    padding: 4px 0 15px 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.main {
+  padding: 0 16px 16px 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.checkbox_section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .checkbox_section_one {
+    cursor: pointer;
+
+    width: 100%;
+    display: grid;
+    grid-template-columns: max-content auto;
+    align-items: center;
+    column-gap: 16px;
+
+    .checkbox_section_data {
+      @include font-moscow-sans-l;
+      color: $TITLE_COLOR;
+    }
+
+    .checkbox_section_input_section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .checkbox_section_input {
+        background-color: $INPUT_BG;
+      }
+
+      .checkbox_section_input:focus {
+        border: none;
+      }
+    }
+
+    .hidden {
+      opacity: 0;
+      animation-name: CustomFadeOut;
+      animation-duration: $TRANSITION_DURATION;
+    }
+
+    .visible {
+      display: grid;
+      align-self: start;
+
+      opacity: 1;
+      animation-name: CustomFadeIn;
+      animation-duration: $TRANSITION_DURATION;
+    }
+  }
+}
