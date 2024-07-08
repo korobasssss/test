@@ -13,14 +13,27 @@
   animation: opacity-enter $ANIMATION_ENTER;
 }
 
+@mixin animation-opacity-exit() {
+  @keyframes opacity-exit {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  animation: opacity-exit $ANIMATION_ENTER;
+}
+
 @mixin animation-slide-down-enter($slide-height: 200px) {
   @keyframes slide-down-enter {
     0% {
-      transform: translateY(-$slide-height);
+      transform: none;
     }
 
     100% {
-      transform: none;
+      transform: translateY($slide-height);
     }
   }
   animation: slide-down-enter $ANIMATION_ENTER;

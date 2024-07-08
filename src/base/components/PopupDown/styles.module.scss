@@ -1,4 +1,4 @@
-@import 'src/styles/mixins/animation.scss'; // todo
+@import 'src/styles/mixins/animation.scss';
 
 
 @import 'src/styles/variables/index.scss';
@@ -23,32 +23,6 @@
   }
 }
 
-@keyframes CustomFadeIn {
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
-}
-@keyframes CustomFadeOut {
-  0%   {opacity: 1;}
-  100% {opacity: 0;}
-}
-
-@keyframes slideInFromBottom {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-@keyframes slideOutFromBottom {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-
 .dark_bg {
   position: fixed;
   width: 100%;
@@ -63,25 +37,29 @@
 
 .open_overflow {
   display: block;
-  animation-name: CustomFadeIn;
+
+  @include animation-opacity-enter;
   animation-duration: $TRANSITION_DURATION;
 }
 
 .close_overflow {
   display: block;
-  animation-name: CustomFadeOut;
+
+  @include animation-opacity-exit;
   animation-duration: $TRANSITION_DURATION;
   opacity: 0;
 }
 
 .open_modal_section {
   display: block;
-  animation: slideInFromBottom $TRANSITION_DURATION ease forwards;
+
+  @include animation-slide-up-enter;
 }
 
 .close_modal_section {
   display: block;
-  animation: slideOutFromBottom $TRANSITION_DURATION ease forwards;
+
+  @include animation-slide-down-enter;
 }
 
 .modal_section {
