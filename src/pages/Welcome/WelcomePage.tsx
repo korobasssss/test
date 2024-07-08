@@ -41,11 +41,9 @@ export const WelcomePage = () : ReactElement => {
   return (
     <MainLayout
       topTitle="Welcome Page"
-      /* eslint-disable-next-line react/no-children-prop */
-      children={
-        <WelcomeComponent />
-      }
       withBottomNavigation={false}
-    />
+    >
+      <WelcomeComponent />
+    </MainLayout>
   )
 }

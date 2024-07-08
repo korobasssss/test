@@ -58,19 +58,18 @@ export const MainPageComponent: FC<IMainPage> = ({
     <section className={styles.body}>
       <section className={styles.root_section}>
         <section>
-            {/* eslint-disable-next-line react/no-children-prop */}
-            <WhiteSection children={
-              <nav className={styles.nav_section}>
-                <section className={styles.input_section}>
-                  <SearchLogo />
-                  <Input className={styles.input_section_input}
-                         placeholder="Поиск по deviceID" />
-                </section>
-                <ButtonIcon>
-                  <CloseLogo />
-                </ButtonIcon>
-              </nav>
-            } />
+          <WhiteSection>
+            <nav className={styles.nav_section}>
+              <section className={styles.input_section}>
+                <SearchLogo />
+                <Input className={styles.input_section_input}
+                       placeholder="Поиск по deviceID" />
+              </section>
+              <ButtonIcon>
+                <CloseLogo />
+              </ButtonIcon>
+            </nav>
+          </WhiteSection>
         </section>
         <section className={styles.status_section}>
           <Button
@@ -85,8 +84,7 @@ export const MainPageComponent: FC<IMainPage> = ({
                   onChange={handleClickSelect}
                   headerTheme="base" />
         </section>
-        {/* eslint-disable-next-line react/no-children-prop */}
-        <WhiteSection children={
+        <WhiteSection>
           <ul className={cx(styles.ul_section, 'scroll_wrapper')}>
             <li className={styles.ul_one_velobike}>
               <section className={styles.ul_one_velobike_id_section}>
@@ -143,7 +141,7 @@ export const MainPageComponent: FC<IMainPage> = ({
               </Link>
             </li>
           </ul>
-        } />
+        </WhiteSection>
         <footer className={styles.footer_button_section}>
           <Button
             className={styles.button_with_icon}
@@ -158,10 +156,11 @@ export const MainPageComponent: FC<IMainPage> = ({
       </section>
       {
         isSettingsOpened ?
-          // eslint-disable-next-line react/no-children-prop
-          <PopupDown topTitle="Выбор окружения" setIsOpen={actionSettings} children={<SettingsModalWindow />}
+          <PopupDown topTitle="Выбор окружения" setIsOpen={actionSettings}
                      submitButtonLabel="Готово"
-                     handleClosePopup={actionSettings} />
+                     handleClosePopup={actionSettings}>
+            <SettingsModalWindow />
+          </PopupDown>
           :
           null}
     </section>
@@ -182,13 +181,12 @@ export const MainPage = (): ReactElement => {
         svg: <SettingsLogo />,
         clicked: () => handleClickSettings(),
       }}
-      /* eslint-disable-next-line react/no-children-prop */
-      children={
-        <MainPageComponent
-          isSettingsOpened={isSettingsOpened}
-          actionSettings={setIsSettingsOpened}
-        />}
       withBottomNavigation={false}
-    />
+    >
+      <MainPageComponent
+        isSettingsOpened={isSettingsOpened}
+        actionSettings={setIsSettingsOpened}
+      />
+    </MainLayout>
   );
 };
