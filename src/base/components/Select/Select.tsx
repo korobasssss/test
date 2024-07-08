@@ -21,6 +21,7 @@ interface IProps {
   onChange: (res?: any) => void;
   maxSelectHeight?: number; // максимальная высота селекта при скроле
   label?: string;
+  headerTheme: 'none' | 'base';
   isDisabled?: boolean;
   errText?: string | number;
   headHeight?: number;
@@ -107,14 +108,17 @@ export function Select(props: IProps): ReactElement | null {
         changeDropDown={changeDropDownHandler}
         isShow={isDown}
         isDisabled={isDisabled}
-        className={styles.header}
+        className={cx(
+          styles.header,
+          styles[`header_${props.headerTheme}`],
+        )}
         head={
           <div
             className={cx(styles.head, {
               [styles.disabled]: isDisabled,
             })}
           >
-            {activeEl?.label ? activeEl.label : activeEl?.value}
+            {activeEl ? activeEl?.label ? activeEl.label : activeEl?.value : props.label}
             {!isDisabled && <ArrowIcon isDown={!isDown} />}
           </div>
         }
