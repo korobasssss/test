@@ -15,7 +15,7 @@ import {
   Spinner,
   ISelectDefaultData,
   Select,
-} from '../../../../base/components';
+} from 'src/base/components';
 import { IComponentEdit, TComponentDataKeys } from '../../types';
 import { EComponentStatus } from '../../constants';
 
@@ -119,7 +119,7 @@ export const EditComponentForm: FC<IProps> = observer(
                 <Select
                   defaultData={statusSelectDefaultData}
                   onChange={onSelect}
-                />
+                  headerTheme='base'/>
               </div>
             )}
             <div className="center">

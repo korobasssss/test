@@ -16,7 +16,7 @@ export const DropDownMenuDependent: FC<IDropDownMenuDependent> = (props) => {
   const myRef = useRef<HTMLDivElement>(null);
 
   const {
-    head = 'no head',
+    head,
     menuClassName,
     className,
     isShow,
