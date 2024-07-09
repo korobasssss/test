@@ -47,6 +47,20 @@ export function Select(props: IProps): ReactElement | null {
   const [data, setData] = useState(defaultData);
   const [isDown, setIsDown] = useState(false);
 
+  const [header, setHeader] = useState<string>();
+
+  useEffect(() => {
+    if (activeEl) {
+      if (activeEl?.label) {
+        setHeader(activeEl.label)
+      } else {
+        setHeader(activeEl?.value)
+      }
+    } else {
+      setHeader(props.label)
+    }
+  }, [props.label, activeEl]);
+
   useEffect(() => {
     if (defaultData !== data) setData(defaultData);
   }, [data, defaultData]);
@@ -118,7 +132,7 @@ export function Select(props: IProps): ReactElement | null {
               [styles.disabled]: isDisabled,
             })}
           >
-            {activeEl ? activeEl?.label ? activeEl.label : activeEl?.value : props.label}
+            {header}
             {!isDisabled && <ArrowIcon isDown={!isDown} />}
           </div>
         }
