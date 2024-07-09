@@ -29,15 +29,15 @@
     background-color: $SCREEN_BG;
     border-radius: $ROUNDING_M;
 
-    .input_section_input {
+    .input {
       padding: 0;
       border-radius: 0;
       background-color: transparent;
       height: min-content;
-    }
 
-    .input_section_input:focus {
-      border: none;
+      &:focus {
+        border: none;
+      }
     }
   }
 }
@@ -108,28 +108,28 @@
     background-color: $BORDER_COLOR;
   }
 
-  .ul_one_velobike {
+  .list_item {
     display: flex;
     justify-content: space-between;
 
-    .ul_one_velobike_id_section {
+    .id_section {
       display: flex;
       gap: 8px;
 
-      .ul_one_velobike_id_section_num {
+      .num {
         width: 14px;
         text-align: start;
         @include font-small-light;
         color: $NUMBERING_TEXT;
       }
 
-      .ul_one_velobike_id_section_data {
+      .data {
         @include font-moscow-sans-bold-m;
         color: $MENU_TEXT;
       }
     }
 
-    .ul_one_velobike_status_button {
+    .status_button {
       display: flex;
       gap: 4px;
       align-items: center;
@@ -137,7 +137,7 @@
       color: $NUMBERING_TEXT;
     }
 
-    .velobike_online {
+    .online {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -145,7 +145,7 @@
       border: 1px solid $BORDER;
     }
 
-    .velobike_offline {
+    .offline {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -155,7 +155,7 @@
   }
 }
 
-.footer_button_section {
+.footer {
   width: 100%;
   display: grid;
   justify-items: center;

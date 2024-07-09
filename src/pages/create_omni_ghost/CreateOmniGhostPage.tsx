@@ -44,51 +44,49 @@ export const CreateOmniGhostComponent: FC = () => {
       <WhiteSection>
         <main className={styles.main_section}>
           <section className={styles.ul_section}>
-            <section className={styles.ul_section_li}>
-              <header className={styles.ul_section_li_header}>
+            <section className={styles.list_item}>
+              <header className={styles.header}>
                 DeviceId
               </header>
               <Input value={inputId}
                      onChange={handlerSetId}
                      placeholder="Введите Id ..."
-                     className={styles.ul_section_li_input} />
+                     className={styles.input} />
             </section>
-            <section className={styles.ul_section_li}>
-              <header className={styles.ul_section_li_header}>
+            <section className={styles.list_item}>
+              <header className={styles.header}>
                 Статус устройства
               </header>
-              <section className={styles.ul_section_li_select_section}>
+              <section>
                 <Select label="Online" defaultData={selectArrStatus}
-                        className={styles.ul_section_li_select_section}
                         onChange={handleClickSelectStatus}
                         headerTheme="none" />
               </section>
             </section>
-            <section className={styles.ul_section_li}>
-              <header className={styles.ul_section_li_header}>
+            <section className={styles.list_item}>
+              <header className={styles.header}>
                 Скорость
               </header>
               <Input value={inputSpeed}
                      onChange={handlerSetSpeed}
                      placeholder="Введите скорость км/ч ..."
-                     className={styles.ul_section_li_input} />
+                     className={styles.input} />
             </section>
-            <section className={styles.ul_section_li}>
-              <header className={styles.ul_section_li_header}>
+            <section className={styles.list_item}>
+              <header className={styles.header}>
                 Уровень заряда
               </header>
               <Input value={inputCharging}
                      onChange={handlerSetCharging}
                      placeholder="Введите заряд % ..."
-                     className={styles.ul_section_li_input} />
+                     className={styles.input} />
             </section>
-            <section className={styles.ul_section_li}>
-              <header className={styles.ul_section_li_header}>
+            <section className={styles.list_item}>
+              <header className={styles.header}>
                 Состояние троса
               </header>
-              <section className={styles.ul_section_li_select_section}>
+              <section>
                 <Select label="Отстегнут" defaultData={selectArrCondition}
-                        className={styles.ul_section_li_select_section}
                         onChange={handleClickSelectCondition}
                         headerTheme="none" />
               </section>

@@ -45,7 +45,7 @@ export const MainPageComponent: FC<IMainPage> = ({
             <nav className={styles.nav_section}>
               <section className={styles.input_section}>
                 <SearchLogo />
-                <Input className={styles.input_section_input}
+                <Input className={styles.input}
                        placeholder="Поиск по deviceID" />
               </section>
               <ButtonIcon>
@@ -70,63 +70,63 @@ export const MainPageComponent: FC<IMainPage> = ({
         <WhiteSection>
           <ScrollWrapper
             className={styles.ul_section}>
-            <li className={styles.ul_one_velobike}>
-              <section className={styles.ul_one_velobike_id_section}>
-                <section className={styles.ul_one_velobike_id_section_num}>1</section>
-                <section className={styles.ul_one_velobike_id_section_data}>32547</section>
+            <li className={styles.list_item}>
+              <section className={styles.id_section}>
+                <section className={styles.num}>1</section>
+                <section className={styles.data}>32547</section>
               </section>
-              <Link to="/omni-card" className={styles.ul_one_velobike_status_button}>
+              <Link to="/omni-card" className={styles.status_button}>
                 <section>Online</section>
-                <section className={styles.velobike_online} />
+                <section className={styles.online} />
               </Link>
             </li>
             <li className={styles.ul_border} />
-            <li className={styles.ul_one_velobike}>
-              <section className={styles.ul_one_velobike_id_section}>
-                <section className={styles.ul_one_velobike_id_section_num}>2</section>
-                <section className={styles.ul_one_velobike_id_section_data}>32547</section>
+            <li className={styles.list_item}>
+              <section className={styles.id_section}>
+                <section className={styles.num}>2</section>
+                <section className={styles.data}>32547</section>
               </section>
-              <Link to="/omni-card" className={styles.ul_one_velobike_status_button}>
+              <Link to="/omni-card" className={styles.status_button}>
                 <section>Online</section>
-                <section className={styles.velobike_online} />
+                <section className={styles.online} />
               </Link>
             </li>
             <li className={styles.ul_border} />
-            <li className={styles.ul_one_velobike}>
-              <section className={styles.ul_one_velobike_id_section}>
-                <section className={styles.ul_one_velobike_id_section_num}>3</section>
-                <section className={styles.ul_one_velobike_id_section_data}>32547</section>
+            <li className={styles.list_item}>
+              <section className={styles.id_section}>
+                <section className={styles.num}>3</section>
+                <section className={styles.data}>32547</section>
               </section>
-              <Link to="/omni-card" className={styles.ul_one_velobike_status_button}>
+              <Link to="/omni-card" className={styles.status_button}>
                 <section>Online</section>
-                <section className={styles.velobike_online} />
+                <section className={styles.online} />
               </Link>
             </li>
             <li className={styles.ul_border} />
-            <li className={styles.ul_one_velobike}>
-              <section className={styles.ul_one_velobike_id_section}>
-                <section className={styles.ul_one_velobike_id_section_num}>4</section>
-                <section className={styles.ul_one_velobike_id_section_data}>32547</section>
+            <li className={styles.list_item}>
+              <section className={styles.id_section}>
+                <section className={styles.num}>4</section>
+                <section className={styles.data}>32547</section>
               </section>
-              <Link to="/omni-card" className={styles.ul_one_velobike_status_button}>
+              <Link to="/omni-card" className={styles.status_button}>
                 <section>Online</section>
-                <section className={styles.velobike_online} />
+                <section className={styles.online} />
               </Link>
             </li>
             <li className={styles.ul_border} />
-            <li className={styles.ul_one_velobike}>
-              <section className={styles.ul_one_velobike_id_section}>
-                <section className={styles.ul_one_velobike_id_section_num}>5</section>
-                <section className={styles.ul_one_velobike_id_section_data}>32547</section>
+            <li className={styles.list_item}>
+              <section className={styles.id_section}>
+                <section className={styles.num}>5</section>
+                <section className={styles.data}>32547</section>
               </section>
-              <Link to="/omni-card" className={styles.ul_one_velobike_status_button}>
+              <Link to="/omni-card" className={styles.status_button}>
                 <section>Online</section>
-                <section className={styles.velobike_online} />
+                <section className={styles.online} />
               </Link>
             </li>
           </ScrollWrapper>
         </WhiteSection>
-        <footer className={styles.footer_button_section}>
+        <footer className={styles.footer}>
           <Button
             className={styles.button_with_icon}
             onClick={handleClickNew}

@@ -25,7 +25,7 @@
   display: grid;
   row-gap: 16px;
 
-  .ul_section_li {
+  .list_item {
     display: grid;
     align-items: center;
     grid-template-columns: 1.5fr 2fr;
@@ -34,12 +34,12 @@
     padding: 12px;
     border-radius: $ROUNDING_M;
 
-    .ul_section_li_header {
+    .header {
       @include font-moscow-sans-l-light;
       color: $EMPTY_TEXT_MESSAGE;
     }
 
-    .ul_section_li_input {
+    .input {
       height: min-content;
       border-radius: 0;
       border: none;
@@ -47,13 +47,6 @@
       padding: 0;
       @include font-moscow-sans-l-light;
       color: $TITLE_COLOR;
-    }
-
-    .ul_section_li_select_section {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
   }
 }
