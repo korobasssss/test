@@ -1,14 +1,13 @@
-@import 'src/styles/variables/index.scss';
-@import 'src/styles/mixins/animation.scss';
-@import 'src/styles/mixins/typography.scss';
-
+@import 'src/styles/variables/index';
+@import 'src/styles/mixins/animation';
+@import 'src/styles/mixins/typography';
 
 .checkbox_section {
   display: flex;
   flex-direction: column;
   gap: 16px;
 
-  .checkbox_section_one {
+  .list_item {
     cursor: pointer;
 
     width: 100%;
@@ -17,17 +16,17 @@
     align-items: center;
     column-gap: 16px;
 
-    .checkbox_section_data {
+    .data {
       @include font-moscow-sans-l;
       color: $TITLE_COLOR;
     }
 
-    .checkbox_section_input_section {
+    .input_section {
       display: flex;
       flex-direction: column;
       gap: 12px;
 
-      .checkbox_section_input {
+      .input {
         background-color: $INPUT_BG;
       }
 

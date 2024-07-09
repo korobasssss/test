@@ -5,9 +5,9 @@ import { routeComponentEdit, routeComponentsView, routeHome } from '../routes';
 
 import { ViewComponentContainer } from 'src/modules/components/containers/ViewComponentContainer';
 import { EditComponentContainer } from 'src/modules/components/containers/EditComponentContainer';
-import { WelcomePage } from 'src/pages/Welcome/WelcomePage';
-import { MainPage } from 'src/pages/main_page';
-import { CreateOmniGhostPage } from 'src/pages/create_omni_ghost';
+import { WelcomePage } from 'src/pages/WelcomePage';
+import { MainPage } from 'src/pages/MainPage';
+import { CreateOmniGhostPage } from 'src/pages/CreateOmniGhostPage';
 
 
 export const AppRoutes: FC = () => {

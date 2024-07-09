@@ -1,24 +1,23 @@
-import React, { FC, ReactElement, useCallback, useState } from 'react';
-import styles from './styles.module.scss';
+import React, { FC, useCallback, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
+import styles from 'src/components/MainComponent/styles.module.scss';
+import { WhiteSection } from 'src/base/components/WhiteSection';
+import { Button, ButtonIcon, Input, Select } from 'src/base/components';
+import { ScrollWrapper } from 'src/base/components/ScrollWrapper';
+import { PopupDown } from 'src/base/components/PopupDown';
+import { SettingsPopupComponent } from 'src/components/SettingsPopupComponent';
 import { ReactComponent as CloseLogo } from 'src/assets/icons/closeIcon.svg';
 import { ReactComponent as SearchLogo } from 'src/assets/icons/search.svg';
 import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
-import { ReactComponent as SettingsLogo } from 'src/assets/icons/settings.svg';
 import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, ButtonIcon, Input, MainLayout, Select } from 'src/base/components';
-import { SettingsModalWindow } from 'src/pages/main_page/settings/SettingsModalWindow';
-import { PopupDown } from 'src/base/components/PopupDown';
-import { WhiteSection } from 'src/base/components/WhiteSection';
-import { ScrollWrapper } from 'src/base/components/ScrollWrapper';
-import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
 
 interface IMainPage {
   isSettingsOpened: boolean;
   actionSettings: (flag: boolean) => void;
 }
 
-export const MainPageComponent: FC<IMainPage> = ({
+export const MainComponent: FC<IMainPage> = ({
                                                    isSettingsOpened,
                                                    actionSettings,
                                                  }) => {
@@ -143,34 +142,10 @@ export const MainPageComponent: FC<IMainPage> = ({
           <PopupDown topTitle="Выбор окружения" setIsOpen={actionSettings}
                      submitButtonLabel="Готово"
                      handleClosePopup={actionSettings}>
-            <SettingsModalWindow />
+            <SettingsPopupComponent />
           </PopupDown>
           :
           null}
     </section>
-  );
-};
-
-export const MainPage = (): ReactElement => {
-  const [isSettingsOpened, setIsSettingsOpened] = useState(false);
-
-  const handleClickSettings = useCallback(() => {
-    setIsSettingsOpened(!isSettingsOpened);
-  }, [isSettingsOpened]);
-
-  return (
-    <MainLayout
-      topTitle="Тест"
-      rightTopIcon={{
-        svg: <SettingsLogo />,
-        clicked: () => handleClickSettings(),
-      }}
-      withBottomNavigation={false}
-    >
-      <MainPageComponent
-        isSettingsOpened={isSettingsOpened}
-        actionSettings={setIsSettingsOpened}
-      />
-    </MainLayout>
   );
 };

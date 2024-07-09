@@ -1,10 +1,8 @@
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
-import styles from './styles.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
-import { Button, Input, MainLayout, Select } from 'src/base/components';
+import { CableStatusSelect, DeviceStatusSelect, ISelectActive } from 'src/modules/components/constants';
+import styles from 'src/components/CreateOmniGhostComponent/styles.module.scss';
 import { WhiteSection } from 'src/base/components/WhiteSection';
-import { DeviceStatusSelect, CableStatusSelect, ISelectActive } from 'src/modules/components/constants';
+import { Button, Input, Select } from 'src/base/components';
 
 export const CreateOmniGhostComponent: FC = () => {
   const [inputId, setInputId] = useState('');
@@ -94,7 +92,7 @@ export const CreateOmniGhostComponent: FC = () => {
           </section>
           <Button
             theme="primary"
-            size='l'
+            size="l"
           >
             <div>Создать</div>
           </Button>
@@ -102,24 +100,4 @@ export const CreateOmniGhostComponent: FC = () => {
       </WhiteSection>
     </section>
   );
-};
-
-export const CreateOmniGhostPage : FC = () => {
-
-  const navigation = useNavigate();
-
-  const handleClickCreate = useCallback(() => {
-    navigation('/main');
-  }, [navigation]);
-
-  return <MainLayout
-    topTitle="Новый OmniGhost"
-    leftTopIcon={{
-      svg: <BackLogo />,
-      clicked: () => handleClickCreate(),
-    }}
-    withBottomNavigation={false}
-  >
-    <CreateOmniGhostComponent />
-  </MainLayout>;
 };

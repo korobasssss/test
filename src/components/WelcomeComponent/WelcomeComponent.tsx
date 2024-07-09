@@ -1,11 +1,10 @@
 import React, { FC, useCallback } from 'react';
-import { Button, MainLayout } from 'src/base/components';
-import styles from './styles.module.scss';
-import { getGhostByIdAction } from 'src/modules/components/actions';
 import { useNavigate } from 'react-router-dom';
+import styles from 'src/components/WelcomeComponent/styles.module.scss';
+import { Button } from 'src/base/components';
+import { getGhostByIdAction } from 'src/modules/components/actions';
 
 export const WelcomeComponent: FC = () => {
-
   const navigation = useNavigate();
 
   const onClickHandler = useCallback(() => {
@@ -35,15 +34,3 @@ export const WelcomeComponent: FC = () => {
     </div>
   );
 };
-
-export const WelcomePage: FC = () => {
-
-  return (
-    <MainLayout
-      topTitle="Welcome Page"
-      withBottomNavigation={false}
-    >
-      <WelcomeComponent />
-    </MainLayout>
-  )
-}
