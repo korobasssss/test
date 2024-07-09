@@ -35,19 +35,9 @@
       }
     }
 
-    .hidden {
-      opacity: 0;
-
-      @include animation-opacity-exit;
-    }
-
-    .visible {
+    .checkbox {
       display: grid;
       align-self: start;
-
-      opacity: 1;
-
-      @include animation-opacity-enter;
     }
   }
 }

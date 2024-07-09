@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 
 export interface ICheckboxProps extends IWithClassName, IFieldBaseOptions {
   id?: string;
+  svg?: JSX.Element;
   initialValue?: boolean;
   label?: string;
   partialChecked?: boolean;
@@ -13,11 +14,13 @@ export interface ICheckboxProps extends IWithClassName, IFieldBaseOptions {
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
-  ({ className, id, initialValue, label, value, ...restProps }, ref) => {
+  ({ className, id, svg, initialValue, label, value, ...restProps }, ref) => {
     const checkboxId = id ? id : restProps.name;
 
     return (
-      <div className={cx(styles.VBCheckbox, className)}>
+      <div className={cx(styles.VBCheckbox, className, {
+        [styles.hidden]: svg && !value,
+      })}>
         <input
           {...restProps}
           className={styles.vbCheckboxInput}
@@ -28,9 +31,11 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
           checked={value}
         />
 
-        <label className={styles.vbCheckboxLabel} htmlFor={checkboxId}>
+        <label className={cx({
+          [styles.vbCheckboxLabel] : !svg
+        })} htmlFor={checkboxId}>
           <b />
-          {label}
+          {svg ? svg : label}
         </label>
       </div>
     );

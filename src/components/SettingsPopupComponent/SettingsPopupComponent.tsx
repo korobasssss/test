@@ -1,8 +1,7 @@
 import React, { ReactElement, useCallback, useState } from 'react';
 import styles from './styles.module.scss';
-import { Input } from 'src/base/components';
-import checkbox_icon from 'src/assets/icons/checkbox.svg';
-import cx from 'classnames';
+import { Checkbox, Input } from 'src/base/components';
+import { ReactComponent as CheckboxLogo } from 'src/assets/icons/checkbox.svg';
 
 export const SettingsPopupComponent = (): ReactElement => {
   const [settingsChoose, setSettingsChoose] = useState(0);
@@ -14,30 +13,35 @@ export const SettingsPopupComponent = (): ReactElement => {
   return (
     <section className={styles.checkbox_section}>
       <div className={styles.list_item}
-               onClick={() => handleClickSetSettings(0)}>
-        <img src={checkbox_icon} alt="checkbox icon"
-             className={cx({
-               [styles.hidden]: settingsChoose !== 0,
-               [styles.visible]: settingsChoose === 0,
-             })} />
+           onClick={() => handleClickSetSettings(0)}>
+        <Checkbox
+          value={settingsChoose === 0}
+          svg={<CheckboxLogo />}
+          name="test"
+          className={styles.checkbox} />
+        {/*<img src={checkbox_icon} alt="checkbox icon"*/}
+        {/*     className={cx({*/}
+        {/*       [styles.hidden]: settingsChoose !== 0,*/}
+        {/*       [styles.visible]: settingsChoose === 0,*/}
+        {/*     })} />*/}
         <div className={styles.data}>Тест</div>
       </div>
       <div className={styles.list_item}
-               onClick={() => handleClickSetSettings(1)}>
-        <img src={checkbox_icon} alt="checkbox icon"
-             className={cx({
-               [styles.hidden]: settingsChoose !== 1,
-               [styles.visible]: settingsChoose === 1,
-             })} />
+           onClick={() => handleClickSetSettings(1)}>
+        <Checkbox
+          value={settingsChoose === 1}
+          svg={<CheckboxLogo />}
+          name="dev"
+          className={styles.checkbox} />
         <div className={styles.data}>Dev</div>
       </div>
       <div className={styles.list_item}
-               onClick={() => handleClickSetSettings(2)}>
-        <img src={checkbox_icon} alt="checkbox icon"
-             className={cx({
-               [styles.hidden]: settingsChoose !== 2,
-               [styles.visible]: settingsChoose === 2,
-             })} />
+           onClick={() => handleClickSetSettings(2)}>
+        <Checkbox
+          value={settingsChoose === 2}
+          svg={<CheckboxLogo />}
+          name="ip"
+          className={styles.checkbox} />
         <div className={styles.input_section}>
           <div className={styles.data}>Ввести IP вручную</div>
           <Input placeholder="Номер IP"
