@@ -43,11 +43,11 @@ export const MainPageComponent: FC<IMainPage> = ({
         <section>
           <WhiteSection>
             <nav className={styles.nav_section}>
-              <section className={styles.input_section}>
+              <div className={styles.input_section}>
                 <SearchLogo />
                 <Input className={styles.input}
                        placeholder="Поиск по deviceID" />
-              </section>
+              </div>
               <ButtonIcon>
                 <CloseLogo />
               </ButtonIcon>
@@ -58,10 +58,10 @@ export const MainPageComponent: FC<IMainPage> = ({
           <Button
             className={styles.refresh_button}
             size="s">
-            <section className={styles.rotate}>
+            <div className={styles.rotate}>
               <RefreshLogo />
-            </section>
-            <section>Обновить список</section>
+            </div>
+            <div>Обновить список</div>
           </Button>
           <Select defaultData={selectArr}
                   onChange={handleClickSelect}
@@ -71,57 +71,57 @@ export const MainPageComponent: FC<IMainPage> = ({
           <ScrollWrapper
             className={styles.ul_section}>
             <li className={styles.list_item}>
-              <section className={styles.id_section}>
-                <section className={styles.num}>1</section>
-                <section className={styles.data}>32547</section>
-              </section>
+              <div className={styles.id_section}>
+                <div className={styles.num}>1</div>
+                <div className={styles.data}>32547</div>
+              </div>
               <Link to="/omni-card" className={styles.status_button}>
-                <section>Online</section>
-                <section className={styles.online} />
+                <div>Online</div>
+                <div className={styles.online} />
               </Link>
             </li>
             <li className={styles.ul_border} />
             <li className={styles.list_item}>
-              <section className={styles.id_section}>
-                <section className={styles.num}>2</section>
-                <section className={styles.data}>32547</section>
-              </section>
+              <div className={styles.id_section}>
+                <div className={styles.num}>2</div>
+                <div className={styles.data}>32547</div>
+              </div>
               <Link to="/omni-card" className={styles.status_button}>
-                <section>Online</section>
-                <section className={styles.online} />
+                <div>Online</div>
+                <div className={styles.online} />
               </Link>
             </li>
             <li className={styles.ul_border} />
             <li className={styles.list_item}>
-              <section className={styles.id_section}>
-                <section className={styles.num}>3</section>
-                <section className={styles.data}>32547</section>
-              </section>
+              <div className={styles.id_section}>
+                <div className={styles.num}>3</div>
+                <div className={styles.data}>32547</div>
+              </div>
               <Link to="/omni-card" className={styles.status_button}>
-                <section>Online</section>
-                <section className={styles.online} />
+                <div>Online</div>
+                <div className={styles.online} />
               </Link>
             </li>
             <li className={styles.ul_border} />
             <li className={styles.list_item}>
-              <section className={styles.id_section}>
-                <section className={styles.num}>4</section>
-                <section className={styles.data}>32547</section>
-              </section>
+              <div className={styles.id_section}>
+                <div className={styles.num}>4</div>
+                <div className={styles.data}>32547</div>
+              </div>
               <Link to="/omni-card" className={styles.status_button}>
-                <section>Online</section>
-                <section className={styles.online} />
+                <div>Online</div>
+                <div className={styles.online} />
               </Link>
             </li>
             <li className={styles.ul_border} />
             <li className={styles.list_item}>
-              <section className={styles.id_section}>
-                <section className={styles.num}>5</section>
-                <section className={styles.data}>32547</section>
-              </section>
+              <div className={styles.id_section}>
+                <div className={styles.num}>5</div>
+                <div className={styles.data}>32547</div>
+              </div>
               <Link to="/omni-card" className={styles.status_button}>
-                <section>Online</section>
-                <section className={styles.online} />
+                <div>Online</div>
+                <div className={styles.online} />
               </Link>
             </li>
           </ScrollWrapper>
@@ -134,7 +134,7 @@ export const MainPageComponent: FC<IMainPage> = ({
             size="l"
           >
             <AddLogo />
-            <section>Создать новый OmniGhost</section>
+            <div>Создать новый OmniGhost</div>
           </Button>
         </footer>
       </section>

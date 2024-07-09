@@ -44,7 +44,7 @@ export const CreateOmniGhostComponent: FC = () => {
       <WhiteSection>
         <main className={styles.main_section}>
           <section className={styles.ul_section}>
-            <section className={styles.list_item}>
+            <div className={styles.list_item}>
               <header className={styles.header}>
                 DeviceId
               </header>
@@ -52,18 +52,18 @@ export const CreateOmniGhostComponent: FC = () => {
                      onChange={handlerSetId}
                      placeholder="Введите Id ..."
                      className={styles.input} />
-            </section>
-            <section className={styles.list_item}>
+            </div>
+            <div className={styles.list_item}>
               <header className={styles.header}>
                 Статус устройства
               </header>
-              <section>
+              <div>
                 <Select label="Online" defaultData={selectArrStatus}
                         onChange={handleClickSelectStatus}
                         headerTheme="none" />
-              </section>
-            </section>
-            <section className={styles.list_item}>
+              </div>
+            </div>
+            <div className={styles.list_item}>
               <header className={styles.header}>
                 Скорость
               </header>
@@ -71,8 +71,8 @@ export const CreateOmniGhostComponent: FC = () => {
                      onChange={handlerSetSpeed}
                      placeholder="Введите скорость км/ч ..."
                      className={styles.input} />
-            </section>
-            <section className={styles.list_item}>
+            </div>
+            <div className={styles.list_item}>
               <header className={styles.header}>
                 Уровень заряда
               </header>
@@ -80,8 +80,8 @@ export const CreateOmniGhostComponent: FC = () => {
                      onChange={handlerSetCharging}
                      placeholder="Введите заряд % ..."
                      className={styles.input} />
-            </section>
-            <section className={styles.list_item}>
+            </div>
+            <div className={styles.list_item}>
               <header className={styles.header}>
                 Состояние троса
               </header>
@@ -90,13 +90,13 @@ export const CreateOmniGhostComponent: FC = () => {
                         onChange={handleClickSelectCondition}
                         headerTheme="none" />
               </section>
-            </section>
+            </div>
           </section>
           <Button
             theme="primary"
             size='l'
           >
-            <section>Создать</section>
+            <div>Создать</div>
           </Button>
         </main>
       </WhiteSection>

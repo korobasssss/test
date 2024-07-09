@@ -68,10 +68,10 @@ export const PopupDown: FC<IPopupProps> = ({
 
   return (
     <section className={styles.body}>
-      <section className={cx(styles.dark_bg, {
+      <div className={cx(styles.dark_bg, {
         [styles.open_overflow]: isVisible,
         [styles.close_overflow]: !isVisible,
-      }, className)}> </section>
+      }, className)}> </div>
       <section className={cx(styles.modal_section, {
         [styles.open_modal_section]: isVisible,
         [styles.close_modal_section]: !isVisible,
@@ -88,7 +88,7 @@ export const PopupDown: FC<IPopupProps> = ({
         </header>
         <main className={styles.main}>
           {children}
-          <section className={styles.footer}>
+          <div className={styles.footer}>
             <Button
               disabled={submitButtonDisabled}
               onClick={handleClickSubmit}
@@ -97,7 +97,7 @@ export const PopupDown: FC<IPopupProps> = ({
             >
               {submitButtonLabel}
             </Button>
-          </section>
+          </div>
         </main>
       </section>
     </section>
