@@ -1,10 +1,10 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { Button, MainLayout } from 'src/base/components';
 import styles from './styles.module.scss';
 import { getGhostByIdAction } from 'src/modules/components/actions';
 import { useNavigate } from 'react-router-dom';
 
-export const WelcomeComponent = (): ReactElement => {
+export const WelcomeComponent: FC = () => {
 
   const navigation = useNavigate();
 
@@ -36,7 +36,7 @@ export const WelcomeComponent = (): ReactElement => {
   );
 };
 
-export const WelcomePage = () : ReactElement => {
+export const WelcomePage: FC = () => {
 
   return (
     <MainLayout

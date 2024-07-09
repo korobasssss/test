@@ -1,11 +1,11 @@
-import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react';
+import React, { ChangeEvent, FC, ReactElement, useCallback, useState } from 'react';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
 import { Button, Input, ISelectDefaultData, MainLayout, Select } from 'src/base/components';
 import { WhiteSection } from 'src/base/components/WhiteSection';
 
-export const CreateOmniGhostComponent = (): ReactElement => {
+export const CreateOmniGhostComponent: FC = () => {
   const [inputId, setInputId] = useState('');
   const [inputSpeed, setInputSpeed] = useState('');
   const [inputCharging, setInputCharging] = useState('');
