@@ -5,3 +5,8 @@ export interface ISelectDefaultData {
   value: string;
   isActive?: boolean;
 }
+
+export interface ISelectActive {
+  data: ISelectDefaultData[],
+  active: boolean
+}

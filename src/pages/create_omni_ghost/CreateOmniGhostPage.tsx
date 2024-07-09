@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
 import { Button, Input, MainLayout, Select } from 'src/base/components';
 import { WhiteSection } from 'src/base/components/WhiteSection';
-import { DeviceStatusSelect, CableStatusSelect } from 'src/modules/components/constants';
+import { DeviceStatusSelect, CableStatusSelect, ISelectActive } from 'src/modules/components/constants';
 
 export const CreateOmniGhostComponent: FC = () => {
   const [inputId, setInputId] = useState('');
@@ -25,7 +25,7 @@ export const CreateOmniGhostComponent: FC = () => {
 
   const [selectArrStatus, setSelectArrStatus] = useState(DeviceStatusSelect);
 
-  const handleClickSelectStatus = useCallback((obj: any) => {
+  const handleClickSelectStatus = useCallback((obj: ISelectActive) => {
     if (obj.active) {
       setSelectArrStatus(obj.data);
     }
@@ -33,7 +33,7 @@ export const CreateOmniGhostComponent: FC = () => {
 
   const [selectArrCondition, setSelectArrCondition] = useState(CableStatusSelect);
 
-  const handleClickSelectCondition = useCallback((obj: any) => {
+  const handleClickSelectCondition = useCallback((obj: ISelectActive) => {
     if (obj.active) {
       setSelectArrCondition(obj.data);
     }
