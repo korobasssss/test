@@ -6,8 +6,8 @@
   width: 100%;
   // для того, чтобы скругленные края нижнего меню "налазили" на карту
   // и в уголках с боков карту было тоже видно
-  min-height: calc(100% + $bottomMenuFixedBottom);
-  height: calc(100% + $bottomMenuFixedBottom);
+  min-height: 100%;
+  height: 100%;
   background: $SCREEN_BG;
 
   @media screen and (max-width: $medium) {

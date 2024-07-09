@@ -98,6 +98,14 @@
   max-height: 60vh;
   overflow-y: auto;
 
+  @media screen and (max-height: $xx-medium){
+    max-height: 44vh;
+  }
+
+  @media screen and (max-height: $small){
+    max-height: 37vh;
+  }
+
   * {
     font-size: $FONT_M;
   }
