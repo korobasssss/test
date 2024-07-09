@@ -20,7 +20,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
       <div className={cx(styles.VBCheckbox, className)}>
         <input
           {...restProps}
-          className={cx(styles.vbCheckboxInput)}
+          className={styles.vbCheckboxInput}
           defaultChecked={initialValue}
           id={checkboxId}
           ref={ref}
@@ -28,7 +28,7 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
           checked={value}
         />
 
-        <label className={cx(styles.vbCheckboxLabel)} htmlFor={checkboxId}>
+        <label className={styles.vbCheckboxLabel} htmlFor={checkboxId}>
           <b />
           {label}
         </label>

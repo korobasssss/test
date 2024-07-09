@@ -67,7 +67,7 @@ export const PopupDown: FC<IPopupProps> = ({
   });
 
   return (
-    <section className={cx(styles.body)}>
+    <section className={styles.body}>
       <section className={cx(styles.dark_bg, {
         [styles.open_overflow]: isVisible,
         [styles.close_overflow]: !isVisible,
