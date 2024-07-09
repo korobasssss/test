@@ -13,11 +13,10 @@ import {
   TextArea,
   Button,
   Spinner,
-  ISelectDefaultData,
   Select,
 } from 'src/base/components';
 import { IComponentEdit, TComponentDataKeys } from '../../types';
-import { EComponentStatus } from '../../constants';
+import { EComponentStatus, ISelectDefaultData } from '../../constants';
 
 interface IProps {
   onSubmit: (values: any) => void;

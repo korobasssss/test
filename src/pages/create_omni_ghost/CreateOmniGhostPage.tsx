@@ -1,9 +1,10 @@
-import React, { ChangeEvent, FC, ReactElement, useCallback, useState } from 'react';
+import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
-import { Button, Input, ISelectDefaultData, MainLayout, Select } from 'src/base/components';
+import { Button, Input, MainLayout, Select } from 'src/base/components';
 import { WhiteSection } from 'src/base/components/WhiteSection';
+import { DeviceStatusSelect, CableStatusSelect } from 'src/modules/components/constants';
 
 export const CreateOmniGhostComponent: FC = () => {
   const [inputId, setInputId] = useState('');
@@ -22,52 +23,21 @@ export const CreateOmniGhostComponent: FC = () => {
     setInputCharging(event.target.value);
   }, []);
 
-
-  const SelectDataArrStatus: ISelectDefaultData[] = [
-    {
-      id: 0,
-      value: 'Online',
-      isActive: true,
-    },
-    {
-      id: 1,
-      value: 'Offline',
-      isActive: false,
-    },
-  ];
-
-  const [selectArrStatus, setSelectArrStatus] = useState(SelectDataArrStatus);
+  const [selectArrStatus, setSelectArrStatus] = useState(DeviceStatusSelect);
 
   const handleClickSelectStatus = useCallback((obj: any) => {
     if (obj.active) {
       setSelectArrStatus(obj.data);
     }
-
   }, []);
 
-
-  const SelectDataArrCondition: ISelectDefaultData[] = [
-    {
-      id: 0,
-      value: 'Отстегнут',
-      isActive: true,
-    },
-    {
-      id: 1,
-      value: 'Пристегнут',
-      isActive: false,
-    },
-  ];
-
-  const [selectArrCondition, setSelectArrCondition] = useState(SelectDataArrCondition);
+  const [selectArrCondition, setSelectArrCondition] = useState(CableStatusSelect);
 
   const handleClickSelectCondition = useCallback((obj: any) => {
     if (obj.active) {
       setSelectArrCondition(obj.data);
     }
-
   }, []);
-
 
   return (
     <section className={styles.root_section}>
@@ -136,7 +106,7 @@ export const CreateOmniGhostComponent: FC = () => {
   );
 };
 
-export const CreateOmniGhostPage = (): ReactElement => {
+export const CreateOmniGhostPage : FC = () => {
 
   const navigation = useNavigate();
 

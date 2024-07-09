@@ -6,42 +6,25 @@ import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
 import { ReactComponent as SettingsLogo } from 'src/assets/icons/settings.svg';
 import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, ButtonIcon, Input, ISelectDefaultData, MainLayout, Select } from 'src/base/components';
+import { Button, ButtonIcon, Input, MainLayout, Select } from 'src/base/components';
 import { SettingsModalWindow } from 'src/pages/main_page/settings/SettingsModalWindow';
 import { PopupDown } from 'src/base/components/PopupDown';
 import { WhiteSection } from 'src/base/components/WhiteSection';
 import { ScrollWrapper } from 'src/base/components/ScrollWrapper';
+import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
 
 interface IMainPage {
-  isSettingsOpened: boolean
-  actionSettings: (flag: boolean) => void
+  isSettingsOpened: boolean;
+  actionSettings: (flag: boolean) => void;
 }
 
 export const MainPageComponent: FC<IMainPage> = ({
-                                             isSettingsOpened,
-                                             actionSettings
-                                           }) => {
+                                                   isSettingsOpened,
+                                                   actionSettings,
+                                                 }) => {
   const navigation = useNavigate();
 
-  const SelectDataArr: ISelectDefaultData[] = [
-    {
-      id: 0,
-      value: 'Статус',
-      isActive: true,
-    },
-    {
-      id: 1,
-      value: 'Online',
-      isActive: false,
-    },
-    {
-      id: 2,
-      value: 'Offline',
-      isActive: false,
-    },
-  ];
-
-  const [selectArr, setSelectArr] = useState(SelectDataArr);
+  const [selectArr, setSelectArr] = useState(DeviceStatusSelectWithStatus);
 
   const handleClickSelect = useCallback((obj: any) => {
     if (obj.active) {
