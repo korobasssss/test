@@ -52,7 +52,6 @@
     display: flex;
     align-items: center;
     gap: 4px;
-
     @include font-small-light;
     color: $BUTTON_SECONDARY_TEXT;
 
@@ -79,9 +78,7 @@
     padding: 8px 12px;
     display: flex;
     gap: 8px;
-
     @include font-moscow-sans-l;
-
     border-radius: 10px;
     background-color: $MAIN;
 
@@ -95,6 +92,12 @@
 }
 
 .ul_section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 60vh;
+  overflow-y: auto;
+
   * {
     font-size: $FONT_M;
   }
@@ -104,14 +107,6 @@
     width: 100%;
     background-color: $BORDER_COLOR;
   }
-
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  max-height: 60vh;
-  overflow-y: auto;
 
   .ul_one_velobike {
     display: flex;
@@ -124,7 +119,6 @@
       .ul_one_velobike_id_section_num {
         width: 14px;
         text-align: start;
-
         @include font-small-light;
         color: $NUMBERING_TEXT;
       }
@@ -139,7 +133,6 @@
       display: flex;
       gap: 4px;
       align-items: center;
-
       @include font-small-light;
       color: $NUMBERING_TEXT;
     }
@@ -148,7 +141,6 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-
       background-color: $STATUS_ONLINE;
       border: 1px solid $BORDER;
     }
@@ -157,7 +149,6 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-
       background-color: $STATUS_OFFLINE;
       border: 1px solid $BORDER;
     }

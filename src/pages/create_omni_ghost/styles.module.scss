@@ -30,7 +30,6 @@
     align-items: center;
     grid-template-columns: 1.5fr 2fr;
     column-gap: 16px;
-
     background-color: $ICON_BG;
     padding: 12px;
     border-radius: $ROUNDING_M;
@@ -42,12 +41,10 @@
 
     .ul_section_li_input {
       height: min-content;
-
       border-radius: 0;
       border: none;
       background-color: transparent;
       padding: 0;
-
       @include font-moscow-sans-l-light;
       color: $TITLE_COLOR;
     }

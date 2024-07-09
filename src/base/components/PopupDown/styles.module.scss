@@ -1,19 +1,14 @@
 @import 'src/styles/mixins/animation.scss';
-
-
 @import 'src/styles/variables/index.scss';
 @import 'src/styles/mixins/typography.scss';
 
 .body {
-
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 10;
-
   top: 0;
   left: 0;
-
   display: grid;
   align-items: end;
   justify-items: center;
@@ -37,14 +32,12 @@
 
 .open_overflow {
   display: block;
-
   @include animation-opacity-enter;
   animation-duration: $TRANSITION_DURATION;
 }
 
 .close_overflow {
   display: block;
-
   @include animation-opacity-exit;
   animation-duration: $TRANSITION_DURATION;
   opacity: 0;
@@ -52,24 +45,20 @@
 
 .open_modal_section {
   display: block;
-
   @include animation-slide-up-enter;
 }
 
 .close_modal_section {
   display: block;
-
   @include animation-slide-down-enter;
 }
 
 .modal_section {
   z-index: 10;
   width: 100%;
-
   display: flex;
   flex-direction: column;
   gap: 20px;
-
   border-radius: $ROUNDING_L $ROUNDING_L 0 0;
   background-color: $MAIN;
 }
@@ -81,7 +70,6 @@
 
 .main {
   padding: 0 16px 16px 16px;
-
   display: flex;
   flex-direction: column;
   gap: 32px;
