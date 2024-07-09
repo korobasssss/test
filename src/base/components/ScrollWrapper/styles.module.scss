@@ -1,0 +1,9 @@
+@import "src/styles/variables/index";
+
+.scroll_wrapper {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 7px;
+  scrollbar-width: thin;
+  scrollbar-color: $BORDER transparent;
+}

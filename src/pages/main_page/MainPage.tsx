@@ -10,7 +10,7 @@ import { Button, ButtonIcon, Input, ISelectDefaultData, MainLayout, Select } fro
 import { SettingsModalWindow } from 'src/pages/main_page/settings/SettingsModalWindow';
 import { PopupDown } from 'src/base/components/PopupDown';
 import { WhiteSection } from 'src/base/components/WhiteSection';
-import cx from 'classnames';
+import { ScrollWrapper } from 'src/base/components/ScrollWrapper';
 
 interface IMainPage {
   isSettingsOpened: boolean
@@ -85,7 +85,8 @@ export const MainPageComponent: FC<IMainPage> = ({
                   headerTheme="base" />
         </section>
         <WhiteSection>
-          <ul className={cx(styles.ul_section, 'scroll_wrapper')}>
+          <ScrollWrapper
+            className={styles.ul_section}>
             <li className={styles.ul_one_velobike}>
               <section className={styles.ul_one_velobike_id_section}>
                 <section className={styles.ul_one_velobike_id_section_num}>1</section>
@@ -140,7 +141,7 @@ export const MainPageComponent: FC<IMainPage> = ({
                 <section className={styles.velobike_online} />
               </Link>
             </li>
-          </ul>
+          </ScrollWrapper>
         </WhiteSection>
         <footer className={styles.footer_button_section}>
           <Button
