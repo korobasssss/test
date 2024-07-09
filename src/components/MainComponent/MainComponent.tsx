@@ -11,6 +11,7 @@ import { ReactComponent as CloseLogo } from 'src/assets/icons/closeIcon.svg';
 import { ReactComponent as SearchLogo } from 'src/assets/icons/search.svg';
 import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
 import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
+import { EPaths } from 'src/modules/components/constants/EPaths';
 
 interface IMainPage {
   isSettingsOpened: boolean;
@@ -33,7 +34,7 @@ export const MainComponent: FC<IMainPage> = ({
   }, []);
 
   const handleClickNew = useCallback(() => {
-    navigation('/create');
+    navigation(EPaths.CREATE);
   }, [navigation]);
 
   return (
@@ -74,7 +75,7 @@ export const MainComponent: FC<IMainPage> = ({
                 <div className={styles.num}>1</div>
                 <div className={styles.data}>32547</div>
               </div>
-              <Link to="/omni-card" className={styles.status_button}>
+              <Link to={EPaths.PROFILE} className={styles.status_button}>
                 <div>Online</div>
                 <div className={styles.online} />
               </Link>
@@ -85,7 +86,7 @@ export const MainComponent: FC<IMainPage> = ({
                 <div className={styles.num}>2</div>
                 <div className={styles.data}>32547</div>
               </div>
-              <Link to="/omni-card" className={styles.status_button}>
+              <Link to={EPaths.PROFILE} className={styles.status_button}>
                 <div>Online</div>
                 <div className={styles.online} />
               </Link>
@@ -96,7 +97,7 @@ export const MainComponent: FC<IMainPage> = ({
                 <div className={styles.num}>3</div>
                 <div className={styles.data}>32547</div>
               </div>
-              <Link to="/omni-card" className={styles.status_button}>
+              <Link to={EPaths.PROFILE} className={styles.status_button}>
                 <div>Online</div>
                 <div className={styles.online} />
               </Link>
@@ -107,7 +108,7 @@ export const MainComponent: FC<IMainPage> = ({
                 <div className={styles.num}>4</div>
                 <div className={styles.data}>32547</div>
               </div>
-              <Link to="/omni-card" className={styles.status_button}>
+              <Link to={EPaths.PROFILE} className={styles.status_button}>
                 <div>Online</div>
                 <div className={styles.online} />
               </Link>
@@ -118,7 +119,7 @@ export const MainComponent: FC<IMainPage> = ({
                 <div className={styles.num}>5</div>
                 <div className={styles.data}>32547</div>
               </div>
-              <Link to="/omni-card" className={styles.status_button}>
+              <Link to={EPaths.PROFILE} className={styles.status_button}>
                 <div>Online</div>
                 <div className={styles.online} />
               </Link>

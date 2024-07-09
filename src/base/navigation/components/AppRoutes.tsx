@@ -8,6 +8,7 @@ import { EditComponentContainer } from 'src/modules/components/containers/EditCo
 import { WelcomePage } from 'src/pages/WelcomePage';
 import { MainPage } from 'src/pages/MainPage';
 import { CreateOmniGhostPage } from 'src/pages/CreateOmniGhostPage';
+import { EPaths } from 'src/modules/components/constants/EPaths';
 
 
 export const AppRoutes: FC = () => {
@@ -22,8 +23,8 @@ export const AppRoutes: FC = () => {
         element={<EditComponentContainer />}
       />
       <Route path={routeHome.fullPath} element={<WelcomePage />} />
-      <Route path='/main' element={<MainPage />} />
-      <Route path='/create' element={<CreateOmniGhostPage />} />
+      <Route path={EPaths.MAIN} element={<MainPage />} />
+      <Route path={EPaths.CREATE} element={<CreateOmniGhostPage />} />
     </Routes>
   );
 };
