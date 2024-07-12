@@ -4,22 +4,24 @@ import styles from 'src/components/CreateOmniGhostComponent/styles.module.scss';
 import { WhiteSection } from 'src/base/components/WhiteSection';
 import { Button, Input, Select } from 'src/base/components';
 import { ISelectActive } from 'src/modules/components';
+import { dataStore } from 'src/modules/components/store';
+import { observer } from 'mobx-react';
 
-export const CreateOmniGhostComponent: FC = () => {
+export const CreateOmniGhostComponent: FC = observer(() => {
   const [inputId, setInputId] = useState('');
-  const [inputSpeed, setInputSpeed] = useState('');
-  const [inputCharging, setInputCharging] = useState('');
+  const [inputSpeed, setInputSpeed] = useState<number>();
+  const [inputCharging, setInputCharging] = useState<number>();
 
   const handlerSetId = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setInputId(event.target.value);
   }, []);
 
   const handlerSetSpeed = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setInputSpeed(event.target.value);
+    setInputSpeed(Number.parseInt(event.target.value, 10));
   }, []);
 
   const handlerSetCharging = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setInputCharging(event.target.value);
+    setInputCharging(Number.parseInt(event.target.value, 10));
   }, []);
 
   const [selectArrStatus, setSelectArrStatus] = useState(DeviceStatusSelect);
@@ -37,6 +39,17 @@ export const CreateOmniGhostComponent: FC = () => {
       setSelectArrCondition(obj.data);
     }
   }, []);
+
+  const createOmniGhostUi = useCallback(() => {
+    if (inputId !== '' && inputSpeed && inputCharging)
+    dataStore.createOmniGhostUi(
+      inputId,
+      selectArrStatus.find(item => item.isActive)?.value,
+      inputSpeed,
+      inputCharging,
+      selectArrCondition.find(item => item.isActive)?.value,
+    );
+  }, [inputCharging, inputId, inputSpeed, selectArrCondition, selectArrStatus]);
 
   return (
     <section className={styles.root_section}>
@@ -57,7 +70,7 @@ export const CreateOmniGhostComponent: FC = () => {
                 Статус устройства
               </header>
               <div>
-                <Select label="Online" defaultData={selectArrStatus}
+                <Select defaultData={selectArrStatus}
                         onChange={handleClickSelectStatus}
                         theme="none" />
               </div>
@@ -66,7 +79,9 @@ export const CreateOmniGhostComponent: FC = () => {
               <header className={styles.header}>
                 Скорость
               </header>
-              <Input value={inputSpeed}
+              <Input type='number'
+                     min={0}
+                     value={inputSpeed}
                      onChange={handlerSetSpeed}
                      placeholder="Введите скорость км/ч ..."
                      className={styles.input} />
@@ -75,7 +90,9 @@ export const CreateOmniGhostComponent: FC = () => {
               <header className={styles.header}>
                 Уровень заряда
               </header>
-              <Input value={inputCharging}
+              <Input type='number'
+                     min={0}
+                     value={inputCharging}
                      onChange={handlerSetCharging}
                      placeholder="Введите заряд % ..."
                      className={styles.input} />
@@ -85,7 +102,7 @@ export const CreateOmniGhostComponent: FC = () => {
                 Состояние троса
               </header>
               <section>
-                <Select label="Отстегнут" defaultData={selectArrCondition}
+                <Select defaultData={selectArrCondition}
                         onChange={handleClickSelectCondition}
                         theme="none" />
               </section>
@@ -94,6 +111,8 @@ export const CreateOmniGhostComponent: FC = () => {
           <Button
             theme="primary"
             size="l"
+            onClick={createOmniGhostUi}
+            disabled={inputId === '' || !inputSpeed  || !inputCharging}
           >
             <div>Создать</div>
           </Button>
@@ -101,4 +120,4 @@ export const CreateOmniGhostComponent: FC = () => {
       </WhiteSection>
     </section>
   );
-};
+});

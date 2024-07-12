@@ -15,7 +15,7 @@ import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
 import { observer } from 'mobx-react';
 import { dataStore } from 'src/modules/components/store/dataStore';
 import cx from 'classnames';
-import { EDataStatus } from 'src/modules/components/constants/EDataStatus';
+import { EDeviceStatus } from 'src/modules/components/constants/EDataStatus';
 import { ISelectActive } from 'src/modules/components';
 import { routeCreate } from 'src/base/navigation/routes/create';
 import { routeComponentsView } from 'src/base/navigation';
@@ -53,13 +53,13 @@ export const MainComponent: FC<IMainPage> = observer(({
       obj.data.map(selectItem => {
         if (selectItem.isActive) {
           switch (selectItem.value) {
-            case EDataStatus.ONLINE: {
-              setFilteredData([...data].filter(item => item.status === EDataStatus.ONLINE));
+            case EDeviceStatus.ONLINE: {
+              setFilteredData([...data].filter(item => item.status === EDeviceStatus.ONLINE));
               break;
             }
 
-            case EDataStatus.OFFLINE: {
-              setFilteredData([...data].filter(item => item.status === EDataStatus.OFFLINE));
+            case EDeviceStatus.OFFLINE: {
+              setFilteredData([...data].filter(item => item.status === EDeviceStatus.OFFLINE));
               break;
             }
 
@@ -122,8 +122,8 @@ export const MainComponent: FC<IMainPage> = observer(({
                     <Link to={routeComponentsView.url({ id: item.id })} className={styles.status_button}>
                       <div>{item.status}</div>
                       <div className={cx({
-                        [styles.online]: item.status === EDataStatus.ONLINE,
-                        [styles.offline]: item.status === EDataStatus.OFFLINE,
+                        [styles.online]: item.status === EDeviceStatus.ONLINE,
+                        [styles.offline]: item.status === EDeviceStatus.OFFLINE,
                       })} />
                     </Link>
                   </div>

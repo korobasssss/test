@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from 'mobx';
-import { EDataStatus } from 'src/modules/components/constants/EDataStatus';
+import { EDeviceStatus } from 'src/modules/components/constants/EDataStatus';
 import { IDataView } from 'src/modules/components/types/IData';
 
 class DataStore {
@@ -17,25 +17,34 @@ class DataStore {
     this.data = [
       {
         id: 32547,
-        status: EDataStatus.ONLINE,
+        status: EDeviceStatus.ONLINE,
       },
       {
         id: 32599,
-        status: EDataStatus.OFFLINE,
+        status: EDeviceStatus.OFFLINE,
       },
       {
         id: 32635,
-        status: EDataStatus.OFFLINE,
+        status: EDeviceStatus.OFFLINE,
       },
       {
         id: 48741,
-        status: EDataStatus.ONLINE,
+        status: EDeviceStatus.ONLINE,
       },
       {
         id: 55478,
-        status: EDataStatus.ONLINE,
+        status: EDeviceStatus.ONLINE,
       },
     ]
+  }
+
+  public createOmniGhostUi = (
+    deviceId: string,
+    status: string | undefined,
+    speed: number,
+    devicePercent: number,
+    cableStatus: string | undefined): void => {
+    console.log(deviceId, status, speed, devicePercent, cableStatus);
   }
 }
 

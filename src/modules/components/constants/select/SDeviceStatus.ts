@@ -5,11 +5,13 @@ export const DeviceStatusSelect: ISelectDefaultData[] = [
     id: 0,
     value: 'Online',
     isActive: true,
+    label: 'Online'
   },
   {
     id: 1,
     value: 'Offline',
     isActive: false,
+    label: 'Offline'
   },
 ];
 
