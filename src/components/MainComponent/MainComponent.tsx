@@ -19,6 +19,7 @@ import { EDataStatus } from 'src/modules/components/constants/EDataStatus';
 import { ISelectActive } from 'src/modules/components';
 import { routeCreate } from 'src/base/navigation/routes/create';
 import { routeComponentsView } from 'src/base/navigation';
+import { isArray } from 'src/base';
 
 interface IMainPage {
   isSettingsOpened: boolean;
@@ -34,6 +35,10 @@ export const MainComponent: FC<IMainPage> = observer(({
   const { data } = dataStore;
 
   const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    dataStore.getData()
+  }, []);
 
   useEffect(() => {
     setFilteredData(data);
@@ -106,8 +111,9 @@ export const MainComponent: FC<IMainPage> = observer(({
           <ScrollWrapper
             className={styles.ul_section}>
             {
-              filteredData?.map((item, index) => (
-                <li key={index} className={styles.ul_section}>
+              isArray(filteredData) ?
+              filteredData.map((item, index) => (
+                <li key={item.id} className={styles.ul_section}>
                   <div className={styles.list_item}>
                     <div className={styles.id_section}>
                       <div className={styles.num}>{index + 1}</div>
@@ -126,6 +132,8 @@ export const MainComponent: FC<IMainPage> = observer(({
                     : null}
                 </li>
               ))
+                :
+                <h2 className={styles.message}>Нет данных</h2>
             }
           </ScrollWrapper>
         </WhiteSection>

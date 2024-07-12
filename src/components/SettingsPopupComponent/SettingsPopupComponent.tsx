@@ -19,11 +19,6 @@ export const SettingsPopupComponent = (): ReactElement => {
           svg={<CheckboxLogo />}
           name="test"
           className={styles.checkbox} />
-        {/*<img src={checkbox_icon} alt="checkbox icon"*/}
-        {/*     className={cx({*/}
-        {/*       [styles.hidden]: settingsChoose !== 0,*/}
-        {/*       [styles.visible]: settingsChoose === 0,*/}
-        {/*     })} />*/}
         <div className={styles.data}>Тест</div>
       </div>
       <div className={styles.list_item}
