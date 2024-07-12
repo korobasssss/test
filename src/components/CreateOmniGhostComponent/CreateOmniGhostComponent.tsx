@@ -1,8 +1,7 @@
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 import { CableStatusSelect, DeviceStatusSelect } from 'src/modules/components/constants';
 import styles from 'src/components/CreateOmniGhostComponent/styles.module.scss';
-import { WhiteSection } from 'src/base/components/WhiteSection';
-import { Button, Input, Select } from 'src/base/components';
+import { Button, Input, Select, WhiteSection } from 'src/base/components';
 import { ISelectActive } from 'src/modules/components';
 import { dataStore } from 'src/modules/components/store';
 import { observer } from 'mobx-react';

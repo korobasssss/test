@@ -12,6 +12,7 @@ export const WelcomeComponent: FC = () => {
     console.log('Welcome');
     navigation(routeMain.fullPath)
   }, [navigation]);
+
   return (
     <div className={styles.body}>
       <p className={styles.description}>

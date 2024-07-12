@@ -1,17 +1,18 @@
 import { ISelectDefaultData } from 'src/modules/components';
+import { ECableStatus, ECableStatusTranslate } from 'src/modules/components/constants';
 
 
 export const CableStatusSelect: ISelectDefaultData[] = [
   {
     id: 0,
-    value: 'Unbuckled',
+    value: ECableStatus.UNBUCKLED,
     isActive: true,
-    label: 'Отстегнут'
+    label: ECableStatusTranslate.UNBUCKLED
   },
   {
     id: 1,
-    value: 'Buckled',
+    value: ECableStatus.BUCKLED,
     isActive: false,
-    label: 'Пристегнут'
+    label: ECableStatusTranslate.BUCKLED
   },
 ];

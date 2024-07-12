@@ -1,22 +1,17 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
 import styles from 'src/components/MainComponent/styles.module.scss';
-import { WhiteSection } from 'src/base/components/WhiteSection';
-import { Button, ButtonIcon, Input, Select } from 'src/base/components';
-import { ScrollWrapper } from 'src/base/components/ScrollWrapper';
-import { PopupDown } from 'src/base/components/PopupDown';
+import { Button, ButtonIcon, Input, Select, WhiteSection, ScrollWrapper, PopupDown } from 'src/base/components';
 import { SettingsPopupComponent } from 'src/components/SettingsPopupComponent';
 import { ReactComponent as CloseLogo } from 'src/assets/icons/closeIcon.svg';
 import { ReactComponent as SearchLogo } from 'src/assets/icons/search.svg';
 import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
 import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
-
 import { observer } from 'mobx-react';
 import { dataStore } from 'src/modules/components/store/dataStore';
 import cx from 'classnames';
-import { EDeviceStatus } from 'src/modules/components/constants/EDataStatus';
-import { ISelectActive } from 'src/modules/components';
+import { ISelectActive, EDeviceStatus } from 'src/modules/components';
 import { routeCreate } from 'src/base/navigation/routes/create';
 import { routeComponentsView } from 'src/base/navigation';
 import { isArray } from 'src/base';
@@ -32,16 +27,27 @@ export const MainComponent: FC<IMainPage> = observer(({
                                                       }) => {
   const navigation = useNavigate();
 
+  const handleClickNew = useCallback(() => {
+    navigation(routeCreate.fullPath);
+  }, [navigation]);
+
   const { data } = dataStore;
 
-  const [filteredData, setFilteredData] = useState(data);
-
   useEffect(() => {
-    dataStore.getData()
+    dataStore.getData();
   }, []);
 
+  const [filteredDataById, setFilteredDataById] = useState(data);
+
   useEffect(() => {
-    setFilteredData(data);
+    setFilteredDataById(data);
+  }, [data]);
+
+  const [inputSearch, setInputSearch] = useState('');
+
+  const handleSearchDevice = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setInputSearch(event.target.value);
+    setFilteredDataById([...data].filter(itemFilter => itemFilter.id.toString().includes(event.target.value)));
   }, [data]);
 
   const [selectArr, setSelectArr] = useState(DeviceStatusSelectWithStatus);
@@ -49,33 +55,19 @@ export const MainComponent: FC<IMainPage> = observer(({
   const handleClickSelect = useCallback((obj: ISelectActive) => {
     if (obj.active) {
       setSelectArr(obj.data);
-
-      obj.data.map(selectItem => {
-        if (selectItem.isActive) {
-          switch (selectItem.value) {
-            case EDeviceStatus.ONLINE: {
-              setFilteredData([...data].filter(item => item.status === EDeviceStatus.ONLINE));
-              break;
-            }
-
-            case EDeviceStatus.OFFLINE: {
-              setFilteredData([...data].filter(item => item.status === EDeviceStatus.OFFLINE));
-              break;
-            }
-
-            default: {
-              setFilteredData([...data]);
-            }
-          }
-        }
-      });
     }
 
-  }, [data]);
+  }, []);
 
-  const handleClickNew = useCallback(() => {
-    navigation(routeCreate.fullPath);
-  }, [navigation]);
+  const [filteredDataByStatus, setFilteredDataByStatus] = useState(filteredDataById);
+
+  useEffect(() => {
+    if (!selectArr[0].isActive) {
+      setFilteredDataByStatus([...filteredDataById].filter(itemFilter => itemFilter.status === selectArr.find(select => select.isActive)?.value));
+    } else {
+      setFilteredDataByStatus([...filteredDataById])
+    }
+  }, [filteredDataById, selectArr]);
 
   return (
     <section className={styles.body}>
@@ -85,7 +77,9 @@ export const MainComponent: FC<IMainPage> = observer(({
             <nav className={styles.nav_section}>
               <div className={styles.input_section}>
                 <SearchLogo />
-                <Input className={styles.input}
+                <Input value={inputSearch}
+                       onChange={handleSearchDevice}
+                       className={styles.input}
                        placeholder="Поиск по deviceID" />
               </div>
               <ButtonIcon>
@@ -111,27 +105,28 @@ export const MainComponent: FC<IMainPage> = observer(({
           <ScrollWrapper
             className={styles.ul_section}>
             {
-              isArray(filteredData) ?
-              filteredData.map((item, index) => (
-                <li key={item.id} className={styles.ul_section}>
-                  <div className={styles.list_item}>
-                    <div className={styles.id_section}>
-                      <div className={styles.num}>{index + 1}</div>
-                      <div className={styles.data}>{item.id}</div>
+              isArray(filteredDataByStatus) ?
+                filteredDataByStatus.map((itemMap, index) => (
+                  <li key={itemMap.id} className={styles.ul_section}>
+                    <div className={styles.list_item}>
+                      <div className={styles.id_section}>
+                        <div className={styles.num}>{index + 1}</div>
+                        <div className={styles.data}>{itemMap.id}</div>
+                      </div>
+                      <Link to={routeComponentsView.url({ id: itemMap.id })} className={styles.status_button}>
+                        <div>{itemMap.status}</div>
+                        <div className={cx({
+                          [styles.online]: itemMap.status === EDeviceStatus.ONLINE,
+                          [styles.offline]: itemMap.status === EDeviceStatus.OFFLINE,
+                        })} />
+                      </Link>
                     </div>
-                    <Link to={routeComponentsView.url({ id: item.id })} className={styles.status_button}>
-                      <div>{item.status}</div>
-                      <div className={cx({
-                        [styles.online]: item.status === EDeviceStatus.ONLINE,
-                        [styles.offline]: item.status === EDeviceStatus.OFFLINE,
-                      })} />
-                    </Link>
-                  </div>
-                  {index !== filteredData?.length - 1 ?
-                    <span className={styles.ul_border} />
-                    : null}
-                </li>
-              ))
+                    {
+                      index !== filteredDataByStatus.length - 1 ?
+                        <span className={styles.ul_border} />
+                        : null}
+                  </li>
+                ))
                 :
                 <h2 className={styles.message}>Нет данных</h2>
             }

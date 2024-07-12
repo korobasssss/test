@@ -9,3 +9,6 @@ export * from './Spinner';
 export * from './MultiSelect';
 export * from './Popup';
 export * from './Select';
+export * from './PopupDown';
+export * from './WhiteSection';
+export * from './ScrollWrapper';

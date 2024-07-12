@@ -4,6 +4,11 @@ export enum EDeviceStatus {
 }
 
 export enum ECableStatus {
-  BUCKLED = 'BUCKLED',
-  UNBUCKLED = 'UNBUCKLED',
+  BUCKLED = 'Buckled',
+  UNBUCKLED = 'Unbuckled',
+}
+
+export enum ECableStatusTranslate {
+  BUCKLED = 'Пристегнут',
+  UNBUCKLED = 'Отстегнут',
 }
