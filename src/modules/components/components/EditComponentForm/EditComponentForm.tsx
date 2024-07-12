@@ -15,8 +15,8 @@ import {
   Spinner,
   Select,
 } from 'src/base/components';
-import { IComponentEdit, TComponentDataKeys } from '../../types';
-import { EComponentStatus, ISelectDefaultData } from '../../constants';
+import { IComponentEdit, ISelectDefaultData, TComponentDataKeys } from '../../types';
+import { EComponentStatus } from '../../constants';
 
 interface IProps {
   onSubmit: (values: any) => void;

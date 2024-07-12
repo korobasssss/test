@@ -8,7 +8,7 @@ import { EditComponentContainer } from 'src/modules/components/containers/EditCo
 import { WelcomePage } from 'src/pages/WelcomePage';
 import { MainPage } from 'src/pages/MainPage';
 import { CreateOmniGhostPage } from 'src/pages/CreateOmniGhostPage';
-import { EPaths } from 'src/modules/components/constants/EPaths';
+import { EPaths } from 'src/modules/components/constants';
 
 
 export const AppRoutes: FC = () => {

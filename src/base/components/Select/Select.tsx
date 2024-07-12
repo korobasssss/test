@@ -5,7 +5,7 @@ import styles from './style.module.scss';
 import { ArrowIcon } from './icons';
 import { DropDownMenuDependent } from './DropDownMenuDependent';
 import ScrollWrapper from './ScrollWrapper/ScrollWrapper';
-import { ISelectDefaultData } from 'src/modules/components/constants';
+import { ISelectDefaultData } from 'src/modules/components';
 
 interface IProps {
   defaultPlaceholder?: string;

@@ -4,6 +4,7 @@ import { MainLayout} from 'src/base/components';
 import { MainComponent } from 'src/components/MainComponent';
 
 export const MainPage: FC = () => {
+
   const [isSettingsOpened, setIsSettingsOpened] = useState(false);
 
   const handleClickSettings = useCallback(() => {
@@ -25,4 +26,4 @@ export const MainPage: FC = () => {
       />
     </MainLayout>
   );
-};
+}

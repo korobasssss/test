@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from 'src/components/WelcomeComponent/styles.module.scss';
 import { Button } from 'src/base/components';
 import { getGhostByIdAction } from 'src/modules/components/actions';
-import { EPaths } from 'src/modules/components/constants/EPaths';
+import { EPaths } from 'src/modules/components/constants';
 
 export const WelcomeComponent: FC = () => {
   const navigation = useNavigate();

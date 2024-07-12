@@ -1,4 +1,4 @@
-import { ISelectDefaultData } from 'src/modules/components/constants';
+import { ISelectDefaultData } from 'src/modules/components';
 
 
 export const CableStatusSelect: ISelectDefaultData[] = [

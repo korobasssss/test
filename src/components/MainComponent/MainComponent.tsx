@@ -1,6 +1,6 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
+import { DeviceStatusSelectWithStatus , EPaths } from 'src/modules/components/constants';
 import styles from 'src/components/MainComponent/styles.module.scss';
 import { WhiteSection } from 'src/base/components/WhiteSection';
 import { Button, ButtonIcon, Input, Select } from 'src/base/components';
@@ -11,27 +11,60 @@ import { ReactComponent as CloseLogo } from 'src/assets/icons/closeIcon.svg';
 import { ReactComponent as SearchLogo } from 'src/assets/icons/search.svg';
 import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
 import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
-import { EPaths } from 'src/modules/components/constants/EPaths';
+
+import { observer } from 'mobx-react';
+import { dataStore } from 'src/modules/components/store/dataStore';
+import cx from 'classnames';
+import { EDataStatus } from 'src/modules/components/constants/EDataStatus';
+import { ISelectActive } from 'src/modules/components';
 
 interface IMainPage {
   isSettingsOpened: boolean;
   actionSettings: (flag: boolean) => void;
 }
 
-export const MainComponent: FC<IMainPage> = ({
-                                                   isSettingsOpened,
-                                                   actionSettings,
-                                                 }) => {
+export const MainComponent: FC<IMainPage> = observer(({
+                                                        isSettingsOpened,
+                                                        actionSettings,
+                                                      }) => {
   const navigation = useNavigate();
+
+  const { data } = dataStore;
+
+  const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const [selectArr, setSelectArr] = useState(DeviceStatusSelectWithStatus);
 
-  const handleClickSelect = useCallback((obj: any) => {
+  const handleClickSelect = useCallback((obj: ISelectActive) => {
     if (obj.active) {
       setSelectArr(obj.data);
+
+      obj.data.map(selectItem => {
+        if (selectItem.isActive) {
+          switch (selectItem.value) {
+            case EDataStatus.ONLINE: {
+              setFilteredData([...data].filter(item => item.status === EDataStatus.ONLINE));
+              break;
+            }
+
+            case EDataStatus.OFFLINE: {
+              setFilteredData([...data].filter(item => item.status === EDataStatus.OFFLINE));
+              break;
+            }
+
+            default: {
+              setFilteredData([...data]);
+            }
+          }
+        }
+      });
     }
 
-  }, []);
+  }, [data]);
 
   const handleClickNew = useCallback(() => {
     navigation(EPaths.CREATE);
@@ -70,60 +103,28 @@ export const MainComponent: FC<IMainPage> = ({
         <WhiteSection>
           <ScrollWrapper
             className={styles.ul_section}>
-            <li className={styles.list_item}>
-              <div className={styles.id_section}>
-                <div className={styles.num}>1</div>
-                <div className={styles.data}>32547</div>
-              </div>
-              <Link to={EPaths.PROFILE} className={styles.status_button}>
-                <div>Online</div>
-                <div className={styles.online} />
-              </Link>
-            </li>
-            <li className={styles.ul_border} />
-            <li className={styles.list_item}>
-              <div className={styles.id_section}>
-                <div className={styles.num}>2</div>
-                <div className={styles.data}>32547</div>
-              </div>
-              <Link to={EPaths.PROFILE} className={styles.status_button}>
-                <div>Online</div>
-                <div className={styles.online} />
-              </Link>
-            </li>
-            <li className={styles.ul_border} />
-            <li className={styles.list_item}>
-              <div className={styles.id_section}>
-                <div className={styles.num}>3</div>
-                <div className={styles.data}>32547</div>
-              </div>
-              <Link to={EPaths.PROFILE} className={styles.status_button}>
-                <div>Online</div>
-                <div className={styles.online} />
-              </Link>
-            </li>
-            <li className={styles.ul_border} />
-            <li className={styles.list_item}>
-              <div className={styles.id_section}>
-                <div className={styles.num}>4</div>
-                <div className={styles.data}>32547</div>
-              </div>
-              <Link to={EPaths.PROFILE} className={styles.status_button}>
-                <div>Online</div>
-                <div className={styles.online} />
-              </Link>
-            </li>
-            <li className={styles.ul_border} />
-            <li className={styles.list_item}>
-              <div className={styles.id_section}>
-                <div className={styles.num}>5</div>
-                <div className={styles.data}>32547</div>
-              </div>
-              <Link to={EPaths.PROFILE} className={styles.status_button}>
-                <div>Online</div>
-                <div className={styles.online} />
-              </Link>
-            </li>
+            {
+              filteredData?.map((item, index) => (
+                <li key={index} className={styles.ul_section}>
+                  <div className={styles.list_item}>
+                    <div className={styles.id_section}>
+                      <div className={styles.num}>{index + 1}</div>
+                      <div className={styles.data}>{item.id}</div>
+                    </div>
+                    <Link to={EPaths.PROFILE} className={styles.status_button}>
+                      <div>{item.status}</div>
+                      <div className={cx({
+                        [styles.online]: item.status === EDataStatus.ONLINE,
+                        [styles.offline]: item.status === EDataStatus.OFFLINE,
+                      })} />
+                    </Link>
+                  </div>
+                  {index !== filteredData?.length - 1 ?
+                    <span className={styles.ul_border} />
+                    : null}
+                </li>
+              ))
+            }
           </ScrollWrapper>
         </WhiteSection>
         <footer className={styles.footer}>
@@ -149,4 +150,4 @@ export const MainComponent: FC<IMainPage> = ({
           null}
     </section>
   );
-};
+});
