@@ -118,7 +118,7 @@ export const EditComponentForm: FC<IProps> = observer(
                 <Select
                   defaultData={statusSelectDefaultData}
                   onChange={onSelect}
-                  headerTheme='base'/>
+                  theme='base'/>
               </div>
             )}
             <div className="center">

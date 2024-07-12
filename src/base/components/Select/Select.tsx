@@ -14,7 +14,7 @@ interface IProps {
   onChange: (res?: any) => void;
   maxSelectHeight?: number; // максимальная высота селекта при скроле
   label?: string;
-  headerTheme: 'none' | 'base';
+  theme: 'none' | 'base';
   isDisabled?: boolean;
   errText?: string | number;
   headHeight?: number;
@@ -45,12 +45,12 @@ export function Select(props: IProps): ReactElement | null {
   useEffect(() => {
     if (activeEl) {
       if (activeEl?.label) {
-        setHeader(activeEl.label)
+        setHeader(activeEl.label);
       } else {
-        setHeader(activeEl?.value)
+        setHeader(activeEl?.value);
       }
     } else {
-      setHeader(props.label)
+      setHeader(props.label);
     }
   }, [props.label, activeEl]);
 
@@ -92,7 +92,7 @@ export function Select(props: IProps): ReactElement | null {
         className={cx(
           styles.item,
           (activeItem?.id === element.id || element.isActive) &&
-            styles.item_active,
+          styles.item_active,
         )}
         onClick={() => {
           changeIsActive(element.id);
@@ -110,15 +110,17 @@ export function Select(props: IProps): ReactElement | null {
   );
 
   return (
-    <div className={cx(className, styles.wrapper)}>
+    <div className={
+      cx(
+        className,
+        styles.wrapper,
+        styles[`wrapper_${props.theme}`],
+      )}>
       <DropDownMenuDependent
         changeDropDown={changeDropDownHandler}
         isShow={isDown}
         isDisabled={isDisabled}
-        className={cx(
-          styles.header,
-          styles[`header_${props.headerTheme}`],
-        )}
+        className={styles.header}
         head={
           <div
             className={cx(styles.head, {

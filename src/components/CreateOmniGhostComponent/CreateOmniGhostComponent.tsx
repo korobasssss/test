@@ -58,7 +58,7 @@ export const CreateOmniGhostComponent: FC = () => {
               <div>
                 <Select label="Online" defaultData={selectArrStatus}
                         onChange={handleClickSelectStatus}
-                        headerTheme="none" />
+                        theme="none" />
               </div>
             </div>
             <div className={styles.list_item}>
@@ -86,7 +86,7 @@ export const CreateOmniGhostComponent: FC = () => {
               <section>
                 <Select label="Отстегнут" defaultData={selectArrCondition}
                         onChange={handleClickSelectCondition}
-                        headerTheme="none" />
+                        theme="none" />
               </section>
             </div>
           </section>

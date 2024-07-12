@@ -65,7 +65,7 @@ export const MainComponent: FC<IMainPage> = ({
           </Button>
           <Select defaultData={selectArr}
                   onChange={handleClickSelect}
-                  headerTheme="base" />
+                  theme="base" />
         </section>
         <WhiteSection>
           <ScrollWrapper
