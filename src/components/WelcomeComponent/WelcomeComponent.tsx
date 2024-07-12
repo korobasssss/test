@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import styles from 'src/components/WelcomeComponent/styles.module.scss';
 import { Button } from 'src/base/components';
 import { getGhostByIdAction } from 'src/modules/components/actions';
-import { EPaths } from 'src/modules/components/constants';
+import { routeMain } from 'src/base/navigation/routes/main';
 
 export const WelcomeComponent: FC = () => {
   const navigation = useNavigate();
 
   const onClickHandler = useCallback(() => {
     console.log('Welcome');
-    navigation(EPaths.MAIN)
+    navigation(routeMain.fullPath)
   }, [navigation]);
   return (
     <div className={styles.body}>

@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { DeviceStatusSelectWithStatus , EPaths } from 'src/modules/components/constants';
+import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
 import styles from 'src/components/MainComponent/styles.module.scss';
 import { WhiteSection } from 'src/base/components/WhiteSection';
 import { Button, ButtonIcon, Input, Select } from 'src/base/components';
@@ -17,6 +17,8 @@ import { dataStore } from 'src/modules/components/store/dataStore';
 import cx from 'classnames';
 import { EDataStatus } from 'src/modules/components/constants/EDataStatus';
 import { ISelectActive } from 'src/modules/components';
+import { routeCreate } from 'src/base/navigation/routes/create';
+import { routeComponentsView } from 'src/base/navigation';
 
 interface IMainPage {
   isSettingsOpened: boolean;
@@ -67,7 +69,7 @@ export const MainComponent: FC<IMainPage> = observer(({
   }, [data]);
 
   const handleClickNew = useCallback(() => {
-    navigation(EPaths.CREATE);
+    navigation(routeCreate.fullPath);
   }, [navigation]);
 
   return (
@@ -111,7 +113,7 @@ export const MainComponent: FC<IMainPage> = observer(({
                       <div className={styles.num}>{index + 1}</div>
                       <div className={styles.data}>{item.id}</div>
                     </div>
-                    <Link to={EPaths.PROFILE} className={styles.status_button}>
+                    <Link to={routeComponentsView.url({ id: item.id })} className={styles.status_button}>
                       <div>{item.status}</div>
                       <div className={cx({
                         [styles.online]: item.status === EDataStatus.ONLINE,
