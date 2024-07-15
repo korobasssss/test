@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
 import styles from 'src/components/MainComponent/styles.module.scss';
 import { Button, ButtonIcon, Input, Select, WhiteSection, ScrollWrapper, PopupDown } from 'src/base/components';
@@ -10,21 +10,20 @@ import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
 import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
 import { observer } from 'mobx-react';
 import { dataStore } from 'src/modules/components/store/dataStore';
-import cx from 'classnames';
-import { ISelectActive, EDeviceStatus } from 'src/modules/components';
+import { ISelectActive } from 'src/modules/components';
 import { routeCreate } from 'src/base/navigation/routes/create';
-import { routeComponentsView } from 'src/base/navigation';
 import { isArray } from 'src/base';
+import { DataListComponent } from 'src/modules/components/components/DataListComponent/DataListComponent';
 
-interface IMainPage {
+interface IMainComponent {
   isSettingsOpened: boolean;
   actionSettings: (flag: boolean) => void;
 }
 
-export const MainComponent: FC<IMainPage> = observer(({
-                                                        isSettingsOpened,
-                                                        actionSettings,
-                                                      }) => {
+export const MainComponent: FC<IMainComponent> = observer(({
+                                                             isSettingsOpened,
+                                                             actionSettings,
+                                                           }) => {
   const navigation = useNavigate();
 
   const handleClickNew = useCallback(() => {
@@ -45,10 +44,18 @@ export const MainComponent: FC<IMainPage> = observer(({
 
   const [inputSearch, setInputSearch] = useState('');
 
-  const handleSearchDevice = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setInputSearch(event.target.value);
-    setFilteredDataById([...data].filter(itemFilter => itemFilter.id.toString().includes(event.target.value)));
+  const handleSetValue = useCallback((value: string) => {
+    setInputSearch(value);
+    setFilteredDataById([...data].filter(itemFilter => itemFilter.id.toString().includes(value)));
   }, [data]);
+
+  const handleSearchDevice = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    handleSetValue(event.target.value);
+  }, [handleSetValue]);
+
+  const handleClearInputSearch = useCallback(() => {
+    handleSetValue('');
+  }, [handleSetValue]);
 
   const [selectArr, setSelectArr] = useState(DeviceStatusSelectWithStatus);
 
@@ -56,18 +63,7 @@ export const MainComponent: FC<IMainPage> = observer(({
     if (obj.active) {
       setSelectArr(obj.data);
     }
-
   }, []);
-
-  const [filteredDataByStatus, setFilteredDataByStatus] = useState(filteredDataById);
-
-  useEffect(() => {
-    if (!selectArr[0].isActive) {
-      setFilteredDataByStatus([...filteredDataById].filter(itemFilter => itemFilter.status === selectArr.find(select => select.isActive)?.value));
-    } else {
-      setFilteredDataByStatus([...filteredDataById])
-    }
-  }, [filteredDataById, selectArr]);
 
   return (
     <section className={styles.body}>
@@ -77,12 +73,14 @@ export const MainComponent: FC<IMainPage> = observer(({
             <nav className={styles.nav_section}>
               <div className={styles.input_section}>
                 <SearchLogo />
-                <Input value={inputSearch}
-                       onChange={handleSearchDevice}
-                       className={styles.input}
-                       placeholder="Поиск по deviceID" />
+                <Input
+                  value={inputSearch}
+                  onChange={handleSearchDevice}
+                  className={styles.input}
+                  placeholder="Поиск по deviceID" />
               </div>
-              <ButtonIcon>
+              <ButtonIcon
+                onClick={handleClearInputSearch}>
                 <CloseLogo />
               </ButtonIcon>
             </nav>
@@ -97,36 +95,20 @@ export const MainComponent: FC<IMainPage> = observer(({
             </div>
             <div>Обновить список</div>
           </Button>
-          <Select defaultData={selectArr}
-                  onChange={handleClickSelect}
-                  theme="base" />
+          <Select
+            defaultData={selectArr}
+            onChange={handleClickSelect}
+            theme="base" />
         </section>
         <WhiteSection>
           <ScrollWrapper
             className={styles.ul_section}>
             {
-              isArray(filteredDataByStatus) ?
-                filteredDataByStatus.map((itemMap, index) => (
-                  <li key={itemMap.id} className={styles.ul_section}>
-                    <div className={styles.list_item}>
-                      <div className={styles.id_section}>
-                        <div className={styles.num}>{index + 1}</div>
-                        <div className={styles.data}>{itemMap.id}</div>
-                      </div>
-                      <Link to={routeComponentsView.url({ id: itemMap.id })} className={styles.status_button}>
-                        <div>{itemMap.status}</div>
-                        <div className={cx({
-                          [styles.online]: itemMap.status === EDeviceStatus.ONLINE,
-                          [styles.offline]: itemMap.status === EDeviceStatus.OFFLINE,
-                        })} />
-                      </Link>
-                    </div>
-                    {
-                      index !== filteredDataByStatus.length - 1 ?
-                        <span className={styles.ul_border} />
-                        : null}
-                  </li>
-                ))
+              isArray(filteredDataById)
+                ?
+                <DataListComponent
+                  filteredDataById={filteredDataById}
+                  selectArr={selectArr} />
                 :
                 <h2 className={styles.message}>Нет данных</h2>
             }
@@ -146,9 +128,11 @@ export const MainComponent: FC<IMainPage> = observer(({
       </section>
       {
         isSettingsOpened ?
-          <PopupDown topTitle="Выбор окружения" setIsOpen={actionSettings}
-                     submitButtonLabel="Готово"
-                     handleClosePopup={actionSettings}>
+          <PopupDown
+            topTitle="Выбор окружения"
+            setIsOpen={actionSettings}
+            submitButtonLabel="Готово"
+            handleClosePopup={actionSettings}>
             <SettingsPopupComponent />
           </PopupDown>
           :

@@ -105,62 +105,6 @@
   @media screen and (max-height: $small){
     max-height: 37vh;
   }
-
-  * {
-    font-size: $FONT_M;
-  }
-
-  .ul_border {
-    min-height: 1px;
-    width: 100%;
-    background-color: $BORDER_COLOR;
-  }
-
-  .list_item {
-    display: flex;
-    justify-content: space-between;
-
-    .id_section {
-      display: flex;
-      gap: 8px;
-
-      .num {
-        width: 14px;
-        text-align: start;
-        @include font-small-light;
-        color: $NUMBERING_TEXT;
-      }
-
-      .data {
-        @include font-moscow-sans-bold-m;
-        color: $MENU_TEXT;
-      }
-    }
-
-    .status_button {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-      @include font-small-light;
-      color: $NUMBERING_TEXT;
-    }
-
-    .online {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: $STATUS_ONLINE;
-      border: 1px solid $BORDER;
-    }
-
-    .offline {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: $STATUS_OFFLINE;
-      border: 1px solid $BORDER;
-    }
-  }
 }
 
 .message {
