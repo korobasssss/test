@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from 'src/components/WelcomeComponent/styles.module.scss';
+import styles from 'src/modules/components/components/WelcomeComponent/styles.module.scss';
 import { Button } from 'src/base/components';
 import { getGhostByIdAction } from 'src/modules/components/actions';
 import { routeMain } from 'src/base/navigation/routes/main';

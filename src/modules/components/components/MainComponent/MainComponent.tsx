@@ -1,40 +1,33 @@
 import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
-import styles from 'src/components/MainComponent/styles.module.scss';
+import styles from 'src/modules/components/components/MainComponent/styles.module.scss';
 import { Button, ButtonIcon, Input, Select, WhiteSection, ScrollWrapper, PopupDown } from 'src/base/components';
-import { SettingsPopupComponent } from 'src/components/SettingsPopupComponent';
+import { SettingsPopupComponent, DataListComponent } from 'src/modules/components/components';
 import { ReactComponent as CloseLogo } from 'src/assets/icons/closeIcon.svg';
 import { ReactComponent as SearchLogo } from 'src/assets/icons/search.svg';
 import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
 import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
-import { observer } from 'mobx-react';
-import { dataStore } from 'src/modules/components/store/dataStore';
-import { ISelectActive } from 'src/modules/components';
+import { IDataView, ISelectActive } from 'src/modules/components';
 import { routeCreate } from 'src/base/navigation/routes/create';
 import { isArray } from 'src/base';
-import { DataListComponent } from 'src/modules/components/components/DataListComponent/DataListComponent';
 
 interface IMainComponent {
   isSettingsOpened: boolean;
   actionSettings: (flag: boolean) => void;
+  data: IDataView[];
 }
 
-export const MainComponent: FC<IMainComponent> = observer(({
-                                                             isSettingsOpened,
-                                                             actionSettings,
-                                                           }) => {
+export const MainComponent: FC<IMainComponent> = ({
+                                                    isSettingsOpened,
+                                                    actionSettings,
+                                                    data,
+                                                  }) => {
   const navigation = useNavigate();
 
   const handleClickNew = useCallback(() => {
     navigation(routeCreate.fullPath);
   }, [navigation]);
-
-  const { data } = dataStore;
-
-  useEffect(() => {
-    dataStore.getData();
-  }, []);
 
   const [filteredDataById, setFilteredDataById] = useState(data);
 
@@ -139,4 +132,4 @@ export const MainComponent: FC<IMainComponent> = observer(({
           null}
     </section>
   );
-});
+};

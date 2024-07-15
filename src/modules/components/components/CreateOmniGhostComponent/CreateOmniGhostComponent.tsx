@@ -1,12 +1,22 @@
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 import { CableStatusSelect, DeviceStatusSelect } from 'src/modules/components/constants';
-import styles from 'src/components/CreateOmniGhostComponent/styles.module.scss';
+import styles from 'src/modules/components/components/CreateOmniGhostComponent/styles.module.scss';
 import { Button, Input, Select, WhiteSection } from 'src/base/components';
-import { ISelectActive } from 'src/modules/components';
-import { dataStore } from 'src/modules/components/store';
-import { observer } from 'mobx-react';
+import { ISelectActive, ISelectDefaultData } from 'src/modules/components';
 
-export const CreateOmniGhostComponent: FC = observer(() => {
+interface ICreateOmniGhostComponentProps {
+  handlerCreate: (
+    inputId: string,
+    selectArrStatus: ISelectDefaultData[],
+    inputSpeed: number,
+    inputCharging: number,
+    selectArrCondition: ISelectDefaultData[],
+  ) => void;
+}
+
+export const CreateOmniGhostComponent: FC<ICreateOmniGhostComponentProps> = ({
+                                                                               handlerCreate,
+                                                                             }) => {
   const [inputId, setInputId] = useState('');
   const [inputSpeed, setInputSpeed] = useState<number>();
   const [inputCharging, setInputCharging] = useState<number>();
@@ -41,14 +51,8 @@ export const CreateOmniGhostComponent: FC = observer(() => {
 
   const createOmniGhostUi = useCallback(() => {
     if (inputId !== '' && inputSpeed && inputCharging)
-    dataStore.createOmniGhostUi(
-      inputId,
-      selectArrStatus.find(item => item.isActive)?.value,
-      inputSpeed,
-      inputCharging,
-      selectArrCondition.find(item => item.isActive)?.value,
-    );
-  }, [inputCharging, inputId, inputSpeed, selectArrCondition, selectArrStatus]);
+      handlerCreate(inputId, selectArrStatus, inputSpeed, inputCharging, selectArrCondition)
+  }, [handlerCreate, inputCharging, inputId, inputSpeed, selectArrCondition, selectArrStatus]);
 
   return (
     <section className={styles.root_section}>
@@ -78,7 +82,7 @@ export const CreateOmniGhostComponent: FC = observer(() => {
               <header className={styles.header}>
                 Скорость
               </header>
-              <Input type='number'
+              <Input type="number"
                      min={0}
                      value={inputSpeed}
                      onChange={handlerSetSpeed}
@@ -89,7 +93,7 @@ export const CreateOmniGhostComponent: FC = observer(() => {
               <header className={styles.header}>
                 Уровень заряда
               </header>
-              <Input type='number'
+              <Input type="number"
                      min={0}
                      value={inputCharging}
                      onChange={handlerSetCharging}
@@ -111,7 +115,7 @@ export const CreateOmniGhostComponent: FC = observer(() => {
             theme="primary"
             size="l"
             onClick={createOmniGhostUi}
-            disabled={inputId === '' || !inputSpeed  || !inputCharging}
+            disabled={inputId === '' || !inputSpeed || !inputCharging}
           >
             <div>Создать</div>
           </Button>
@@ -119,4 +123,4 @@ export const CreateOmniGhostComponent: FC = observer(() => {
       </WhiteSection>
     </section>
   );
-});
+};

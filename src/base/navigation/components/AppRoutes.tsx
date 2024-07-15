@@ -1,16 +1,9 @@
 import React, { FC } from 'react';
 import { Route, Routes } from 'react-router';
-
-import { routeComponentEdit, routeComponentsView, routeHome } from '../routes';
-
+import { routeComponentEdit, routeComponentsView, routeHome, routeMain, routeCreate } from '../routes';
 import { ViewComponentContainer } from 'src/modules/components/containers/ViewComponentContainer';
 import { EditComponentContainer } from 'src/modules/components/containers/EditComponentContainer';
-import { WelcomePage } from 'src/pages/WelcomePage';
-import { MainPage } from 'src/pages/MainPage';
-import { CreateOmniGhostPage } from 'src/pages/CreateOmniGhostPage';
-import { routeMain } from 'src/base/navigation/routes/main';
-import { routeCreate } from 'src/base/navigation/routes/create';
-
+import { WelcomePage, MainPage, CreateOmniGhostPage } from 'src/pages';
 
 export const AppRoutes: FC = () => {
   return (
