@@ -5,8 +5,8 @@ import { MainLayout } from 'src/base/components';
 import { CreateOmniGhostComponent } from 'src/modules/components/components';
 import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
 import { observer } from 'mobx-react';
-import { dataStore } from 'src/modules/components/store';
-import { ISelectDefaultData } from 'src/modules/components';
+import { ICreateOmniGhostAction } from 'src/modules/components/types';
+import { createOmniGhostAction } from 'src/modules/components/actions';
 
 export const CreateOmniGhostContainer: FC = observer(() => {
   const navigation = useNavigate();
@@ -15,13 +15,9 @@ export const CreateOmniGhostContainer: FC = observer(() => {
     navigation(routeMain.fullPath);
   }, [navigation]);
 
-  const handlerCreate = useCallback((inputId: string, selectArrStatus: ISelectDefaultData[], inputSpeed: number, inputCharging: number, selectArrCondition: ISelectDefaultData[]) => {
-    dataStore.createOmniGhostUi(
-      inputId,
-      selectArrStatus.find(item => item.isActive)?.value,
-      inputSpeed,
-      inputCharging,
-      selectArrCondition.find(item => item.isActive)?.value,
+  const handlerCreate = useCallback((data: ICreateOmniGhostAction) => {
+    createOmniGhostAction(
+      data
     );
   }, []);
 

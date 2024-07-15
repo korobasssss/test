@@ -9,7 +9,7 @@ import { ReactComponent as SearchLogo } from 'src/assets/icons/search.svg';
 import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
 import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
 import { IDataView, ISelectActive } from 'src/modules/components';
-import { routeCreate } from 'src/base/navigation/routes/create';
+import { routeCreate } from 'src/base/navigation/routes';
 import { isArray } from 'src/base';
 
 interface IMainComponent {
@@ -97,7 +97,7 @@ export const MainComponent: FC<IMainComponent> = ({
           <ScrollWrapper
             className={styles.ul_section}>
             {
-              isArray(filteredDataById)
+              filteredDataById && isArray(filteredDataById)
                 ?
                 <DataListComponent
                   filteredDataById={filteredDataById}

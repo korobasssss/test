@@ -2,35 +2,36 @@ import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 import { CableStatusSelect, DeviceStatusSelect } from 'src/modules/components/constants';
 import styles from 'src/modules/components/components/CreateOmniGhostComponent/styles.module.scss';
 import { Button, Input, Select, WhiteSection } from 'src/base/components';
-import { ISelectActive, ISelectDefaultData } from 'src/modules/components';
+import { ICreateOmniGhostAction, ISelectActive } from 'src/modules/components';
+import { isNumber } from 'src/base/utils';
 
 interface ICreateOmniGhostComponentProps {
-  handlerCreate: (
-    inputId: string,
-    selectArrStatus: ISelectDefaultData[],
-    inputSpeed: number,
-    inputCharging: number,
-    selectArrCondition: ISelectDefaultData[],
-  ) => void;
+  handlerCreate: (data: ICreateOmniGhostAction) => void;
 }
 
 export const CreateOmniGhostComponent: FC<ICreateOmniGhostComponentProps> = ({
                                                                                handlerCreate,
                                                                              }) => {
   const [inputId, setInputId] = useState('');
-  const [inputSpeed, setInputSpeed] = useState<number>();
-  const [inputCharging, setInputCharging] = useState<number>();
+  const [inputSpeed, setInputSpeed] = useState('');
+  const [inputCharging, setInputCharging] = useState('');
 
   const handlerSetId = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setInputId(event.target.value);
   }, []);
 
   const handlerSetSpeed = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setInputSpeed(Number.parseInt(event.target.value, 10));
+    if (event.target.value === '' ||
+      isNumber(event.target.value) && Number.parseInt(event.target.value, 10) <= 100) {
+      setInputSpeed(event.target.value);
+    }
   }, []);
 
   const handlerSetCharging = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setInputCharging(Number.parseInt(event.target.value, 10));
+    if (event.target.value === '' ||
+      isNumber(event.target.value) && Number.parseInt(event.target.value, 10) <= 100) {
+      setInputCharging(event.target.value);
+    }
   }, []);
 
   const [selectArrStatus, setSelectArrStatus] = useState(DeviceStatusSelect);
@@ -51,7 +52,13 @@ export const CreateOmniGhostComponent: FC<ICreateOmniGhostComponentProps> = ({
 
   const createOmniGhostUi = useCallback(() => {
     if (inputId !== '' && inputSpeed && inputCharging)
-      handlerCreate(inputId, selectArrStatus, inputSpeed, inputCharging, selectArrCondition)
+      handlerCreate({
+        deviceId: inputId,
+        status: selectArrStatus.find(item => item.isActive)?.value as string,
+        speed: inputSpeed,
+        devicePercent: inputCharging,
+        cableStatus: selectArrCondition.find(item => item.isActive)?.value as string,
+      });
   }, [handlerCreate, inputCharging, inputId, inputSpeed, selectArrCondition, selectArrStatus]);
 
   return (
@@ -63,51 +70,57 @@ export const CreateOmniGhostComponent: FC<ICreateOmniGhostComponentProps> = ({
               <header className={styles.header}>
                 DeviceId
               </header>
-              <Input value={inputId}
-                     onChange={handlerSetId}
-                     placeholder="Введите Id ..."
-                     className={styles.input} />
+              <Input
+                value={inputId}
+                onChange={handlerSetId}
+                placeholder="Введите Id ..."
+                className={styles.input}
+              />
             </div>
             <div className={styles.list_item}>
               <header className={styles.header}>
                 Статус устройства
               </header>
               <div>
-                <Select defaultData={selectArrStatus}
-                        onChange={handleClickSelectStatus}
-                        theme="none" />
+                <Select
+                  defaultData={selectArrStatus}
+                  onChange={handleClickSelectStatus}
+                  theme="none"
+                />
               </div>
             </div>
             <div className={styles.list_item}>
               <header className={styles.header}>
                 Скорость
               </header>
-              <Input type="number"
-                     min={0}
-                     value={inputSpeed}
-                     onChange={handlerSetSpeed}
-                     placeholder="Введите скорость км/ч ..."
-                     className={styles.input} />
+              <Input
+                value={inputSpeed}
+                onChange={handlerSetSpeed}
+                placeholder="Введите скорость км/ч ..."
+                className={styles.input}
+              />
             </div>
             <div className={styles.list_item}>
               <header className={styles.header}>
                 Уровень заряда
               </header>
-              <Input type="number"
-                     min={0}
-                     value={inputCharging}
-                     onChange={handlerSetCharging}
-                     placeholder="Введите заряд % ..."
-                     className={styles.input} />
+              <Input
+                value={inputCharging}
+                onChange={handlerSetCharging}
+                placeholder="Введите заряд % ..."
+                className={styles.input}
+              />
             </div>
             <div className={styles.list_item}>
               <header className={styles.header}>
                 Состояние троса
               </header>
               <section>
-                <Select defaultData={selectArrCondition}
-                        onChange={handleClickSelectCondition}
-                        theme="none" />
+                <Select
+                  defaultData={selectArrCondition}
+                  onChange={handleClickSelectCondition}
+                  theme="none"
+                />
               </section>
             </div>
           </section>
@@ -115,7 +128,7 @@ export const CreateOmniGhostComponent: FC<ICreateOmniGhostComponentProps> = ({
             theme="primary"
             size="l"
             onClick={createOmniGhostUi}
-            disabled={inputId === '' || !inputSpeed || !inputCharging}
+            disabled={!inputId || !inputSpeed || !inputCharging}
           >
             <div>Создать</div>
           </Button>

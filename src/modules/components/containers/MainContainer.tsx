@@ -4,6 +4,7 @@ import { MainComponent } from 'src/modules/components/components';
 import { ReactComponent as SettingsLogo } from 'src/assets/icons/settings.svg';
 import { dataStore } from 'src/modules/components/store';
 import { observer } from 'mobx-react';
+import { getAllGhostsAction } from 'src/modules/components/actions';
 
 export const MainContainer: FC = observer(() => {
   const [isSettingsOpened, setIsSettingsOpened] = useState(false);
@@ -15,8 +16,12 @@ export const MainContainer: FC = observer(() => {
   const { data } = dataStore;
 
   useEffect(() => {
-    dataStore.getData();
+    getAllGhostsAction()
   }, []);
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <MainLayout
