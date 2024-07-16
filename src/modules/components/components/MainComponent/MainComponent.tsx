@@ -12,6 +12,7 @@ import { IDataView, ISelectActive } from 'src/modules/components';
 import { routeCreate } from 'src/base/navigation/routes';
 import { isArray } from 'src/base';
 import { SettingsPopupContainer } from 'src/modules/components/containers/SettingsPopupContainer';
+import { TextNoData } from 'src/base/components/TextNoData/TextNoData';
 
 interface IMainComponent {
   isSettingsOpened: boolean;
@@ -40,7 +41,7 @@ export const MainComponent: FC<IMainComponent> = ({
 
   const handleSetValue = useCallback((value: string) => {
     setInputSearch(value);
-    setFilteredDataById([...data].filter(itemFilter => itemFilter.id.toString().includes(value)));
+    setFilteredDataById(data.filter(itemFilter => itemFilter.id.toString().includes(value)));
   }, [data]);
 
   const handleSearchDevice = useCallback((event: ChangeEvent<HTMLInputElement>) => {
@@ -101,10 +102,10 @@ export const MainComponent: FC<IMainComponent> = ({
               filteredDataById && isArray(filteredDataById)
                 ?
                 <DataListComponent
-                  filteredDataById={filteredDataById}
-                  selectArr={selectArr} />
+                  data={filteredDataById}
+                  selectValue={selectArr.find(select => select.isActive)?.value} />
                 :
-                <h2 className={styles.message}>Нет данных</h2>
+                <TextNoData/>
             }
           </ScrollWrapper>
         </WhiteSection>

@@ -1,0 +1,6 @@
+@import 'src/styles/mixins/typography';
+
+.message {
+  @include font-moscow-sans-l-bold;
+  text-align: center;
+}
