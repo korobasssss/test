@@ -7,16 +7,26 @@
   justify-content: space-between;
   border-radius: 10px;
   background: $INPUT_BG;
-  height: 40px;
   gap: 12px;
   @include font-moscow-sans-m;
+  color: $TITLE_COLOR;
+
+  &_base {
+    border-radius: 10px;
+    height: 40px;
+    background: $MAIN;
+    padding: 10px;
+  }
+
+  &_none {
+    border-radius: 0;
+    height: min-content;
+    background: transparent;
+    padding: 0;
+  }
 
   .header {
-    border-radius: 10px;
-    background: white;
     box-sizing: border-box;
-    padding: 10px 10px;
-    height: 40px;
     width: 100%;
     outline: none;
     border: none;
@@ -26,10 +36,11 @@
 
   .head {
     display: flex;
-    gap: 12px;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+    gap: 12px;
+    @include font-moscow-sans-l;
 
     &.disabled {
       cursor: default;
@@ -38,8 +49,8 @@
 
   .body {
     background-color: white;
-    box-shadow: 0 4px 20px rgb(0 0 0 / 20%);
-    border-radius: 0 0 10px 10px;
+    box-shadow: 0 15px 20px rgb(0 0 0 / 20%);
+    border-radius: 10px;
 
     .search_input {
       display: flex;
@@ -101,7 +112,7 @@
           background-color: $STROKE_GREY;
 
           span {
-            color: white;
+            color: $TITLE_COLOR;
           }
         }
 
@@ -109,7 +120,7 @@
           background-color: $LIGHT_GREY;
 
           span {
-            color: white;
+            color: $TITLE_COLOR;
           }
         }
 

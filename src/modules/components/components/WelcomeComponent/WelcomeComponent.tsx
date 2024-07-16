@@ -1,15 +1,20 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from 'src/modules/components/components/WelcomeComponent/styles.module.scss';
 import { Button } from 'src/base/components';
-import styles from './styles.module.scss';
 import { getGhostByIdAction } from 'src/modules/components/actions';
+import { routeMain } from 'src/base/navigation/routes/main';
 
-export const WelcomePage = (): ReactElement => {
+export const WelcomeComponent: FC = () => {
+  const navigation = useNavigate();
+
   const onClickHandler = useCallback(() => {
     console.log('Welcome');
-  }, []);
+    navigation(routeMain.fullPath)
+  }, [navigation]);
+
   return (
     <div className={styles.body}>
-      <h1>Welcome Page</h1>
       <p className={styles.description}>
         Здесь будет приложение для UI Omni ghost
       </p>

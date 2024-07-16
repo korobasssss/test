@@ -1,4 +1,4 @@
-import { Route } from '../../../../classes/Route';
+import { Route } from 'src/base/classes/Route';
 import { routeComponents } from '../routeComponents';
 
 interface IParams {

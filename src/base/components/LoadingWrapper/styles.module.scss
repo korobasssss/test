@@ -1,0 +1,12 @@
+@import 'src/styles/variables/index.scss';
+@import 'src/styles/mixins/typography.scss';
+
+.body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $SCREEN_BG;
+  @include font-moscow-sans-l-bold;
+}

@@ -9,9 +9,9 @@ export interface IButtonProps
     ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   type?: 'submit' | 'reset' | 'button';
-  theme?: 'primary' | 'secondary' | 'action';
+  theme?: 'primary' | 'secondary' | 'action' | 'none';
   isFullWidth?: boolean;
-  size?: 'l' | 'm' | 's' | 'xs';
+  size?: 'l' | 'm' | 's' | 'xs' | 'xxs';
   withHorizontalPadding?: boolean;
 }
 
@@ -20,7 +20,7 @@ export const Button: FC<IButtonProps> = ({
   children,
   disabled,
   isFullWidth = true,
-  theme = 'primary',
+  theme = 'none',
   type = 'submit',
   size = 'l',
   onClick,

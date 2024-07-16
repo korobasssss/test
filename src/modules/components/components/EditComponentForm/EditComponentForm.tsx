@@ -13,10 +13,9 @@ import {
   TextArea,
   Button,
   Spinner,
-  ISelectDefaultData,
   Select,
-} from '../../../../base/components';
-import { IComponentEdit, TComponentDataKeys } from '../../types';
+} from 'src/base/components';
+import { IComponentEdit, ISelectDefaultData, TComponentDataKeys } from '../../types';
 import { EComponentStatus } from '../../constants';
 
 interface IProps {
@@ -119,7 +118,7 @@ export const EditComponentForm: FC<IProps> = observer(
                 <Select
                   defaultData={statusSelectDefaultData}
                   onChange={onSelect}
-                />
+                  theme='base'/>
               </div>
             )}
             <div className="center">

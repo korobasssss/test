@@ -5,14 +5,7 @@ import styles from './style.module.scss';
 import { ArrowIcon } from './icons';
 import { DropDownMenuDependent } from './DropDownMenuDependent';
 import ScrollWrapper from './ScrollWrapper/ScrollWrapper';
-
-export interface ISelectDefaultData {
-  id: number;
-  label?: any;
-  name?: any;
-  value: string;
-  isActive?: boolean;
-}
+import { ISelectDefaultData } from 'src/modules/components';
 
 interface IProps {
   defaultPlaceholder?: string;
@@ -21,6 +14,7 @@ interface IProps {
   onChange: (res?: any) => void;
   maxSelectHeight?: number; // максимальная высота селекта при скроле
   label?: string;
+  theme: 'none' | 'base';
   isDisabled?: boolean;
   errText?: string | number;
   headHeight?: number;
@@ -45,6 +39,20 @@ export function Select(props: IProps): ReactElement | null {
   );
   const [data, setData] = useState(defaultData);
   const [isDown, setIsDown] = useState(false);
+
+  const [header, setHeader] = useState<string>();
+
+  useEffect(() => {
+    if (activeEl) {
+      if (activeEl?.label) {
+        setHeader(activeEl.label);
+      } else {
+        setHeader(activeEl?.value);
+      }
+    } else {
+      setHeader(props.label);
+    }
+  }, [props.label, activeEl]);
 
   useEffect(() => {
     if (defaultData !== data) setData(defaultData);
@@ -84,7 +92,7 @@ export function Select(props: IProps): ReactElement | null {
         className={cx(
           styles.item,
           (activeItem?.id === element.id || element.isActive) &&
-            styles.item_active,
+          styles.item_active,
         )}
         onClick={() => {
           changeIsActive(element.id);
@@ -102,7 +110,12 @@ export function Select(props: IProps): ReactElement | null {
   );
 
   return (
-    <div className={cx(className, styles.wrapper)}>
+    <div className={
+      cx(
+        className,
+        styles.wrapper,
+        styles[`wrapper_${props.theme}`],
+      )}>
       <DropDownMenuDependent
         changeDropDown={changeDropDownHandler}
         isShow={isDown}
@@ -114,7 +127,7 @@ export function Select(props: IProps): ReactElement | null {
               [styles.disabled]: isDisabled,
             })}
           >
-            {activeEl?.label ? activeEl.label : activeEl?.value}
+            {header}
             {!isDisabled && <ArrowIcon isDown={!isDown} />}
           </div>
         }

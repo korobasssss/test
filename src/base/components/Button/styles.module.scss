@@ -1,14 +1,19 @@
 @import 'src/styles/variables/index.scss';
+@import "src/styles/mixins/typography.scss";
 
 .LPButton {
-  max-width: 500px;
+  width: 100%;
   border-radius: $ROUNDING_L;
   border: none;
   cursor: pointer;
   font-weight: 700;
-  font-size: 1rem;
   line-height: 120%;
   padding: 0 0.5rem;
+  @include font-moscow-sans-l;
+
+  &_none {
+    background-color: transparent;
+  }
 
   &_primary {
     background-color: $BUTTON_PRIMARY_BG;
@@ -16,6 +21,7 @@
   }
 
   &_secondary {
+    @include font-moscow-sans-l;
     background-color: $BUTTON_SECONDARY_BG;
     color: $BUTTON_SECONDARY_TEXT;
   }
@@ -37,6 +43,10 @@
   }
 
   &_size {
+    &-xxs {
+      height: min-content;
+    }
+
     &-xs {
       max-width: 130px;
       height: 28px;
@@ -44,7 +54,7 @@
     }
 
     &-s {
-      max-width: 150px;
+      max-width: 180px;
       height: 32px;
       font-size: 0.8rem;
     }
@@ -56,9 +66,8 @@
     }
 
     &-l {
-      max-width: 500px;
       height: 54px;
-      font-size: 1.1rem;
+      //font-size: 1.1rem;
     }
   }
 

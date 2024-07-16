@@ -45,6 +45,10 @@ p {
   margin: 0;
 }
 
+ul, li {
+  list-style: none;
+}
+
 input,
 select,
 option,
@@ -63,6 +67,10 @@ a img {
 a {
   text-decoration: none;
   color: #000;
+}
+
+button {
+  cursor: pointer;
 }
 
 code {

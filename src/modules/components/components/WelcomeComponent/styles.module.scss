@@ -1,0 +1,18 @@
+@import '../../../../styles/variables/index';
+@import '../../../../styles/mixins/typography';
+
+.body {
+  height: 100%;
+  padding: 16px;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: auto min-content min-content;
+  gap: 20px;
+
+  .description {
+    //max-height: 50%;
+    flex-grow: 1;
+    overflow: auto;
+    white-space: pre-line
+  }
+}

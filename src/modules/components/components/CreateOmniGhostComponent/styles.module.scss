@@ -1,0 +1,52 @@
+@import '../../../../styles/variables/index';
+@import '../../../../styles/mixins/typography';
+
+.root_section {
+  display: grid;
+  grid-template-rows: min-content auto;
+}
+
+.header_section {
+  position: relative;
+  display: grid;
+  align-items: center;
+  column-gap: 10px;
+  padding: 16px;
+}
+
+.main_section {
+  display: grid;
+  justify-items: center;
+  gap: 32px;
+}
+
+.ul_section {
+  width: 100%;
+  display: grid;
+  row-gap: 16px;
+
+  .list_item {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1.5fr 2fr;
+    column-gap: 16px;
+    background-color: $ICON_BG;
+    padding: 12px;
+    border-radius: $ROUNDING_M;
+
+    .header {
+      @include font-moscow-sans-l-light;
+      color: $EMPTY_TEXT_MESSAGE;
+    }
+
+    .input {
+      height: min-content;
+      border-radius: 0;
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      @include font-moscow-sans-l-light;
+      color: $TITLE_COLOR;
+    }
+  }
+}

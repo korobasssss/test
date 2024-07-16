@@ -8,3 +8,5 @@ export enum EComponentStatusTranslate {
   AVAILABLE = 'Доступный',
   ARCHIVE = 'Архивирован ',
 }
+
+

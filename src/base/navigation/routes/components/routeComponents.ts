@@ -2,6 +2,6 @@ import { Route } from '../../../classes/Route';
 import { routeHome } from '../home';
 
 export const routeComponents = new Route({
-  path: `components`,
+  path: `omni-ghost`,
   parent: routeHome,
 });

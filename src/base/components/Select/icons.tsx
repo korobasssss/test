@@ -1,28 +1,25 @@
 import React, { FC } from 'react';
 import { IWithClassName } from '../../types';
 
-interface IAroowIconProps extends IWithClassName {
+interface IArrowIconProps extends IWithClassName {
   isDown?: boolean;
 }
 
-export const ArrowIcon: FC<IAroowIconProps> = ({ isDown, className }) => {
+export const ArrowIcon: FC<IArrowIconProps> = ({ isDown, className }) => {
   return (
     <svg
-      width="11"
-      height="8"
-      viewBox="0 0 11 8"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={{ transform: `rotate(${isDown ? 0 : 180}deg)` }}
     >
       <path
-        d="M10 1.75L5.5 6.25L1 1.75"
-        stroke="#1D4988"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+        d="M12 14.1983L6.64021 9.7318C6.21593 9.37824 5.58537 9.43556 5.2318 9.85984C4.87824 10.2841 4.93556 10.9147 5.35984 11.2682L11.3598 16.2682C11.7307 16.5773 12.2694 16.5773 12.6402 16.2682L18.6402 11.2682C19.0645 10.9147 19.1218 10.2841 18.7682 9.85984C18.4147 9.43556 17.7841 9.37824 17.3598 9.7318L12 14.1983Z"
+        fill="#B8C1CC" />
     </svg>
-  );
+  )
+    ;
 };
