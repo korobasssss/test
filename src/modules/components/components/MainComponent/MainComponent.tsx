@@ -18,12 +18,14 @@ interface IMainComponent {
   isSettingsOpened: boolean;
   actionSettings: (flag: boolean) => void;
   data: IDataView[];
+  updateData: () => void
 }
 
 export const MainComponent: FC<IMainComponent> = ({
                                                     isSettingsOpened,
                                                     actionSettings,
                                                     data,
+                                                    updateData
                                                   }) => {
   const navigation = useNavigate();
 
@@ -84,6 +86,7 @@ export const MainComponent: FC<IMainComponent> = ({
         <section className={styles.status_section}>
           <Button
             className={styles.refresh_button}
+            onClick={updateData}
             size="s">
             <div className={styles.rotate}>
               <RefreshLogo />

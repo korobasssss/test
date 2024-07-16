@@ -14,10 +14,14 @@ export const MainContainer: FC = observer(() => {
   }, [isSettingsOpened]);
 
   const { data } = dataStore;
-
-  useEffect(() => {
+  
+  const handlerUpdateData = useCallback(() => {
     getAllGhostsAction()
   }, []);
+
+  useEffect(() => {
+    handlerUpdateData()
+  }, [handlerUpdateData]);
 
   if (dataStore.isLoading) return <LoadingWrapper/>
 
@@ -35,7 +39,8 @@ export const MainContainer: FC = observer(() => {
       <MainComponent
         isSettingsOpened={isSettingsOpened}
         actionSettings={setIsSettingsOpened}
-        data={data} />
+        data={data}
+        updateData={handlerUpdateData}/>
     </MainLayout>
   );
 });
