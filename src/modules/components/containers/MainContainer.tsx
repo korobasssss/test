@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { MainLayout } from 'src/base/components';
+import { LoadingWrapper, MainLayout } from 'src/base/components';
 import { MainComponent } from 'src/modules/components/components';
 import { ReactComponent as SettingsLogo } from 'src/assets/icons/settings.svg';
 import { dataStore } from 'src/modules/components/store';
@@ -19,9 +19,9 @@ export const MainContainer: FC = observer(() => {
     getAllGhostsAction()
   }, []);
 
-  if (!data) {
-    return null;
-  }
+  if (dataStore.isLoading) return <LoadingWrapper/>
+
+  if (!data) return null;
 
   return (
     <MainLayout

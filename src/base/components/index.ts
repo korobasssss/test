@@ -12,3 +12,4 @@ export * from './Select';
 export * from './PopupDown';
 export * from './WhiteSection';
 export * from './ScrollWrapper';
+export * from './LoadingWrapper';
