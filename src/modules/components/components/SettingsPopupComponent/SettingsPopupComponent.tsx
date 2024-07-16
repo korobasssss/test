@@ -13,17 +13,17 @@ export const SettingsPopupComponent: FC<ISettingsPopupComponentProps> = ({
   const [settingsChoose, setSettingsChoose] = useState('test');
   const [inputId, setInputId] = useState('');
 
-  const handleClickSetSettings = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+  const handlerClickSetSettings = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSettingsChoose(event.target.name);
   }, []);
 
-  const handleSetInputId = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+  const handlerSetInputId = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setInputId(event.currentTarget.value);
   }, []);
 
   const handlerSetData = useCallback(() => {
     if (settingsChoose !== 'id') {
-      handleSetEnvironment('test')
+      handleSetEnvironment(settingsChoose)
     } else {
       handleSetEnvironment(inputId)
     }
@@ -37,7 +37,7 @@ export const SettingsPopupComponent: FC<ISettingsPopupComponentProps> = ({
             value={settingsChoose === 'test'}
             svg={<CheckboxLogo />}
             name="test"
-            onChange={handleClickSetSettings}
+            onChange={handlerClickSetSettings}
             className={styles.checkbox}
           />
           <div className={styles.data}>Тест</div>
@@ -47,7 +47,7 @@ export const SettingsPopupComponent: FC<ISettingsPopupComponentProps> = ({
             value={settingsChoose === 'dev'}
             svg={<CheckboxLogo />}
             name="dev"
-            onChange={handleClickSetSettings}
+            onChange={handlerClickSetSettings}
             className={styles.checkbox}
           />
           <div className={styles.data}>Dev</div>
@@ -57,13 +57,13 @@ export const SettingsPopupComponent: FC<ISettingsPopupComponentProps> = ({
             value={settingsChoose === 'id'}
             svg={<CheckboxLogo />}
             name="id"
-            onChange={handleClickSetSettings}
+            onChange={handlerClickSetSettings}
             className={styles.checkbox} />
           <div className={styles.input_section}>
             <div className={styles.data}>Ввести IP вручную</div>
             <Input
               value={inputId}
-              onChange={handleSetInputId}
+              onChange={handlerSetInputId}
               placeholder="Номер IP"
               className={styles.input}
               disabled={settingsChoose !== 'id'}
