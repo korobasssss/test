@@ -1,14 +1,18 @@
 @import 'src/styles/variables/index';
 @import 'src/styles/mixins/typography';
 
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px
+}
+
 .checkbox_section {
   display: flex;
   flex-direction: column;
   gap: 16px;
 
   .list_item {
-    cursor: pointer;
-
     width: 100%;
     display: grid;
     grid-template-columns: max-content auto;

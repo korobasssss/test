@@ -8,7 +8,7 @@ import cx from 'classnames';
 
 import { Button } from '../Button';
 
-import {ReactComponent as CloseLogo} from 'src/assets/icons/closeIcon.svg';
+import { ReactComponent as CloseLogo } from 'src/assets/icons/closeIcon.svg';
 import styles from './styles.module.scss';
 import { useSwipeable } from 'react-swipeable';
 import { IWithClassName } from '../../types';
@@ -76,27 +76,33 @@ export const PopupDown: FC<IPopupProps> = ({
         [styles.open_modal_section]: isVisible,
         [styles.close_modal_section]: !isVisible,
       })}>
-        <header className={styles.header}>
-          <Button {...handlers} className={styles.line_section}
-                  size="xxs">
+        <header {...handlers} className={styles.header}>
+          <Button
+            className={styles.line_section}
+            size="xxs"
+          >
             <img src={line_icon} alt="line icon" />
           </Button>
-          <HeaderPanel title={topTitle} rightIcon={{
-            svg: <CloseLogo />,
-            clicked: () => handlerSetClose(),
-          }}/>
+          <HeaderPanel
+            title={topTitle}
+            rightIcon={{
+              svg: <CloseLogo />,
+              clicked: () => handlerSetClose(),
+            }} />
         </header>
         <main className={styles.main}>
           {children}
           <div className={styles.footer}>
-            <Button
-              disabled={submitButtonDisabled}
-              onClick={handleClickSubmit}
-              theme="primary"
-              size="l"
-            >
-              {submitButtonLabel}
-            </Button>
+            {handleClickSubmit && (
+              <Button
+                disabled={submitButtonDisabled}
+                onClick={handleClickSubmit}
+                theme="primary"
+                size="l"
+              >
+                {submitButtonLabel}
+              </Button>
+            )}
           </div>
         </main>
       </section>

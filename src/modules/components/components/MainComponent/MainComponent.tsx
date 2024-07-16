@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
 import styles from 'src/modules/components/components/MainComponent/styles.module.scss';
 import { Button, ButtonIcon, Input, Select, WhiteSection, ScrollWrapper, PopupDown } from 'src/base/components';
-import { SettingsPopupComponent, DataListComponent } from 'src/modules/components/components';
+import { DataListComponent } from 'src/modules/components/components';
 import { ReactComponent as CloseLogo } from 'src/assets/icons/closeIcon.svg';
 import { ReactComponent as SearchLogo } from 'src/assets/icons/search.svg';
 import { ReactComponent as RefreshLogo } from 'src/assets/icons/refresh.svg';
@@ -11,6 +11,7 @@ import { ReactComponent as AddLogo } from 'src/assets/icons/add.svg';
 import { IDataView, ISelectActive } from 'src/modules/components';
 import { routeCreate } from 'src/base/navigation/routes';
 import { isArray } from 'src/base';
+import { SettingsPopupContainer } from 'src/modules/components/containers/SettingsPopupContainer';
 
 interface IMainComponent {
   isSettingsOpened: boolean;
@@ -124,9 +125,8 @@ export const MainComponent: FC<IMainComponent> = ({
           <PopupDown
             topTitle="Выбор окружения"
             setIsOpen={actionSettings}
-            submitButtonLabel="Готово"
             handleClosePopup={actionSettings}>
-            <SettingsPopupComponent />
+            <SettingsPopupContainer />
           </PopupDown>
           :
           null}
