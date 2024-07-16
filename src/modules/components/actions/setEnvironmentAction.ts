@@ -4,7 +4,7 @@ const setDataToServer = async (data: string): Promise<any> => {
   return new Promise(() => {
     setTimeout(() => {
       console.log(data);
-    }, 1000)
+    }, 200)
   })
 }
 

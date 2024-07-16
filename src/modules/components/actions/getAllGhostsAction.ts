@@ -28,7 +28,7 @@ const getDataFromServer = async () : Promise<any> => {
   return new Promise<any>((resolve) => {
     setTimeout(() => {
       resolve(data)
-    }, 1000)
+    }, 200)
   })
 }
 

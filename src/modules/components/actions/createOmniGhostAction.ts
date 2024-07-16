@@ -4,7 +4,7 @@ const postDataToServer = (data: ICreateOmniGhostAction): Promise<any> => {
   return new Promise(() => {
     setTimeout(() => {
       console.log(data)
-    }, 1000)
+    }, 200)
   })
 }
 
