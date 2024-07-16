@@ -2,7 +2,9 @@ import { dataStore } from 'src/modules/components/store';
 
 const postDataToServer = (data: ICreateOmniGhostAction): Promise<any> => {
   return new Promise(() => {
-    console.log(data)
+    setTimeout(() => {
+      console.log(data)
+    }, 1000)
   })
 }
 
