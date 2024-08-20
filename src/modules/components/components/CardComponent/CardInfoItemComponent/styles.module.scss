@@ -1,0 +1,15 @@
+@import '../../../../../styles/variables/index';
+@import '../../../../../styles/mixins/typography';
+
+.item_wrapper {
+  display: flex;
+  gap: 5px;
+
+  .title {
+    @include font-moscow-sans-l-light;
+  }
+
+  .data{
+    @include font-moscow-sans-l-bold;
+  }
+}

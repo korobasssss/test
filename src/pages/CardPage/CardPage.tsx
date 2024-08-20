@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { MainLayout } from 'src/base/components';
+import { MainLayout, Popup } from 'src/base/components';
 import { routeMain } from 'src/base/navigation';
 import { ReactComponent as BackLogo } from 'src/assets/icons/back.svg';
 import { ReactComponent as DeleteLogo } from 'src/assets/icons/delete.svg';
@@ -14,6 +14,10 @@ export const CardPage : FC = () => {
   const handleOpenDeleteCardPopup = useCallback(() => {
     setIsDeletePopupOpen(!isDeletePopupOpen);
   }, [isDeletePopupOpen]);
+
+  const handleClickSubmit = useCallback(() => {
+    console.log('click submit');
+  }, []);
 
   return (
     <MainLayout
@@ -32,7 +36,26 @@ export const CardPage : FC = () => {
     >
       <CardComponent
         handleOpenDeleteCardPopup={handleOpenDeleteCardPopup}
-        isDeletePopupOpen />
+        isDeletePopupOpen
+      />
+      {isDeletePopupOpen && (
+        <Popup
+          headerTitle="Удалить OmniGhost 55478"
+          isOpen={isDeletePopupOpen}
+          handleClosePopup={handleOpenDeleteCardPopup}
+          isCancelButton
+          handleClickSubmit={handleClickSubmit}
+          handleCancelButtonClick={handleOpenDeleteCardPopup}
+          submitButtonLabel='Удалить'
+          cancelButtonLabel='Отмена'
+        >
+          <div>Вы точно хотите удалить
+            <div>
+              OmniGhost 55478?
+            </div>
+          </div>
+        </Popup>
+      )}
     </MainLayout>
   );
 }

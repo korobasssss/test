@@ -1,0 +1,9 @@
+@import '../../../../../styles/variables/index';
+@import '../../../../../styles/mixins/typography';
+
+.popup_info {
+  width: 100%;
+  display: grid;
+  justify-items: start;
+  row-gap: 8px;
+}

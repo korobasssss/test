@@ -29,46 +29,44 @@ export const CardItemComponent: FC<ICardComponentProps> = (
   },
 ) => {
   return (
-    <div>
-      <ListWithLineWrapper
-        isLastItem={isLastItem}
-        margin="big">
-        <div className={styles.list_item}>
-          <div className={styles.item_data_wrapper}>
-            <div className={styles.main_data_wrapper}>
-              {dataIcon}
-              <div className={styles.main_data}>
-                {data}
-              </div>
-            </div>
-            <div className={styles.title_wrapper}>
-              {title}
+    <ListWithLineWrapper
+      isLastItem={isLastItem}
+      margin="big">
+      <div className={styles.list_item}>
+        <div className={styles.item_data_wrapper}>
+          <div className={styles.main_data_wrapper}>
+            {dataIcon}
+            <div className={styles.main_data}>
+              {data}
             </div>
           </div>
-          <div className={styles.item_button_wrapper}>
-            {buttonType === 'secondary'
-              ?
-              <Button
-                onClick={handlerButtonClick}
-                className={styles.button}
-                theme="secondary"
-                size="m"
-              >
-                {buttonIcon}
-                <div>
-                  {buttonTitle}
-                </div>
-              </Button>
-              :
-              <ButtonIcon
-                onClick={handlerButtonClick}
-                className={styles.arrow}>
-                <ArrowIcon />
-              </ButtonIcon>
-            }
+          <div className={styles.title_wrapper}>
+            {title}
           </div>
         </div>
-      </ListWithLineWrapper>
-    </div>
+        <div className={styles.item_button_wrapper}>
+          {buttonType === 'secondary'
+            ?
+            <Button
+              onClick={handlerButtonClick}
+              className={styles.button}
+              theme="secondary"
+              size="m"
+            >
+              {buttonIcon}
+              <div>
+                {buttonTitle}
+              </div>
+            </Button>
+            :
+            <ButtonIcon
+              onClick={handlerButtonClick}
+              className={styles.arrow}>
+              <ArrowIcon />
+            </ButtonIcon>
+          }
+        </div>
+      </div>
+    </ListWithLineWrapper>
   );
 };
