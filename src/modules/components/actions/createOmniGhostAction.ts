@@ -1,13 +1,14 @@
 import { dataStore } from 'src/modules/components/store';
 import { postDataToServer } from 'src/modules/components/utils';
+import { ICreateOmniGhostAction } from 'src/modules/components';
 
-interface ICreateOmniGhostAction {
-  deviceId: string,
-  status: string,
-  speed: string,
-  devicePercent: string,
-  cableStatus: string
-}
+// interface ICreateOmniGhostAction {
+//   deviceId: string,
+//   status: string,
+//   speed: string,
+//   devicePercent: string,
+//   cableStatus: string
+// }
 
 export const createOmniGhostAction = async (data: ICreateOmniGhostAction): Promise<void> => {
   try {

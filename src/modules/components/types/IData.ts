@@ -5,10 +5,20 @@ export interface IDataView {
   status: EDeviceStatus
 }
 
-export interface ICreateOmniGhostAction {
-  deviceId: string,
+export interface IDataOneDeviceView {
+  id: number,
+  coordinates: string
   status: string,
-  speed: string,
-  devicePercent: string,
+  speed: number,
+  devicePercent: number,
+  cableStatus: string
+  horseshoe_cable: string
+}
+
+export interface ICreateOmniGhostAction {
+  id: number,
+  status: string,
+  speed: number,
+  devicePercent: number,
   cableStatus: string
 }

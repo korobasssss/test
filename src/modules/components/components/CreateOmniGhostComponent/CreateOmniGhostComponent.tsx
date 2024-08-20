@@ -54,10 +54,10 @@ export const CreateOmniGhostComponent: FC<ICreateOmniGhostComponentProps> = ({
   const createOmniGhostUi = useCallback(() => {
     if (inputId !== '' && inputSpeed && inputCharging)
       handlerCreate({
-        deviceId: inputId,
+        id: Number.parseInt(inputId, 10),
         status: selectArrStatus.find(item => item.isActive)?.value as string,
-        speed: inputSpeed,
-        devicePercent: inputCharging,
+        speed: Number.parseInt(inputSpeed, 10),
+        devicePercent: Number.parseInt(inputCharging, 10),
         cableStatus: selectArrCondition.find(item => item.isActive)?.value as string,
       });
   }, [handlerCreate, inputCharging, inputId, inputSpeed, selectArrCondition, selectArrStatus]);
