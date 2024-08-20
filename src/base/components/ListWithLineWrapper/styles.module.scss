@@ -1,0 +1,14 @@
+@import '../../../styles/variables/index';
+
+.line_wrapper {
+  height: 1px;
+  background-color: $DIVIDER_COLOR;
+}
+
+.margin_small {
+  margin: 12px 0;
+}
+
+.margin_big {
+  margin: 16px 0;
+}

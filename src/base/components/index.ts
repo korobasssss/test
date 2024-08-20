@@ -13,3 +13,4 @@ export * from './PopupDown';
 export * from './WhiteSection';
 export * from './ScrollWrapper';
 export * from './LoadingWrapper';
+export * from './ListWithLineWrapper'
