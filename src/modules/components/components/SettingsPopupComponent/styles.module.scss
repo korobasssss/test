@@ -29,10 +29,6 @@
       flex-direction: column;
       gap: 12px;
 
-      .input {
-        background-color: $INPUT_BG;
-      }
-
       .checkbox_section_input:focus {
         border: none;
       }

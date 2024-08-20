@@ -8,6 +8,7 @@ const cx = classNames.bind(styles);
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   autoComplete?: 'on' | 'off';
+  theme?: 'base' | 'none';
   ref?: Ref<HTMLInputElement | null>;
   label?: string;
   errorMessage?: string;
@@ -22,6 +23,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
       disabled,
       id,
       placeholder,
+      theme,
       type = 'text',
       readOnly,
       label,
@@ -63,7 +65,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
         <input
           {...restProps}
           autoComplete={autoComplete}
-          className={cx('LICInput', className)}
+          className={cx('LICInput', className, styles[`LICInput-theme-${theme}`])}
           disabled={disabled}
           id={id}
           placeholder={readOnly || staticPlaceholder ? '' : placeholder}

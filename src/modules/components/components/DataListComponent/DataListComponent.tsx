@@ -5,8 +5,7 @@ import { routeComponentsView } from 'src/base/navigation';
 import cx from 'classnames';
 import { EDeviceStatus, IDataView } from 'src/modules/components';
 import { isArray } from 'src/base';
-import { TextNoData } from 'src/base/components/TextNoData/TextNoData';
-import { ListWithLineWrapper } from 'src/base/components';
+import { TextNoData, ListWithLineWrapper } from 'src/base/components';
 
 interface IDataList {
   data: IDataView[];

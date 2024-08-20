@@ -62,6 +62,7 @@ export const SettingsPopupComponent: FC<ISettingsPopupComponentProps> = ({
           <div className={styles.input_section}>
             <div className={styles.data}>Ввести IP вручную</div>
             <Input
+              theme='base'
               value={inputId}
               onChange={handlerSetInputId}
               placeholder="Номер IP"

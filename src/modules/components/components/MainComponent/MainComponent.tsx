@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { DeviceStatusSelectWithStatus } from 'src/modules/components/constants';
 import styles from 'src/modules/components/components/MainComponent/styles.module.scss';
-import { Button, ButtonIcon, Input, Select, WhiteSection, ScrollWrapper, PopupDown } from 'src/base/components';
+import { Button, ButtonIcon, Input, Select, WhiteSection, ScrollWrapper, PopupDown, TextNoData } from 'src/base/components';
 import { DataListComponent } from 'src/modules/components/components';
 import { ReactComponent as CloseLogo } from 'src/assets/icons/closeIcon.svg';
 import { ReactComponent as SearchLogo } from 'src/assets/icons/search.svg';
@@ -12,7 +12,6 @@ import { IDataView, ISelectActive } from 'src/modules/components';
 import { routeCreate } from 'src/base/navigation/routes';
 import { isArray } from 'src/base';
 import { SettingsPopupContainer } from 'src/modules/components/containers/SettingsPopupContainer';
-import { TextNoData } from 'src/base/components/TextNoData/TextNoData';
 
 interface IMainComponent {
   isSettingsOpened: boolean;
@@ -74,7 +73,9 @@ export const MainComponent: FC<IMainComponent> = ({
                   value={inputSearch}
                   onChange={handleSearchDevice}
                   className={styles.input}
-                  placeholder="Поиск по deviceID" />
+                  placeholder="Поиск по deviceID"
+                  theme="none"
+                />
               </div>
               <ButtonIcon
                 onClick={handleClearInputSearch}>

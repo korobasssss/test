@@ -1,7 +1,7 @@
 import React, {
   FC,
   ReactElement,
-  ReactNode,
+  ReactNode, useCallback,
   useEffect,
   useRef,
   useState,
@@ -60,17 +60,21 @@ export const Popup: FC<IPopupProps> = ({
   };
 
   const [willBeClosed, setWillBeClosed] = useState(false);
+  const [isOpenCopy, setIsOpenCopy] = useState(isOpen);
+
+  const handleWillBeClosed = useCallback(() => {
+    if (handleClosePopup) {
+      setWillBeClosed(true);
+      setIsOpenCopy(false)
+      setTimeout(() => {
+        handleClosePopup();
+        setWillBeClosed(false);
+      }, 100);
+    }
+  }, [handleClosePopup]);
 
   let currentSwipeHandlers: SwipeableHandlers | undefined = useSwipeable({
-    onSwipedDown: () => {
-      if (handleClosePopup) {
-        setWillBeClosed(true);
-        setTimeout(() => {
-          handleClosePopup();
-          setWillBeClosed(false);
-        }, 300);
-      }
-    },
+    onSwipedDown: handleWillBeClosed
   });
 
   if (isDoNotUseSwipeHandlers) {
@@ -105,8 +109,8 @@ export const Popup: FC<IPopupProps> = ({
             className={cx(
               styles.VBOverlay,
               {
-                [styles['VBOverlay-opened']]: isOpen,
-                [styles['VBOverlay-closed']]: !isOpen,
+                [styles['VBOverlay-opened']]: isOpenCopy,
+                [styles['VBOverlay-closed']]: !isOpenCopy,
                 [styles.BottomSheet]: isBottomSheet,
               },
               'VBOverlay',
@@ -146,7 +150,7 @@ export const Popup: FC<IPopupProps> = ({
                   {handleClosePopup && (
                     <div
                       data-uitest="close-popup"
-                      onClick={handleClosePopup}
+                      onClick={handleWillBeClosed}
                       className={cx(
                         styles['VBPopup-modal-header__closeIcon'],
                         'VBPopup-modal-header__closeIcon',
@@ -174,6 +178,7 @@ export const Popup: FC<IPopupProps> = ({
                 >
                   {handleClickSubmit && (
                     <Button
+                      theme='primary'
                       disabled={submitButtonDisabled}
                       onClick={handleClickSubmit}
                       size="m"
@@ -184,7 +189,7 @@ export const Popup: FC<IPopupProps> = ({
                   {handleCancelButtonClick && isCancelButton && (
                     <Button
                       disabled={cancelButtonDisabled}
-                      onClick={handleCancelButtonClick}
+                      onClick={handleWillBeClosed}
                       theme="secondary"
                       size="m"
                     >

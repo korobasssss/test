@@ -1,5 +1,6 @@
-@import 'src/styles/variables/index.scss';
-@import 'src/styles/mixins/animation.scss';
+@import 'src/styles/variables/index';
+@import 'src/styles/mixins/animation';
+@import 'src/styles/mixins/typography';
 
 .VBOverlay {
   background: rgba(0, 0, 0, 0.5);
@@ -12,11 +13,14 @@
   position: fixed;
 
   &-closed {
-    display: none;
+    @include animation-opacity-exit;
+    animation-duration: $TRANSITION_DURATION;
   }
 
   &-opened {
     display: block;
+    @include animation-opacity-enter;
+    animation-duration: $TRANSITION_DURATION;
   }
 }
 
@@ -59,6 +63,7 @@
         color: $POPUP_TEXT;
         flex: 1 1 auto;
         padding-left: 2.1875rem;
+        @include font-moscow-sans-xl-bold;
 
         &-center {
           padding: 0;
@@ -81,6 +86,7 @@
       justify-content: center;
       text-align: center;
       color: $POPUP_TEXT;
+      @include font-moscow-sans-l-light;
     }
 
     &-footer {

@@ -64,6 +64,28 @@
   outline: none;
   border: none;
   @include font-small-light;
+  color: $TITLE_COLOR;
+
+  &-theme-none {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    height: min-content;
+    border: none;
+    @include font-moscow-sans-l-light;
+  }
+
+  &-theme-none:focus {
+    border: none;
+  }
+
+  &-theme-base {
+    background-color: $INPUT_BG;
+  }
+
+  &-theme-base:focus {
+    border: 1px solid $INPUT_FOCUS;
+  }
 
   &::-webkit-input-placeholder {
     color: $INPUT_PLACEHOLDER;
@@ -90,9 +112,9 @@
     color: $INPUT_PLACEHOLDER;
   }
 
-  &:focus {
-    border: 1px solid $INPUT_FOCUS;
-  }
+  //&:focus {
+  //  border: 1px solid $INPUT_FOCUS;
+  //}
 
   &:disabled {
     color: $INPUT_DISABLED;
