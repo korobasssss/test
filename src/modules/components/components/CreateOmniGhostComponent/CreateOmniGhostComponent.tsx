@@ -4,6 +4,7 @@ import styles from 'src/modules/components/components/CreateOmniGhostComponent/s
 import { Button, Input, Select, WhiteSection } from 'src/base/components';
 import { ICreateOmniGhostAction, ISelectActive } from 'src/modules/components';
 import { isNumber } from 'src/base/utils';
+import { CreateItemComponent } from 'src/modules/components/components';
 
 interface ICreateOmniGhostComponentProps {
   handlerCreate: (data: ICreateOmniGhostAction) => void;
@@ -66,63 +67,54 @@ export const CreateOmniGhostComponent: FC<ICreateOmniGhostComponentProps> = ({
       <WhiteSection>
         <main className={styles.main_section}>
           <section className={styles.ul_section}>
-            <div className={styles.list_item}>
-              <header className={styles.header}>
-                DeviceId
-              </header>
+            <CreateItemComponent
+              title='DeviceId'
+            >
               <Input
                 value={inputId}
                 onChange={handlerSetId}
                 placeholder="Введите Id ..."
-                className={styles.input}
+                theme="none"
               />
-            </div>
-            <div className={styles.list_item}>
-              <header className={styles.header}>
-                Статус устройства
-              </header>
-              <div>
-                <Select
-                  defaultData={selectArrStatus}
-                  onChange={handleClickSelectStatus}
-                  theme="none"
-                />
-              </div>
-            </div>
-            <div className={styles.list_item}>
-              <header className={styles.header}>
-                Скорость
-              </header>
+            </CreateItemComponent>
+            <CreateItemComponent
+              title='Статус устройства'
+            >
+              <Select
+                defaultData={selectArrStatus}
+                onChange={handleClickSelectStatus}
+                theme="none"
+              />
+            </CreateItemComponent>
+            <CreateItemComponent
+              title='Скорость'
+            >
               <Input
                 value={inputSpeed}
                 onChange={handlerSetSpeed}
                 placeholder="Введите скорость км/ч ..."
-                className={styles.input}
+                theme="none"
               />
-            </div>
-            <div className={styles.list_item}>
-              <header className={styles.header}>
-                Уровень заряда
-              </header>
+            </CreateItemComponent>
+            <CreateItemComponent
+              title='Уровень заряда'
+            >
               <Input
                 value={inputCharging}
                 onChange={handlerSetCharging}
                 placeholder="Введите заряд % ..."
-                className={styles.input}
+                theme="none"
               />
-            </div>
-            <div className={styles.list_item}>
-              <header className={styles.header}>
-                Состояние троса
-              </header>
-              <section>
-                <Select
-                  defaultData={selectArrCondition}
-                  onChange={handleClickSelectCondition}
-                  theme="none"
-                />
-              </section>
-            </div>
+            </CreateItemComponent>
+            <CreateItemComponent
+              title='Состояние троса'
+            >
+              <Select
+                defaultData={selectArrCondition}
+                onChange={handleClickSelectCondition}
+                theme="none"
+              />
+            </CreateItemComponent>
           </section>
           <Button
             theme="primary"
