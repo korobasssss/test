@@ -4,13 +4,17 @@ import {ReactComponent as Battery50Icon} from 'src/assets/icons/battery50.svg';
 import {ReactComponent as LockIcon} from 'src/assets/icons/lock.svg';
 import {ReactComponent as WheelIcon} from 'src/assets/icons/wheel.svg';
 import { CardItemComponent, CardPopups } from 'src/modules/components/components/CardComponent';
+import { IDataOneDeviceView } from 'src/modules/components';
 
 interface ICardComponentProps {
-  isDeletePopupOpen: boolean;
-  handleOpenDeleteCardPopup: () => void;
+  data: IDataOneDeviceView
 }
 
-export const CardComponent: FC<ICardComponentProps> = () => {
+export const CardComponent: FC<ICardComponentProps> = (
+  {
+    data
+  }
+) => {
   const [allInfoPopup, setAllInfoPopup] = useState(false);
 
   const handlerOpenInfoPopup = useCallback(() => {
@@ -42,7 +46,7 @@ export const CardComponent: FC<ICardComponentProps> = () => {
   return (
     <WhiteSection>
       <CardItemComponent
-        data='55.761811, 37.610116'
+        data={data.coordinates}
         title='координаты'
         buttonType='secondary'
         buttonTitle='Вся информация'
@@ -50,21 +54,21 @@ export const CardComponent: FC<ICardComponentProps> = () => {
         isLastItem={false}
       />
       <CardItemComponent
-        data='Online'
+        data={data.status}
         title='статус устройства'
         buttonType='svg'
         handlerButtonClick={handlerOpenStatusPopup}
         isLastItem={false}
       />
       <CardItemComponent
-        data='15 км/ч'
+        data={`${data.speed} км/ч`}
         title='скорость движения'
         buttonType='svg'
         handlerButtonClick={handlerOpenSpeedPopup}
         isLastItem={false}
       />
       <CardItemComponent
-        data='47%'
+        data={`${data.devicePercent} %`}
         dataIcon={<Battery50Icon/>}
         title='уровень заряда батареи'
         buttonType='svg'
@@ -72,7 +76,7 @@ export const CardComponent: FC<ICardComponentProps> = () => {
         isLastItem={false}
       />
       <CardItemComponent
-        data='Отстёгнут'
+        data={data.cableStatus}
         title='состояние троса'
         buttonType='secondary'
         buttonTitle='Замок троса'
@@ -80,7 +84,7 @@ export const CardComponent: FC<ICardComponentProps> = () => {
         isLastItem={false}
       />
       <CardItemComponent
-        data='Открыт'
+        data={data.horseshoe_cable}
         title='состояние замка-подковы'
         buttonType='secondary'
         buttonTitle='Замок на колесе'
@@ -98,6 +102,7 @@ export const CardComponent: FC<ICardComponentProps> = () => {
         isLastItem
       />
       <CardPopups
+        data={data}
         allInfoFlag={allInfoPopup}
         statusFlag={statusPopup}
         speedFlag={speedPopup}

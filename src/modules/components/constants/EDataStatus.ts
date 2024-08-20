@@ -12,3 +12,13 @@ export enum ECableStatusTranslate {
   BUCKLED = 'Пристегнут',
   UNBUCKLED = 'Отстегнут',
 }
+
+export enum ECableHorseshoeStatus {
+  OPEN = 'Open',
+  CLOSE = 'Close',
+}
+
+export enum ECableHorseshoeStatusTranslate {
+  OPEN = 'Открыт',
+  CLOSE = 'Закрыт',
+}

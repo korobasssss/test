@@ -2,8 +2,10 @@ import React, { FC } from 'react';
 import { Input, Popup } from 'src/base/components';
 import styles from './styles.module.scss';
 import { CardInfoItemComponent } from 'src/modules/components/components/CardComponent';
+import { IDataOneDeviceView } from 'src/modules/components';
 
 interface ICardPopups {
+  data: IDataOneDeviceView
   allInfoFlag: boolean;
   statusFlag: boolean;
   speedFlag: boolean;
@@ -17,6 +19,7 @@ interface ICardPopups {
 
 export const CardPopups: FC<ICardPopups> = (
   {
+    data,
     allInfoFlag,
     statusFlag,
     speedFlag,
@@ -32,7 +35,7 @@ export const CardPopups: FC<ICardPopups> = (
     <>
       {allInfoFlag && (
         <Popup
-          headerTitle="OmniGhost 55478"
+          headerTitle={`OmniGhost ${data.id}`}
           isOpen={allInfoFlag}
           handleClosePopup={handlerOpenInfoPopup}
           isCancelButton
@@ -45,23 +48,23 @@ export const CardPopups: FC<ICardPopups> = (
             className={styles.popup_info}>
             <CardInfoItemComponent
               title="Координаты: "
-              data="55.761811, 37.610116"
+              data={data.coordinates}
             />
             <CardInfoItemComponent
               title="Статус: "
-              data="Доступен"
+              data={data.status}
             />
             <CardInfoItemComponent
               title="Скорость: "
-              data="15 км/ч"
+              data={`${data.speed} км/ч`}
             />
             <CardInfoItemComponent
               title="Уровень заряда: "
-              data="47%"
+              data={`${data.devicePercent} %`}
             />
             <CardInfoItemComponent
               title="Состояние троса: "
-              data="Отстёгнут"
+              data={data.cableStatus}
             />
           </div>
         </Popup>
