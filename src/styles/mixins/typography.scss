@@ -81,6 +81,14 @@ $MOSCOW_SANS_X_BOLD: 'Moscow Sans X Bold';
   font-style: $font-style;
 }
 
+@mixin font-moscow-sans-s-light($font-weight: 400, $font-style: normal) {
+  font-family: $MOSCOW_SANS_X_LIGHT, sans-serif;
+  font-size: $FONT_S;
+  line-height: $LINE_HEIGHT;
+  font-weight: $font-weight;
+  font-style: $font-style;
+}
+
 @mixin font-moscow-sans-l-light($font-weight: 400, $font-style: normal) {
   font-family: $MOSCOW_SANS_X_LIGHT, sans-serif;
   font-size: $FONT_L;
