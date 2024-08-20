@@ -6,3 +6,4 @@ export * from './MainComponent';
 export * from './WelcomeComponent';
 export * from './DataListComponent';
 export * from './SettingsPopupComponent';
+export * from './CardComponent'

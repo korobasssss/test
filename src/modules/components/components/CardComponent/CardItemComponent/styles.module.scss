@@ -1,0 +1,45 @@
+@import '../../../../../styles/variables/index';
+@import '../../../../../styles/mixins/typography';
+
+.list_item {
+  display: flex;
+  justify-content: space-between;
+
+  .item_data_wrapper {
+    display: grid;
+    row-gap: 4px;
+
+    .main_data_wrapper {
+      width: max-content;
+      display: grid;
+      align-items: center;
+      grid-template-columns: repeat(2, auto);
+      column-gap: 8px;
+
+      .main_data {
+        @include font-moscow-sans-l-bold;
+      }
+    }
+
+    .title_wrapper {
+      @include font-moscow-sans-s-light;
+      color: $SHADOW_TEXT;
+    }
+  }
+
+  .item_button_wrapper {
+    display: flex;
+    justify-content: end;
+
+    .button {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      column-gap: 4px;
+      align-items: center;
+    }
+
+    .arrow {
+      rotate: -90deg;
+    }
+  }
+}
